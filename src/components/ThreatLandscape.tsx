@@ -101,6 +101,29 @@ const ThreatLandscape = () => {
     },
   ];
 
+  const cyberEyePromises = [
+    {
+      stat: "99.9%",
+      title: "Data Leak Prevention",
+      description: "Our AI-powered system can reduce data leak risks by detecting threats before they happen.",
+    },
+    {
+      stat: "<24 Hrs",
+      title: "Full Investigation",
+      description: "If a breach occurs, identify who did it, how they did it, and what method was used within 1 day.",
+    },
+    {
+      stat: "100%",
+      title: "Activity Tracking",
+      description: "Complete visibility into keystrokes, clipboard, file transfers, and network activities.",
+    },
+    {
+      stat: "<50ms",
+      title: "Real-Time Detection",
+      description: "Instant threat detection and response time to stop data exfiltration in progress.",
+    },
+  ];
+
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-destructive/5 to-transparent" />
@@ -137,6 +160,39 @@ const ThreatLandscape = () => {
                   </div>
                   <h3 className="text-lg font-bold mb-2">{threat.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{threat.description}</p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* CyberEye Solution Section */}
+        <AnimatedSection className="text-center mt-24 mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
+            <Target className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">CyberEye Solution</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            What <span className="text-primary">CyberEye</span> Can Do
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            Unlike traditional systems that take months to detect breaches, CyberEye provides instant detection 
+            and complete investigation capabilities — so you know exactly who, how, and when.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {cyberEyePromises.map((promise, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="group relative bg-card/50 backdrop-blur border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 text-center">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="relative">
+                  <span className="text-4xl font-black text-primary block mb-3">
+                    <AnimatedNumber value={promise.stat} />
+                  </span>
+                  <h3 className="text-lg font-bold mb-2">{promise.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{promise.description}</p>
                 </div>
               </div>
             </AnimatedSection>
