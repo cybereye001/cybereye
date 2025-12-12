@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowRight, Play } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {/* Subtle grid pattern - no blue effects */}
@@ -35,13 +37,17 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-slide-up" style={{
           animationDelay: "0.2s"
         }}>
-            <Button variant="hero" size="xl" className="group">
-              Start Free Trial
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Button asChild variant="hero" size="xl" className="group">
+              <Link to="/demo">
+                Start Free Trial
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
-            <Button variant="heroOutline" size="xl" className="group">
-              <Play className="w-5 h-5" />
-              Watch Demo
+            <Button asChild variant="heroOutline" size="xl" className="group">
+              <Link to="/demo">
+                <Play className="w-5 h-5" />
+                Watch Demo
+              </Link>
             </Button>
           </div>
 
