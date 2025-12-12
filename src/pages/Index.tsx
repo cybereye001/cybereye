@@ -1,12 +1,11 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSolution from "@/components/ProblemSolution";
+import ThreatLandscape from "@/components/ThreatLandscape";
 import Features from "@/components/Features";
-import Stats from "@/components/Stats";
-import Testimonials from "@/components/Testimonials";
-import Integrations from "@/components/Integrations";
-import TrustBadges from "@/components/TrustBadges";
-import PricingSection from "@/components/PricingSection";
+import SecurityDashboard from "@/components/SecurityDashboard";
+import UseCases from "@/components/UseCases";
+import ComplianceSection from "@/components/ComplianceSection";
 import FAQ from "@/components/FAQ";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -19,13 +18,12 @@ const Index = () => {
       <div className="relative z-10">
         <Navbar />
         <HeroSection />
-        <TrustBadges />
-        <Stats />
         <ProblemSolution />
+        <ThreatLandscape />
         <Features />
-        <Integrations />
-        <Testimonials />
-        <PricingSection />
+        <SecurityDashboard />
+        <UseCases />
+        <ComplianceSection />
         <FAQ />
         <CTASection />
         <Footer />
