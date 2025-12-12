@@ -1,5 +1,65 @@
 import { AlertTriangle, TrendingUp, DollarSign, Clock, Target, Users } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
+
+interface AnimatedNumberProps {
+  value: string;
+  duration?: number;
+}
+
+const AnimatedNumber = ({ value, duration = 2000 }: AnimatedNumberProps) => {
+  const [displayValue, setDisplayValue] = useState("0");
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    // Extract numeric part and suffix
+    const numMatch = value.match(/^[\d.]+/);
+    const suffixMatch = value.match(/[^\d.]+$/);
+    const prefixMatch = value.match(/^[^\d]+/);
+    
+    if (!numMatch) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const prefix = prefixMatch ? prefixMatch[0] : "";
+    const targetNum = parseFloat(numMatch[0]);
+    const suffix = suffixMatch ? suffixMatch[0] : "";
+    const isDecimal = value.includes(".");
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = targetNum * easeOut;
+
+      if (isDecimal) {
+        setDisplayValue(`${prefix}${current.toFixed(2)}${suffix}`);
+      } else {
+        setDisplayValue(`${prefix}${Math.floor(current)}${suffix}`);
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isInView, value, duration]);
+
+  return <span ref={ref}>{displayValue}</span>;
+};
 
 const ThreatLandscape = () => {
   const threats = [
@@ -71,7 +131,9 @@ const ThreatLandscape = () => {
                     <div className="w-10 h-10 rounded-lg bg-destructive/10 border border-destructive/20 flex items-center justify-center">
                       <threat.icon className="w-5 h-5 text-destructive" />
                     </div>
-                    <span className="text-3xl font-black text-destructive">{threat.stat}</span>
+                    <span className="text-3xl font-black text-destructive">
+                      <AnimatedNumber value={threat.stat} />
+                    </span>
                   </div>
                   <h3 className="text-lg font-bold mb-2">{threat.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{threat.description}</p>

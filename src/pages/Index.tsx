@@ -6,8 +6,9 @@ import Features from "@/components/Features";
 import SecurityDashboard from "@/components/SecurityDashboard";
 import UseCases from "@/components/UseCases";
 import ComplianceSection from "@/components/ComplianceSection";
-import CTASection from "@/components/CTASection";
+import PricingSection from "@/components/PricingSection";
 import FAQ from "@/components/FAQ";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 
@@ -24,8 +25,9 @@ const Index = () => {
         <SecurityDashboard />
         <UseCases />
         <ComplianceSection />
-        <CTASection />
+        <PricingSection />
         <FAQ />
+        <FinalCTA />
         <Footer />
       </div>
     </main>
