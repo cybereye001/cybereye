@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import BackgroundEffects from "@/components/BackgroundEffects";
+import Footer from "@/components/Footer";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,8 +17,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative flex items-center justify-center">
+    <div className="min-h-screen bg-background relative flex flex-col">
       <BackgroundEffects />
+      
+      <div className="flex-1 flex items-center justify-center py-20">
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-md mx-auto">
@@ -99,6 +102,9 @@ const Login = () => {
           </div>
         </div>
       </div>
+      </div>
+      
+      <Footer />
     </div>
   );
 };
