@@ -40,7 +40,7 @@ const ProblemSolution = () => {
           <AnimatedSection delay={0.1}>
             <div className="relative group h-full">
               <div className="absolute inset-0 bg-destructive/10 rounded-2xl blur-xl group-hover:bg-destructive/20 transition-all" />
-              <div className="relative bg-card border border-destructive/30 rounded-2xl p-6 md:p-8 h-full">
+              <div className="relative bg-card border border-destructive/30 rounded-2xl p-6 md:p-8 glow-destructive h-full">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-destructive/20 flex items-center justify-center">
                     <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 text-destructive" />
