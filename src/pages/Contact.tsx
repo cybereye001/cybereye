@@ -26,20 +26,20 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      value: "contact@cybereye.com",
-      link: "mailto:contact@cybereye.com",
+      value: "cybereye.help@gmail.com",
+      link: "mailto:cybereye.help@gmail.com",
     },
     {
       icon: Phone,
       title: "Call Us",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+91 9172573489",
+      link: "tel:+919172573489",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      value: "123 Security Blvd, SF",
-      link: "#",
+      value: "onkardigitalservicesllp.site",
+      link: "https://www.onkardigitalservicesllp.site",
     },
     {
       icon: MessageSquare,
