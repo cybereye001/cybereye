@@ -1,11 +1,14 @@
-import { motion } from "framer-motion";
-import { Check, Zap } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import AnimatedSection from "./AnimatedSection";
 import AnimatedNumber from "./AnimatedNumber";
 
 const PricingSection = () => {
+  const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
+
   const plans = [
     {
       name: "Starter",
@@ -58,6 +61,10 @@ const PricingSection = () => {
       popular: false,
     },
   ];
+
+  const toggleExpand = (planName: string) => {
+    setExpandedPlan(expandedPlan === planName ? null : planName);
+  };
 
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">
@@ -112,7 +119,7 @@ const PricingSection = () => {
                     <span className="text-muted-foreground text-xs md:text-base ml-1 md:ml-2">{plan.period}</span>
                   </div>
 
-                  <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8 flex-grow">
+                  <ul className="space-y-2 md:space-y-3 mb-4 md:mb-6 flex-grow">
                     {plan.features.slice(0, 4).map((feature, i) => (
                       <li key={i} className="flex items-center gap-2 md:gap-3 text-muted-foreground text-xs md:text-base">
                         <Check className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
@@ -120,9 +127,46 @@ const PricingSection = () => {
                         <span className="sm:hidden">{feature.split(" ").slice(0, 3).join(" ")}</span>
                       </li>
                     ))}
+                    
+                    {/* Expandable features */}
+                    <AnimatePresence>
+                      {expandedPlan === plan.name && plan.features.length > 4 && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          {plan.features.slice(4).map((feature, i) => (
+                            <li key={i + 4} className="flex items-center gap-2 md:gap-3 text-muted-foreground text-xs md:text-base mt-2 md:mt-3">
+                              <Check className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+                              <span className="hidden sm:inline">{feature}</span>
+                              <span className="sm:hidden">{feature.split(" ").slice(0, 3).join(" ")}</span>
+                            </li>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
                     {plan.features.length > 4 && (
-                      <li className="text-muted-foreground/60 text-xs md:text-sm">
-                        +{plan.features.length - 4} more features
+                      <li>
+                        <button 
+                          onClick={() => toggleExpand(plan.name)}
+                          className="text-primary hover:text-primary/80 text-xs md:text-sm flex items-center gap-1 transition-colors cursor-pointer mt-1"
+                        >
+                          {expandedPlan === plan.name ? (
+                            <>
+                              <ChevronUp className="w-3 h-3 md:w-4 md:h-4" />
+                              Show less
+                            </>
+                          ) : (
+                            <>
+                              <ChevronDown className="w-3 h-3 md:w-4 md:h-4" />
+                              +{plan.features.length - 4} more features
+                            </>
+                          )}
+                        </button>
                       </li>
                     )}
                   </ul>
@@ -158,16 +202,52 @@ const PricingSection = () => {
                   <span className="text-muted-foreground text-xs md:text-base ml-1 md:ml-2">{plans[2].period}</span>
                 </div>
 
-                <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                <ul className="space-y-2 md:space-y-3 mb-4 md:mb-6">
                   {plans[2].features.slice(0, 5).map((feature, i) => (
                     <li key={i} className="flex items-center gap-2 md:gap-3 text-muted-foreground text-xs md:text-base">
                       <Check className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
+                  
+                  {/* Expandable features for Enterprise */}
+                  <AnimatePresence>
+                    {expandedPlan === "Enterprise" && plans[2].features.length > 5 && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        {plans[2].features.slice(5).map((feature, i) => (
+                          <li key={i + 5} className="flex items-center gap-2 md:gap-3 text-muted-foreground text-xs md:text-base mt-2 md:mt-3">
+                            <Check className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   {plans[2].features.length > 5 && (
-                    <li className="text-muted-foreground/60 text-xs md:text-sm">
-                      +{plans[2].features.length - 5} more features
+                    <li>
+                      <button 
+                        onClick={() => toggleExpand("Enterprise")}
+                        className="text-primary hover:text-primary/80 text-xs md:text-sm flex items-center gap-1 transition-colors cursor-pointer mt-1"
+                      >
+                        {expandedPlan === "Enterprise" ? (
+                          <>
+                            <ChevronUp className="w-3 h-3 md:w-4 md:h-4" />
+                            Show less
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="w-3 h-3 md:w-4 md:h-4" />
+                            +{plans[2].features.length - 5} more features
+                          </>
+                        )}
+                      </button>
                     </li>
                   )}
                 </ul>
