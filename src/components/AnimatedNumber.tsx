@@ -62,10 +62,18 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
 
   useEffect(() => {
     const element = ref.current;
+
+    // On mobile, show final value directly (no animation) to avoid 0 issue
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setDisplayValue(value);
+      setHasAnimated(true);
+      return;
+    }
+
     if (!element || hasAnimated) return;
 
     // Check if IntersectionObserver is supported
-    if (!('IntersectionObserver' in window)) {
+    if (!("IntersectionObserver" in window)) {
       runAnimation();
       setHasAnimated(true);
       return;
@@ -92,7 +100,7 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [hasAnimated, runAnimation]);
+  }, [hasAnimated, runAnimation, value]);
 
   return <span ref={ref} className={className}>{displayValue}</span>;
 };
