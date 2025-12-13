@@ -13,8 +13,12 @@ const Navbar = () => {
   ];
 
   const isActive = (href: string) => {
+    // On home page, Features should be active by default
+    if (href === "/#features" && location.pathname === "/") {
+      return true;
+    }
     if (href.startsWith("/#")) {
-      return location.pathname === "/" && location.hash === href.substring(1);
+      return false; // Already handled above
     }
     return location.pathname === href;
   };
