@@ -1,5 +1,6 @@
 import { Monitor, Shield, Activity, AlertCircle, Users, FileWarning } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import AnimatedNumber from "./AnimatedNumber";
 
 const SecurityDashboard = () => {
   const mockAlerts = [
@@ -9,11 +10,19 @@ const SecurityDashboard = () => {
   ];
 
   const metrics = [
-    { label: "Active Endpoints", value: "2,847", icon: Monitor },
-    { label: "Threats Blocked", value: "156", icon: Shield },
-    { label: "Risk Score", value: "Low", icon: Activity },
-    { label: "Active Users", value: "1,234", icon: Users },
+    { label: "Active Endpoints", value: "2847", displayValue: "2,847", icon: Monitor },
+    { label: "Threats Blocked", value: "156", displayValue: "156", icon: Shield },
+    { label: "Risk Score", value: "Low", displayValue: "Low", icon: Activity, isText: true },
+    { label: "Active Users", value: "1234", displayValue: "1,234", icon: Users },
   ];
+
+  const threatCategories = [
+    { label: "Data Exfiltration", value: 45 },
+    { label: "Unauthorized Access", value: 30 },
+    { label: "Policy Violations", value: 25 },
+  ];
+
+  const activityData = [40, 65, 45, 80, 55, 70, 90, 60, 75, 85, 50, 95];
 
   return (
     <section className="py-24 relative overflow-hidden">
@@ -51,7 +60,9 @@ const SecurityDashboard = () => {
                   {metrics.map((metric, index) => (
                     <div key={index} className="bg-secondary/30 rounded-xl p-4 border border-border/50">
                       <metric.icon className="w-5 h-5 text-primary mb-2" />
-                      <div className="text-2xl font-bold">{metric.value}</div>
+                      <div className="text-2xl font-bold">
+                        {metric.isText ? metric.displayValue : <AnimatedNumber value={metric.value} />}
+                      </div>
                       <div className="text-xs text-muted-foreground">{metric.label}</div>
                     </div>
                   ))}
@@ -64,13 +75,17 @@ const SecurityDashboard = () => {
                     <span className="text-xs text-muted-foreground">Last 24h</span>
                   </div>
                   <div className="h-20 flex items-end gap-1">
-                    {[40, 65, 45, 80, 55, 70, 90, 60, 75, 85, 50, 95].map((height, i) => (
+                    {activityData.map((height, i) => (
                       <div
                         key={i}
-                        className="flex-1 bg-primary/30 rounded-t"
+                        className="flex-1 bg-primary/30 rounded-t transition-all duration-1000"
                         style={{ height: `${height}%` }}
                       />
                     ))}
+                  </div>
+                  <div className="mt-2 text-right">
+                    <span className="text-xs text-muted-foreground">Peak: </span>
+                    <AnimatedNumber value="95%" className="text-xs font-medium text-primary" />
                   </div>
                 </div>
 
@@ -101,19 +116,15 @@ const SecurityDashboard = () => {
                     <span className="text-sm font-medium">Threat Categories</span>
                   </div>
                   <div className="space-y-2">
-                    {[
-                      { label: "Data Exfiltration", value: 45 },
-                      { label: "Unauthorized Access", value: 30 },
-                      { label: "Policy Violations", value: 25 },
-                    ].map((item, i) => (
+                    {threatCategories.map((item, i) => (
                       <div key={i} className="space-y-1">
                         <div className="flex justify-between text-xs">
                           <span className="text-muted-foreground">{item.label}</span>
-                          <span>{item.value}%</span>
+                          <AnimatedNumber value={`${item.value}%`} className="font-medium" />
                         </div>
                         <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-primary rounded-full"
+                            className="h-full bg-primary rounded-full transition-all duration-1000"
                             style={{ width: `${item.value}%` }}
                           />
                         </div>
