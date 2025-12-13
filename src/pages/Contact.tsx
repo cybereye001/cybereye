@@ -38,7 +38,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Visit Us",
-      value: "123 Security Blvd, San Francisco, CA",
+      value: "123 Security Blvd, SF",
       link: "#",
     },
     {
@@ -50,45 +50,46 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative overflow-x-hidden">
       <BackgroundEffects />
       <Navbar />
-      
+
       <main className="relative z-10 pt-24">
         {/* Hero */}
-        <section className="py-24">
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
                 <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
                   Contact Us
                 </span>
-                <h1 className="text-4xl md:text-6xl font-bold mt-6 mb-6">
+                <h1 className="text-3xl md:text-6xl font-bold mt-6 mb-6">
                   Get in <span className="text-gradient">Touch</span>
                 </h1>
-                <p className="text-xl text-muted-foreground">
-                  Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                <p className="text-base md:text-xl text-muted-foreground">
+                  Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as
+                  possible.
                 </p>
               </div>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* Contact Info Cards */}
+        {/* Contact Info Cards - 2x2 grid on mobile */}
         <section className="pb-12">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto">
               {contactInfo.map((info, index) => (
                 <AnimatedSection key={index} delay={index * 0.1}>
                   <a
                     href={info.link}
-                    className="block bg-card border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300 group"
+                    className="block bg-card border border-border rounded-xl p-4 md:p-6 text-center hover:border-primary/50 transition-all duration-300 group h-full"
                   >
-                    <div className="w-14 h-14 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <info.icon className="w-7 h-7 text-primary" />
+                    <div className="w-10 h-10 md:w-14 md:h-14 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-3 md:mb-4 group-hover:bg-primary/20 transition-colors">
+                      <info.icon className="w-5 h-5 md:w-7 md:h-7 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
-                    <p className="text-muted-foreground text-sm">{info.value}</p>
+                    <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">{info.title}</h3>
+                    <p className="text-muted-foreground text-xs md:text-sm">{info.value}</p>
                   </a>
                 </AnimatedSection>
               ))}
@@ -97,20 +98,18 @@ const Contact = () => {
         </section>
 
         {/* Contact Form */}
-        <section className="py-24">
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <AnimatedSection>
-                <div className="bg-card border border-border rounded-2xl p-8 md:p-12">
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                    Send Us a Message
-                  </h2>
-                  <p className="text-muted-foreground mb-8">
+                <div className="bg-card border border-border rounded-xl md:rounded-2xl p-6 md:p-12">
+                  <h2 className="text-xl md:text-3xl font-bold text-foreground mb-2">Send Us a Message</h2>
+                  <p className="text-muted-foreground text-sm md:text-base mb-6 md:mb-8">
                     Fill out the form below and our team will get back to you within 24 hours.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                           Full Name *
@@ -141,7 +140,7 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                       <div>
                         <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                           Company Name
@@ -180,12 +179,12 @@ const Contact = () => {
                         placeholder="Tell us more about your needs..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="bg-muted border-border min-h-[150px]"
+                        className="bg-muted border-border min-h-[120px] md:min-h-[150px]"
                         required
                       />
                     </div>
 
-                    <Button type="submit" variant="hero" size="xl" className="w-full md:w-auto">
+                    <Button type="submit" variant="hero" size="lg" className="w-full md:w-auto">
                       <Send className="w-5 h-5 mr-2" />
                       Send Message
                     </Button>
