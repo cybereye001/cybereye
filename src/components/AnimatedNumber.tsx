@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 interface AnimatedNumberProps {
   value: string;
@@ -8,9 +8,39 @@ interface AnimatedNumberProps {
 
 const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumberProps) => {
   const [displayValue, setDisplayValue] = useState("0");
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
   const animationRef = useRef<number | null>(null);
+  const hasAnimated = useRef(false);
 
+  // Use native Intersection Observer for better mobile support
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            hasAnimated.current = false; // Allow re-animation
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "-50px" }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const runAnimation = useCallback(() => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+
     // Cancel any previous animation
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
@@ -32,10 +62,10 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
     const isDecimal = numMatch[0].includes(".");
     const decimalPlaces = isDecimal ? (numMatch[0].split(".")[1]?.length || 1) : 0;
 
-    const startTime = Date.now();
+    const startTime = performance.now();
 
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
       // Easing function for smooth animation
@@ -56,15 +86,21 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
     };
 
     animationRef.current = requestAnimationFrame(animate);
+  }, [value, duration]);
+
+  useEffect(() => {
+    if (isVisible) {
+      runAnimation();
+    }
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [value, duration]);
+  }, [isVisible, runAnimation]);
 
-  return <span className={className}>{displayValue}</span>;
+  return <span ref={ref} className={className}>{displayValue}</span>;
 };
 
 export default AnimatedNumber;
