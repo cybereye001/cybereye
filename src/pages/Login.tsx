@@ -13,20 +13,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if already logged in
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         navigate("/admin");
       }
-    };
-    checkAuth();
+    });
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         navigate("/admin");
       }
@@ -45,19 +42,39 @@ const Login = () => {
 
     setLoading(true);
     
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
+    if (isSignUp) {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin`
+        }
+      });
 
-    if (error) {
-      toast.error(error.message);
+      if (error) {
+        toast.error(error.message);
+        setLoading(false);
+        return;
+      }
+
+      toast.success("Account created successfully! You can now sign in.");
+      setIsSignUp(false);
       setLoading(false);
-      return;
-    }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
 
-    toast.success("Logged in successfully!");
-    navigate("/admin");
+      if (error) {
+        toast.error(error.message);
+        setLoading(false);
+        return;
+      }
+
+      toast.success("Logged in successfully!");
+      navigate("/admin");
+    }
   };
 
   return (
@@ -78,8 +95,12 @@ const Login = () => {
               <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary to-[hsl(200_92%_45%)] flex items-center justify-center mb-4">
                 <Eye className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Admin Login</h1>
-              <p className="text-muted-foreground mt-2">Sign in to your CyberEye admin dashboard</p>
+              <h1 className="text-2xl font-bold text-foreground">
+                {isSignUp ? "Create Admin Account" : "Admin Login"}
+              </h1>
+              <p className="text-muted-foreground mt-2">
+                {isSignUp ? "Create your CyberEye admin account" : "Sign in to your CyberEye admin dashboard"}
+              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -126,17 +147,23 @@ const Login = () => {
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Signing In...
+                    {isSignUp ? "Creating Account..." : "Signing In..."}
                   </>
                 ) : (
-                  "Sign In"
+                  isSignUp ? "Create Account" : "Sign In"
                 )}
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-center space-y-2">
+              <button
+                type="button"
+                onClick={() => setIsSignUp(!isSignUp)}
+                className="text-primary hover:underline text-sm"
+              >
+                {isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up"}
+              </button>
               <p className="text-muted-foreground text-sm">
-                Don't have admin access?{" "}
                 <Link to="/demo" className="text-primary hover:underline">
                   Request a demo
                 </Link>
