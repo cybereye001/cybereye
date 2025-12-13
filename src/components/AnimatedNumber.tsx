@@ -7,40 +7,12 @@ interface AnimatedNumberProps {
 }
 
 const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumberProps) => {
-  const [displayValue, setDisplayValue] = useState("0");
-  const [isVisible, setIsVisible] = useState(false);
+  const [displayValue, setDisplayValue] = useState(value);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const animationRef = useRef<number | null>(null);
-  const hasAnimated = useRef(false);
-
-  // Use native Intersection Observer for better mobile support
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            hasAnimated.current = false; // Allow re-animation
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "-50px" }
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   const runAnimation = useCallback(() => {
-    if (hasAnimated.current) return;
-    hasAnimated.current = true;
-
     // Cancel any previous animation
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
@@ -89,16 +61,38 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
   }, [value, duration]);
 
   useEffect(() => {
-    if (isVisible) {
+    const element = ref.current;
+    if (!element || hasAnimated) return;
+
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
       runAnimation();
+      setHasAnimated(true);
+      return;
     }
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            runAnimation();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px" }
+    );
+
+    observer.observe(element);
+
     return () => {
+      observer.disconnect();
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isVisible, runAnimation]);
+  }, [hasAnimated, runAnimation]);
 
   return <span ref={ref} className={className}>{displayValue}</span>;
 };

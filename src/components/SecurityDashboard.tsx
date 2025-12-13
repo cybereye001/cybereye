@@ -1,8 +1,32 @@
 import { Monitor, Shield, Activity, AlertCircle, Users, FileWarning } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
-import AnimatedNumber from "./AnimatedNumber";
+import { useEffect, useState, useRef } from "react";
 
 const SecurityDashboard = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = sectionRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   const mockAlerts = [
     { type: "critical", message: "Unusual file transfer detected - Marketing Dept", time: "2 min ago" },
     { type: "warning", message: "Multiple login attempts from new location", time: "5 min ago" },
@@ -10,10 +34,10 @@ const SecurityDashboard = () => {
   ];
 
   const metrics = [
-    { label: "Active Endpoints", value: "2847", displayValue: "2,847", icon: Monitor },
-    { label: "Threats Blocked", value: "156", displayValue: "156", icon: Shield },
-    { label: "Risk Score", value: "Low", displayValue: "Low", icon: Activity, isText: true },
-    { label: "Active Users", value: "1234", displayValue: "1,234", icon: Users },
+    { label: "Active Endpoints", value: "2,847", icon: Monitor },
+    { label: "Threats Blocked", value: "156", icon: Shield },
+    { label: "Risk Score", value: "Low", icon: Activity },
+    { label: "Active Users", value: "1,234", icon: Users },
   ];
 
   const threatCategories = [
@@ -25,7 +49,7 @@ const SecurityDashboard = () => {
   const activityData = [40, 65, 45, 80, 55, 70, 90, 60, 75, 85, 50, 95];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -60,15 +84,13 @@ const SecurityDashboard = () => {
                   {metrics.map((metric, index) => (
                     <div key={index} className="bg-secondary/30 rounded-xl p-4 border border-border/50">
                       <metric.icon className="w-5 h-5 text-primary mb-2" />
-                      <div className="text-2xl font-bold">
-                        {metric.isText ? metric.displayValue : <AnimatedNumber value={metric.value} />}
-                      </div>
+                      <div className="text-2xl font-bold">{metric.value}</div>
                       <div className="text-xs text-muted-foreground">{metric.label}</div>
                     </div>
                   ))}
                 </div>
 
-                {/* Activity Graph Placeholder */}
+                {/* Activity Graph with Animation */}
                 <div className="bg-secondary/30 rounded-xl p-4 border border-border/50">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm font-medium">Activity</span>
@@ -78,14 +100,17 @@ const SecurityDashboard = () => {
                     {activityData.map((height, i) => (
                       <div
                         key={i}
-                        className="flex-1 bg-primary/30 rounded-t transition-all duration-1000"
-                        style={{ height: `${height}%` }}
+                        className="flex-1 bg-primary/30 rounded-t transition-all duration-1000 ease-out"
+                        style={{ 
+                          height: isVisible ? `${height}%` : '0%',
+                          transitionDelay: `${i * 100}ms`
+                        }}
                       />
                     ))}
                   </div>
                   <div className="mt-2 text-right">
                     <span className="text-xs text-muted-foreground">Peak: </span>
-                    <AnimatedNumber value="95%" className="text-xs font-medium text-primary" />
+                    <span className="text-xs font-medium text-primary">95%</span>
                   </div>
                 </div>
 
@@ -109,7 +134,7 @@ const SecurityDashboard = () => {
                   </div>
                 </div>
 
-                {/* Threat Map */}
+                {/* Threat Categories with Animated Progress Bars */}
                 <div className="bg-secondary/30 rounded-xl p-4 border border-border/50">
                   <div className="flex items-center gap-2 mb-4">
                     <FileWarning className="w-4 h-4 text-primary" />
@@ -120,12 +145,15 @@ const SecurityDashboard = () => {
                       <div key={i} className="space-y-1">
                         <div className="flex justify-between text-xs">
                           <span className="text-muted-foreground">{item.label}</span>
-                          <AnimatedNumber value={`${item.value}%`} className="font-medium" />
+                          <span className="font-medium">{item.value}%</span>
                         </div>
                         <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-primary rounded-full transition-all duration-1000"
-                            style={{ width: `${item.value}%` }}
+                            className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
+                            style={{ 
+                              width: isVisible ? `${item.value}%` : '0%',
+                              transitionDelay: `${i * 200}ms`
+                            }}
                           />
                         </div>
                       </div>
