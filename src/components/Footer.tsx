@@ -1,30 +1,48 @@
 import { Link } from "react-router-dom";
-import { Eye, Linkedin, Twitter, Github, Mail, ArrowUpRight } from "lucide-react";
-
+import { Eye, Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
 const Footer = () => {
   const links = {
-    product: [
-      { name: "Features", href: "/#features" },
-      { name: "Use Cases", href: "/#use-cases" },
-      { name: "Pricing", href: "/pricing" },
-      { name: "Documentation", href: "#" },
-    ],
-    company: [
-      { name: "About Us", href: "/about" },
-      { name: "Careers", href: "/about" },
-      { name: "Blog", href: "/about" },
-      { name: "Contact", href: "/contact" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "/privacy" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Security", href: "/#features" },
-      { name: "Compliance", href: "/#compliance" },
-    ],
+    product: [{
+      name: "Features",
+      href: "/#features"
+    }, {
+      name: "Use Cases",
+      href: "/#use-cases"
+    }, {
+      name: "Pricing",
+      href: "/pricing"
+    }, {
+      name: "Documentation",
+      href: "#"
+    }],
+    company: [{
+      name: "About Us",
+      href: "/about"
+    }, {
+      name: "Careers",
+      href: "/about"
+    }, {
+      name: "Blog",
+      href: "/about"
+    }, {
+      name: "Contact",
+      href: "/contact"
+    }],
+    legal: [{
+      name: "Privacy Policy",
+      href: "/privacy"
+    }, {
+      name: "Terms of Service",
+      href: "/terms"
+    }, {
+      name: "Security",
+      href: "/#features"
+    }, {
+      name: "Compliance",
+      href: "/#compliance"
+    }]
   };
-
-  return (
-    <footer className="py-20 border-t border-border/50 relative overflow-hidden">
+  return <footer className="py-20 border-t border-border/50 relative overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-t from-card/50 to-transparent" />
       
@@ -41,62 +59,23 @@ const Footer = () => {
             <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">
               AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.
             </p>
-            <div className="flex gap-3">
-              <a href="#" className="w-11 h-11 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 group">
-                <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a href="#" className="w-11 h-11 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 group">
-                <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a href="#" className="w-11 h-11 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 group">
-                <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a href="mailto:contact@cybereye.com" className="w-11 h-11 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 group">
-                <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-            </div>
+            
           </div>
 
           {/* Links */}
-          <div>
-            <h4 className="font-semibold mb-6 text-foreground">Product</h4>
-            <ul className="space-y-4">
-              {links.product.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group">
-                    {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          
 
-          <div>
-            <h4 className="font-semibold mb-6 text-foreground">Company</h4>
-            <ul className="space-y-4">
-              {links.company.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group">
-                    {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          
 
           <div>
             <h4 className="font-semibold mb-6 text-foreground">Legal</h4>
             <ul className="space-y-4">
-              {links.legal.map((link) => (
-                <li key={link.name}>
+              {links.legal.map(link => <li key={link.name}>
                   <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group">
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                   </Link>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
         </div>
@@ -104,7 +83,7 @@ const Footer = () => {
         {/* ONKAR DIGITAL SERVICES LLP Branding */}
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col items-center justify-center mb-6">
-            <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border border-primary/30 rounded-2xl px-8 py-4 mb-4">
+            <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border rounded-2xl px-8 py-4 mb-4 text-primary-foreground border-secondary bg-[#020202]">
               <p className="text-lg md:text-xl font-bold text-primary text-center">
                 ONKAR DIGITAL SERVICES LLP
               </p>
@@ -116,9 +95,7 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
-              <p className="text-sm text-muted-foreground">
-                © 2024 CyberEye. All rights reserved.
-              </p>
+              <p className="text-sm text-muted-foreground">© 2025 CyberEye. All rights reserved.</p>
               <p className="text-xs text-muted-foreground/70 mt-1">
                 Developed & Powered by <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span>
               </p>
@@ -130,8 +107,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
