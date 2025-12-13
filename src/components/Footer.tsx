@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { Eye, Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
+import { Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
+import logo from "@/assets/logo.jpg";
+
 const Footer = () => {
   const links = {
     product: [{
@@ -51,10 +53,15 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Eye className="w-7 h-7 text-primary-foreground" />
+              <img 
+                src={logo} 
+                alt="CyberEye Logo" 
+                className="w-12 h-12 rounded-xl object-cover group-hover:scale-105 transition-transform shadow-lg shadow-primary/30"
+              />
+              <div className="flex items-center font-cyber font-bold text-2xl tracking-wider">
+                <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
+                <span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span>
               </div>
-              <span className="text-2xl font-bold">CyberEye</span>
             </Link>
             <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">Developed & Powered by ONKAR DIGITAL SERVICES LLP - AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.</p>
             
