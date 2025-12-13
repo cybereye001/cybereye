@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { useInView } from "framer-motion";
 
 interface AnimatedNumberProps {
   value: string;
@@ -9,15 +8,9 @@ interface AnimatedNumberProps {
 
 const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumberProps) => {
   const [displayValue, setDisplayValue] = useState("0");
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px" });
   const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!isInView) {
-      return;
-    }
-
     // Cancel any previous animation
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
@@ -69,9 +62,9 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isInView, value, duration]);
+  }, [value, duration]);
 
-  return <span ref={ref} className={className}>{displayValue}</span>;
+  return <span className={className}>{displayValue}</span>;
 };
 
 export default AnimatedNumber;
