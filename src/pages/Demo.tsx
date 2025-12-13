@@ -231,7 +231,7 @@ const Demo = () => {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="+1 (555) 123-4567"
+                    placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="bg-muted border-border"
