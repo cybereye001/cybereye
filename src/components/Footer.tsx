@@ -102,9 +102,14 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2024 CyberEye. All rights reserved.
-          </p>
+          <div className="text-center md:text-left">
+            <p className="text-sm text-muted-foreground">
+              © 2024 CyberEye. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground/70 mt-1">
+              A product by <span className="text-primary font-medium">ONKAR DIGITAL SERVICES LLP</span>
+            </p>
+          </div>
           <p className="text-sm text-muted-foreground flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
             Protecting enterprises worldwide

@@ -6,14 +6,13 @@ interface AnimatedNumberProps {
   className?: string;
 }
 
-const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumberProps) => {
+const AnimatedNumber = ({ value, duration = 1500, className = "" }: AnimatedNumberProps) => {
   const [displayValue, setDisplayValue] = useState(value);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const animationRef = useRef<number | null>(null);
 
   const runAnimation = useCallback(() => {
-    // Cancel any previous animation
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
     }
@@ -40,14 +39,18 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Easing function for smooth animation
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = targetNum * easeOut;
+      // Unique bounce-in easing effect
+      const easeOutBack = 1 + 2.70158 * Math.pow(progress - 1, 3) + 1.70158 * Math.pow(progress - 1, 2);
+      const clampedEase = Math.max(0, Math.min(1, easeOutBack));
+      const current = targetNum * clampedEase;
+
+      // Ensure we never show negative values
+      const safeValue = Math.max(0, current);
 
       if (isDecimal) {
-        setDisplayValue(`${prefix}${current.toFixed(decimalPlaces)}${suffix}`);
+        setDisplayValue(`${prefix}${safeValue.toFixed(decimalPlaces)}${suffix}`);
       } else {
-        setDisplayValue(`${prefix}${Math.floor(current)}${suffix}`);
+        setDisplayValue(`${prefix}${Math.floor(safeValue)}${suffix}`);
       }
 
       if (progress < 1) {
@@ -63,7 +66,7 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
   useEffect(() => {
     const element = ref.current;
 
-    // On mobile, show final value directly (no animation) to avoid 0 issue
+    // On mobile, show final value directly (no animation) to avoid issues
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setDisplayValue(value);
       setHasAnimated(true);
@@ -72,7 +75,6 @@ const AnimatedNumber = ({ value, duration = 2000, className = "" }: AnimatedNumb
 
     if (!element || hasAnimated) return;
 
-    // Check if IntersectionObserver is supported
     if (!("IntersectionObserver" in window)) {
       runAnimation();
       setHasAnimated(true);
