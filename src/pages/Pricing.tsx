@@ -25,54 +25,54 @@ const Pricing = () => {
   const renderValue = (value: boolean | string) => {
     if (typeof value === "boolean") {
       return value ? (
-        <Check className="w-5 h-5 text-success mx-auto" />
+        <Check className="w-4 h-4 md:w-5 md:h-5 text-success mx-auto" />
       ) : (
-        <X className="w-5 h-5 text-muted-foreground/50 mx-auto" />
+        <X className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground/50 mx-auto" />
       );
     }
-    return <span className="text-foreground">{value}</span>;
+    return <span className="text-foreground text-xs md:text-base">{value}</span>;
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative overflow-x-hidden">
       <BackgroundEffects />
       <Navbar />
-      
+
       <main className="relative z-10 pt-16">
         <PricingSection />
 
         {/* Comparison Table */}
-        <section className="py-24">
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <AnimatedSection>
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-2xl md:text-4xl font-bold mb-4">
                   Compare <span className="text-gradient">Plans</span>
                 </h2>
-                <p className="text-muted-foreground text-lg">
+                <p className="text-muted-foreground text-base md:text-lg">
                   Detailed feature comparison across all plans
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="max-w-5xl mx-auto overflow-x-auto">
-                <table className="w-full">
+              <div className="max-w-5xl mx-auto">
+                <table className="w-full text-xs md:text-base">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="text-left py-4 px-4 text-foreground font-semibold">Feature</th>
-                      <th className="text-center py-4 px-4 text-foreground font-semibold">Starter</th>
-                      <th className="text-center py-4 px-4 text-foreground font-semibold">Business</th>
-                      <th className="text-center py-4 px-4 text-foreground font-semibold">Enterprise</th>
+                      <th className="text-left py-3 md:py-4 px-2 md:px-4 text-foreground font-semibold">Feature</th>
+                      <th className="text-center py-3 md:py-4 px-2 md:px-4 text-foreground font-semibold">Starter</th>
+                      <th className="text-center py-3 md:py-4 px-2 md:px-4 text-foreground font-semibold">Business</th>
+                      <th className="text-center py-3 md:py-4 px-2 md:px-4 text-foreground font-semibold">Enterprise</th>
                     </tr>
                   </thead>
                   <tbody>
                     {comparison.map((row, index) => (
                       <tr key={index} className="border-b border-border/50 hover:bg-card/50 transition-colors">
-                        <td className="py-4 px-4 text-muted-foreground">{row.feature}</td>
-                        <td className="py-4 px-4 text-center">{renderValue(row.starter)}</td>
-                        <td className="py-4 px-4 text-center">{renderValue(row.business)}</td>
-                        <td className="py-4 px-4 text-center">{renderValue(row.enterprise)}</td>
+                        <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.feature}</td>
+                        <td className="py-3 md:py-4 px-2 md:px-4 text-center">{renderValue(row.starter)}</td>
+                        <td className="py-3 md:py-4 px-2 md:px-4 text-center">{renderValue(row.business)}</td>
+                        <td className="py-3 md:py-4 px-2 md:px-4 text-center">{renderValue(row.enterprise)}</td>
                       </tr>
                     ))}
                   </tbody>
