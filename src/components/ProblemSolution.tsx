@@ -1,23 +1,9 @@
 import { X, Check, AlertTriangle, Brain } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
-
 const ProblemSolution = () => {
-  const problems = [
-    "Fixed rules and signatures miss new attack techniques",
-    "Manual updates after breaches — damage already done",
-    "No user behavior analysis for slow leak detection",
-    "Static tools can't adapt to evolving threats",
-  ];
-
-  const solutions = [
-    "AI learns normal behavior and detects anomalies",
-    "Real-time blocking before data leaves your network",
-    "Continuous behavior analysis across all endpoints",
-    "Self-learning system adapts without manual updates",
-  ];
-
-  return (
-    <section className="py-24 relative overflow-hidden">
+  const problems = ["Fixed rules and signatures miss new attack techniques", "Manual updates after breaches — damage already done", "No user behavior analysis for slow leak detection", "Static tools can't adapt to evolving threats"];
+  const solutions = ["AI learns normal behavior and detects anomalies", "Real-time blocking before data leaves your network", "Continuous behavior analysis across all endpoints", "Self-learning system adapts without manual updates"];
+  return <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-20" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -48,14 +34,12 @@ const ProblemSolution = () => {
                   <h3 className="text-xl md:text-2xl font-bold">Traditional Tools</h3>
                 </div>
                 <ul className="space-y-3 md:space-y-4">
-                  {problems.map((problem, index) => (
-                    <li key={index} className="flex items-start gap-3">
+                  {problems.map((problem, index) => <li key={index} className="flex items-start gap-3">
                       <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-destructive/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <X className="w-3 h-3 md:w-4 md:h-4 text-destructive" />
                       </div>
                       <span className="text-sm md:text-base text-muted-foreground">{problem}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </div>
@@ -70,25 +54,21 @@ const ProblemSolution = () => {
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                     <Brain className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold">CyberEye AI</h3>
+                  <h3 className="text-xl md:text-2xl font-bold">Cyber Eye</h3>
                 </div>
                 <ul className="space-y-3 md:space-y-4">
-                  {solutions.map((solution, index) => (
-                    <li key={index} className="flex items-start gap-3">
+                  {solutions.map((solution, index) => <li key={index} className="flex items-start gap-3">
                       <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-success/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Check className="w-3 h-3 md:w-4 md:h-4 text-success" />
                       </div>
                       <span className="text-sm md:text-base text-foreground">{solution}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProblemSolution;
