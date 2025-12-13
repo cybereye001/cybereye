@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Eye, ArrowRight, Check, Building, Users, Shield, Loader2 } from "lucide-react";
+import { ArrowRight, Check, Building, Users, Shield, Loader2 } from "lucide-react";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import logoImage from "@/assets/logo.jpg";
 
 const Demo = () => {
   const [loading, setLoading] = useState(false);
@@ -93,12 +94,19 @@ const Demo = () => {
           {/* Left Side - Info */}
           <AnimatedSection>
             <div>
-              <Link to="/" className="inline-flex items-center gap-2 group mb-8">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-[hsl(200_92%_45%)] flex items-center justify-center">
-                  <Eye className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                  CyberEye
+              <Link to="/" className="inline-flex items-center gap-3 group mb-8">
+                <img 
+                  src={logoImage} 
+                  alt="CyberEye Logo" 
+                  className="h-10 w-10 rounded-lg object-cover"
+                />
+                <span className="font-cyber text-xl font-bold tracking-wider">
+                  <span className="bg-gradient-to-r from-gray-100 via-white to-gray-300 bg-clip-text text-transparent">
+                    CYBER
+                  </span>
+                  <span className="bg-gradient-to-r from-primary via-[hsl(190_95%_45%)] to-primary bg-clip-text text-transparent">
+                    EYE
+                  </span>
                 </span>
               </Link>
 
