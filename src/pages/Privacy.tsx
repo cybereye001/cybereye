@@ -31,7 +31,7 @@ const Privacy = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">1. Information We Collect</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      We collect information you provide directly to us, such as when you create an account, request a demo, or contact us for support. This may include your name, email address, company name, and phone number.
+                      ONKAR DIGITAL SERVICES LLP collects information you provide directly to us, such as when you create an account, request a demo, or contact us for support. This may include your name, email address, company name, and phone number.
                     </p>
                   </section>
 
@@ -73,9 +73,9 @@ const Privacy = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">7. Contact Us</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      If you have questions about this Privacy Policy, please contact us at{" "}
-                      <a href="mailto:privacy@cybereye.com" className="text-primary hover:underline">
-                        privacy@cybereye.com
+                      If you have questions about this Privacy Policy, please contact ONKAR DIGITAL SERVICES LLP at{" "}
+                      <a href="mailto:cybereye.help@gmail.com" className="text-primary hover:underline">
+                        cybereye.help@gmail.com
                       </a>
                     </p>
                   </section>
