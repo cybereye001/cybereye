@@ -2,11 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Eye, ArrowRight, Check, Building, Users, Shield } from "lucide-react";
+import { Eye, ArrowRight, Check, Building, Users, Shield, Loader2 } from "lucide-react";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Demo = () => {
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,9 +20,36 @@ const Demo = () => {
     employees: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.employees) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setLoading(true);
+
+    const { error } = await supabase
+      .from("demo_requests")
+      .insert({
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone || null,
+        message: `Employees: ${formData.employees}`
+      });
+
+    if (error) {
+      console.error("Error submitting demo request:", error);
+      toast.error("Failed to submit request. Please try again.");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+    setSubmitted(true);
+    toast.success("Demo request submitted successfully!");
   };
 
   const benefits = [
@@ -28,6 +59,30 @@ const Demo = () => {
     "Custom demo for your use case",
     "Integration support included",
   ];
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-background relative flex items-center justify-center">
+        <BackgroundEffects />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-lg mx-auto text-center">
+            <div className="w-20 h-20 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-6">
+              <Check className="w-10 h-10 text-success" />
+            </div>
+            <h1 className="text-3xl font-bold text-foreground mb-4">Thank You!</h1>
+            <p className="text-lg text-muted-foreground mb-8">
+              Your demo request has been submitted successfully. Our team will contact you within 24 hours.
+            </p>
+            <Link to="/">
+              <Button variant="hero" size="lg">
+                Back to Home
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background relative">
@@ -109,6 +164,7 @@ const Demo = () => {
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       className="bg-muted border-border"
                       required
+                      disabled={loading}
                     />
                   </div>
                   <div>
@@ -123,6 +179,7 @@ const Demo = () => {
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       className="bg-muted border-border"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -139,6 +196,7 @@ const Demo = () => {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="bg-muted border-border"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -154,6 +212,7 @@ const Demo = () => {
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     className="bg-muted border-border"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -168,6 +227,7 @@ const Demo = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="bg-muted border-border"
+                    disabled={loading}
                   />
                 </div>
 
@@ -181,6 +241,7 @@ const Demo = () => {
                     onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
                     className="w-full px-3 py-2 bg-muted border border-border rounded-md text-foreground"
                     required
+                    disabled={loading}
                   >
                     <option value="">Select...</option>
                     <option value="1-50">1-50</option>
@@ -191,9 +252,18 @@ const Demo = () => {
                   </select>
                 </div>
 
-                <Button type="submit" variant="hero" size="xl" className="w-full">
-                  Start Free Trial
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                <Button type="submit" variant="hero" size="xl" className="w-full" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      Start Free Trial
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </>
+                  )}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
