@@ -66,14 +66,14 @@ const About = () => {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
                 <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-                  About Us
+                  About ONKAR DIGITAL SERVICES LLP
                 </span>
                 <h1 className="text-3xl md:text-6xl font-bold mt-6 mb-6">
-                  Protecting the Digital <span className="text-gradient">Future</span>
+                  Innovating for a <span className="text-gradient">Secure Digital Future</span>
                 </h1>
                 <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
-                  CyberEye was founded with a simple mission: to make advanced data leak prevention accessible
-                  to every organization. We believe that AI-powered security should be the norm, not the exception.
+                  <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span> is dedicated to building cutting-edge cybersecurity solutions. 
+                  CyberEye, our flagship product, represents our commitment to making advanced AI-powered data leak prevention accessible to every organization.
                 </p>
               </div>
             </AnimatedSection>
@@ -85,18 +85,21 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-16 items-start max-w-6xl mx-auto">
               <AnimatedSection>
-                <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Our Story</h2>
+                <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
+                  About <span className="text-primary">ONKAR DIGITAL SERVICES LLP</span>
+                </h2>
                 <div className="space-y-3 md:space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
                   <p>
-                    In 2019, our founders witnessed firsthand how a major corporation suffered a devastating
-                    data breach due to an insider threat.
+                    <span className="text-foreground font-medium">ONKAR DIGITAL SERVICES LLP</span> is a forward-thinking technology company 
+                    specializing in innovative digital solutions and enterprise-grade cybersecurity products.
                   </p>
                   <p className="hidden md:block">
-                    This experience sparked the idea for CyberEye. What if security systems could learn and
-                    adapt like the attackers do?
+                    Founded with a vision to make advanced security accessible to all organizations, we developed 
+                    CyberEye as our flagship AI-powered data leak prevention system.
                   </p>
                   <p className="hidden md:block">
-                    Today, CyberEye protects organizations worldwide, from startups to Fortune 500 companies.
+                    Our team of experts combines deep technical expertise with a passion for protecting businesses 
+                    from evolving cyber threats worldwide.
                   </p>
                 </div>
               </AnimatedSection>

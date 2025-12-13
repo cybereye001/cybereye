@@ -101,19 +101,33 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-center md:text-left">
-            <p className="text-sm text-muted-foreground">
-              © 2024 CyberEye. All rights reserved.
-            </p>
-            <p className="text-xs text-muted-foreground/70 mt-1">
-              A product by <span className="text-primary font-medium">ONKAR DIGITAL SERVICES LLP</span>
+        {/* ONKAR DIGITAL SERVICES LLP Branding */}
+        <div className="pt-8 border-t border-border/50">
+          <div className="flex flex-col items-center justify-center mb-6">
+            <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border border-primary/30 rounded-2xl px-8 py-4 mb-4">
+              <p className="text-lg md:text-xl font-bold text-primary text-center">
+                ONKAR DIGITAL SERVICES LLP
+              </p>
+              <p className="text-xs md:text-sm text-muted-foreground text-center mt-1">
+                Innovating Digital Security Solutions
+              </p>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
+              <p className="text-sm text-muted-foreground">
+                © 2024 CyberEye. All rights reserved.
+              </p>
+              <p className="text-xs text-muted-foreground/70 mt-1">
+                Developed & Powered by <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span>
+              </p>
+            </div>
+            <p className="text-sm text-muted-foreground flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+              Protecting enterprises worldwide
             </p>
           </div>
-          <p className="text-sm text-muted-foreground flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-            Protecting enterprises worldwide
-          </p>
         </div>
       </div>
     </footer>
