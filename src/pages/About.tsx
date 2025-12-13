@@ -6,56 +6,42 @@ import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-
 const About = () => {
-  const values = [
-    {
-      icon: Shield,
-      title: "Security First",
-      description: "We believe every organization deserves enterprise-grade security, regardless of size.",
-    },
-    {
-      icon: Users,
-      title: "Customer Success",
-      description: "Your success is our success. We're committed to helping you protect what matters most.",
-    },
-    {
-      icon: Target,
-      title: "Innovation",
-      description: "We continuously push the boundaries of AI and machine learning to stay ahead of threats.",
-    },
-    {
-      icon: Award,
-      title: "Excellence",
-      description: "We hold ourselves to the highest standards in everything we build and deliver.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Alex Kumar",
-      role: "CEO & Co-Founder",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
-    },
-    {
-      name: "Sarah Chen",
-      role: "CTO & Co-Founder",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
-    },
-    {
-      name: "Michael Ross",
-      role: "VP of Engineering",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
-    },
-    {
-      name: "Emily Zhang",
-      role: "Head of AI Research",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background relative overflow-x-hidden">
+  const values = [{
+    icon: Shield,
+    title: "Security First",
+    description: "We believe every organization deserves enterprise-grade security, regardless of size."
+  }, {
+    icon: Users,
+    title: "Customer Success",
+    description: "Your success is our success. We're committed to helping you protect what matters most."
+  }, {
+    icon: Target,
+    title: "Innovation",
+    description: "We continuously push the boundaries of AI and machine learning to stay ahead of threats."
+  }, {
+    icon: Award,
+    title: "Excellence",
+    description: "We hold ourselves to the highest standards in everything we build and deliver."
+  }];
+  const team = [{
+    name: "Alex Kumar",
+    role: "CEO & Co-Founder",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+  }, {
+    name: "Sarah Chen",
+    role: "CTO & Co-Founder",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+  }, {
+    name: "Michael Ross",
+    role: "VP of Engineering",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+  }, {
+    name: "Emily Zhang",
+    role: "Head of AI Research",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+  }];
+  return <div className="min-h-screen bg-background relative overflow-x-hidden">
       <BackgroundEffects />
       <Navbar />
 
@@ -154,8 +140,7 @@ const About = () => {
             </AnimatedSection>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto">
-              {values.map((value, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
+              {values.map((value, index) => <AnimatedSection key={index} delay={index * 0.1}>
                   <div className="bg-card border border-border rounded-xl p-4 md:p-6 h-full hover:border-primary/50 transition-colors">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3 md:mb-4">
                       <value.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
@@ -163,39 +148,13 @@ const About = () => {
                     <h3 className="text-base md:text-xl font-bold text-foreground mb-1 md:mb-2">{value.title}</h3>
                     <p className="text-muted-foreground text-xs md:text-base hidden sm:block">{value.description}</p>
                   </div>
-                </AnimatedSection>
-              ))}
+                </AnimatedSection>)}
             </div>
           </div>
         </section>
 
         {/* Team - 2x2 grid on mobile */}
-        <section className="py-16 md:py-24 bg-card/50 border-y border-border">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-12 md:mb-16">
-                <h2 className="text-2xl md:text-4xl font-bold mb-4">Leadership Team</h2>
-                <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  Meet the people behind CyberEye
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto">
-              {team.map((member, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <div className="text-center group">
-                    <div className="w-20 h-20 md:w-32 md:h-32 mx-auto rounded-full overflow-hidden border-4 border-primary/30 mb-3 md:mb-4 group-hover:border-primary transition-colors">
-                      <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-                    </div>
-                    <h3 className="text-sm md:text-lg font-bold text-foreground">{member.name}</h3>
-                    <p className="text-muted-foreground text-xs md:text-sm">{member.role}</p>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
+        
 
         {/* CTA - 2x2 buttons on mobile */}
         <section className="py-16 md:py-24">
@@ -227,8 +186,6 @@ const About = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
