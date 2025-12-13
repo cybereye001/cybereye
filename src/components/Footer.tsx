@@ -56,9 +56,7 @@ const Footer = () => {
               </div>
               <span className="text-2xl font-bold">CyberEye</span>
             </Link>
-            <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">
-              AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.
-            </p>
+            <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">Developed & Powered by ONKAR DIGITAL SERVICES LLP - AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.</p>
             
           </div>
 
