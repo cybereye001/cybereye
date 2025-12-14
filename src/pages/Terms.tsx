@@ -4,10 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
-
 const Terms = () => {
-  return (
-    <div className="min-h-screen bg-background relative">
+  return <div className="min-h-screen bg-background relative">
       <BackgroundEffects />
       <Navbar />
       
@@ -22,7 +20,7 @@ const Terms = () => {
                 <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-6">
                   Terms of <span className="text-gradient">Service</span>
                 </h1>
-                <p className="text-muted-foreground mb-4">Last updated: December 2024</p>
+                <p className="text-muted-foreground mb-4">Last updated: December 2025</p>
               </div>
             </AnimatedSection>
 
@@ -88,8 +86,6 @@ const Terms = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Terms;
