@@ -100,10 +100,10 @@ const SecurityDashboard = () => {
                     {activityData.map((height, i) => (
                       <div
                         key={i}
-                        className="flex-1 bg-primary/30 rounded-t transition-all duration-1000 ease-out"
+                        className="flex-1 bg-primary/30 rounded-t transition-all duration-[2000ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]"
                         style={{ 
                           height: isVisible ? `${height}%` : '0%',
-                          transitionDelay: `${i * 100}ms`
+                          transitionDelay: `${i * 150}ms`
                         }}
                       />
                     ))}
@@ -149,10 +149,10 @@ const SecurityDashboard = () => {
                         </div>
                         <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
+                            className="h-full bg-primary rounded-full transition-all duration-[2500ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]"
                             style={{ 
                               width: isVisible ? `${item.value}%` : '0%',
-                              transitionDelay: `${i * 200}ms`
+                              transitionDelay: `${i * 300}ms`
                             }}
                           />
                         </div>
