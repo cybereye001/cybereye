@@ -94,32 +94,32 @@ const About = () => {
                 {/* Stats - 2x2 grid */}
                 <div className="grid grid-cols-2 gap-3 md:gap-4">
                   <div className="bg-card border border-border rounded-xl p-4 md:p-6 text-center">
-                    <Globe className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3" />
+                    <Shield className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3" />
                     <div className="text-2xl md:text-3xl font-bold text-foreground">
-                      <AnimatedNumber value="100+" />
+                      <AnimatedNumber value="99.9%" />
                     </div>
-                    <div className="text-muted-foreground text-xs md:text-sm">Countries</div>
-                  </div>
-                  <div className="bg-card border border-border rounded-xl p-4 md:p-6 text-center">
-                    <Users className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3" />
-                    <div className="text-2xl md:text-3xl font-bold text-foreground">
-                      <AnimatedNumber value="500+" />
-                    </div>
-                    <div className="text-muted-foreground text-xs md:text-sm">Clients</div>
+                    <div className="text-muted-foreground text-xs md:text-sm">Leak Prevention Rate</div>
                   </div>
                   <div className="bg-card border border-border rounded-xl p-4 md:p-6 text-center">
                     <Zap className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3" />
                     <div className="text-2xl md:text-3xl font-bold text-foreground">
-                      <AnimatedNumber value="50M+" />
+                      <AnimatedNumber value="<50ms" />
                     </div>
-                    <div className="text-muted-foreground text-xs md:text-sm">Threats Blocked</div>
+                    <div className="text-muted-foreground text-xs md:text-sm">Detection Speed</div>
+                  </div>
+                  <div className="bg-card border border-border rounded-xl p-4 md:p-6 text-center">
+                    <Target className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3" />
+                    <div className="text-2xl md:text-3xl font-bold text-foreground">
+                      <AnimatedNumber value="<24 Hrs" />
+                    </div>
+                    <div className="text-muted-foreground text-xs md:text-sm">Full Investigation</div>
                   </div>
                   <div className="bg-card border border-border rounded-xl p-4 md:p-6 text-center">
                     <Award className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3" />
                     <div className="text-2xl md:text-3xl font-bold text-foreground">
-                      <AnimatedNumber value="99.9%" />
+                      <AnimatedNumber value="100%" />
                     </div>
-                    <div className="text-muted-foreground text-xs md:text-sm">Accuracy</div>
+                    <div className="text-muted-foreground text-xs md:text-sm">Activity Tracking</div>
                   </div>
                 </div>
               </AnimatedSection>
