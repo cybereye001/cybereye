@@ -130,19 +130,19 @@ const Demo = () => {
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-card border border-border rounded-xl p-4 text-center">
-                  <Building className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground">500+</div>
-                  <div className="text-xs text-muted-foreground">Companies</div>
+                  <Shield className="w-6 h-6 text-primary mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-foreground">99.9%</div>
+                  <div className="text-xs text-muted-foreground">Leak Prevention Rate</div>
                 </div>
                 <div className="bg-card border border-border rounded-xl p-4 text-center">
                   <Users className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground">1M+</div>
-                  <div className="text-xs text-muted-foreground">Endpoints</div>
+                  <div className="text-2xl font-bold text-foreground">&lt;24 Hrs</div>
+                  <div className="text-xs text-muted-foreground">Full Investigation</div>
                 </div>
                 <div className="bg-card border border-border rounded-xl p-4 text-center">
-                  <Shield className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground">99.9%</div>
-                  <div className="text-xs text-muted-foreground">Accuracy</div>
+                  <Building className="w-6 h-6 text-primary mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-foreground">100%</div>
+                  <div className="text-xs text-muted-foreground">Activity Tracking</div>
                 </div>
               </div>
             </div>
