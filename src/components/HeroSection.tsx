@@ -33,7 +33,7 @@ const HeroSection = () => {
           <p className="text-base md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-slide-up" style={{
           animationDelay: "0.1s"
         }}>
-            ONKAR DIGITAL SERVICES LLP presents CyberEye, a centralized AI-powered system that monitors, detects, and prevents data leaks in real time while adapting to emerging threats before damage occurs.
+            <span className="font-orbitron font-bold bg-gradient-to-r from-gray-200 via-white to-gray-300 bg-clip-text text-transparent">ONKAR DIGITAL SERVICES LLP</span> presents <span className="font-orbitron font-bold"><span className="bg-gradient-to-r from-gray-200 via-white to-gray-300 bg-clip-text text-transparent">CYBER</span><span className="bg-gradient-to-r from-primary via-cyan-400 to-primary bg-clip-text text-transparent">EYE</span></span>, a centralized AI-powered system that monitors, detects, and prevents data leaks in real time while adapting to emerging threats before damage occurs.
           </p>
 
           {/* CTA Buttons - 2x2 on mobile */}
