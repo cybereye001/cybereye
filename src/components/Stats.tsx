@@ -4,11 +4,11 @@ import AnimatedSection from "./AnimatedSection";
 const Stats = () => {
   const stats = [
     { value: "99.9%", label: "Threat Detection Rate", description: "Industry-leading accuracy" },
-    { value: "500+", label: "Enterprise Clients", description: "Trusted worldwide" },
+    { value: "<50ms", label: "Detection Speed", description: "Real-time protection" },
     { value: "<1s", label: "Response Time", description: "Real-time protection" },
     { value: "24/7", label: "Monitoring", description: "Always vigilant" },
     { value: "50M+", label: "Threats Blocked", description: "And counting" },
-    { value: "100+", label: "Countries", description: "Global coverage" },
+    { value: "99.9%", label: "Leak Prevention Rate", description: "Industry-leading accuracy" },
   ];
 
   return (
