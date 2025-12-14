@@ -3,41 +3,57 @@
 
   <url>
     <loc>https://onkardigitalservicesllp.site/</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/pricing</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/about</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/contact</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/login</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/demo</loc>
-    <priority>0.6</priority>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/privacy</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://onkardigitalservicesllp.site/terms</loc>
+    <lastmod>2024-12-14</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
