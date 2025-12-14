@@ -96,19 +96,23 @@ const Footer = () => {
                 Innovating Digital Security Solutions
               </p>
             </div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+              <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+              <span>Official Website of ONKAR DIGITAL SERVICES LLP</span>
+            </div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
-              <p className="text-sm text-muted-foreground">© 2025 CyberEye. All rights reserved.</p>
+              <p className="text-sm text-muted-foreground">© 2025 ONKAR DIGITAL SERVICES LLP. All rights reserved.</p>
               <p className="text-xs text-muted-foreground/70 mt-1">
-                Developed & Powered by <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span>
+                CyberEye is a registered product of <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span>
               </p>
             </div>
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              Protecting enterprises worldwide
-            </p>
+            <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
+              <p>Email: cybereye.help@gmail.com</p>
+              <p>Phone: +91 9172573489</p>
+            </div>
           </div>
         </div>
       </div>
