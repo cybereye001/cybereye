@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, ArrowLeft, Loader2 } from "lucide-react";
 import BackgroundEffects from "@/components/BackgroundEffects";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -80,6 +81,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-background relative flex flex-col">
       <BackgroundEffects />
+      <Navbar />
       
       <div className="flex-1 flex items-center justify-center py-20">
       

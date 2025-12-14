@@ -25,9 +25,15 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email Us",
+      title: "CyberEye Support",
       value: "cybereye.help@gmail.com",
       link: "mailto:cybereye.help@gmail.com",
+    },
+    {
+      icon: Mail,
+      title: "Company Email",
+      value: "onkardigitalservicess@gmail.com",
+      link: "mailto:onkardigitalservicess@gmail.com",
     },
     {
       icon: Phone,

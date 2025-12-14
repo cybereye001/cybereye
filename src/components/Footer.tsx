@@ -110,7 +110,8 @@ const Footer = () => {
               </p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
-              <p>Email: cybereye.help@gmail.com</p>
+              <p>CyberEye: cybereye.help@gmail.com</p>
+              <p>Company: onkardigitalservicess@gmail.com</p>
               <p>Phone: +91 9172573489</p>
             </div>
           </div>
