@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight, Check, Building, Users, Shield, Loader2 } from "lucide-react";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import logoImage from "@/assets/logo.jpg";
@@ -88,8 +90,9 @@ const Demo = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <BackgroundEffects />
+      <Navbar />
       
-      <div className="container mx-auto px-4 relative z-10 py-8">
+      <div className="container mx-auto px-4 relative z-10 py-8 pt-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-4rem)]">
           {/* Left Side - Info */}
           <AnimatedSection>
@@ -289,6 +292,8 @@ const Demo = () => {
           </AnimatedSection>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
