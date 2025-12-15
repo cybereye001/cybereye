@@ -17,17 +17,63 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showControls, setShowControls] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hideControlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Auto-hide controls in fullscreen after 2 seconds
+  const resetHideControlsTimer = () => {
+    if (hideControlsTimeoutRef.current) {
+      clearTimeout(hideControlsTimeoutRef.current);
+    }
+    setShowControls(true);
+    
+    if (isFullscreen && isPlaying) {
+      hideControlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 2000);
+    }
+  };
+
+  // Handle tap/touch to show controls
+  const handleContainerInteraction = () => {
+    if (isFullscreen) {
+      resetHideControlsTimer();
+    }
+  };
 
   // Listen for fullscreen changes
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const isNowFullscreen = !!document.fullscreenElement;
+      setIsFullscreen(isNowFullscreen);
+      if (!isNowFullscreen) {
+        setShowControls(true);
+        if (hideControlsTimeoutRef.current) {
+          clearTimeout(hideControlsTimeoutRef.current);
+        }
+      }
     };
     
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // Reset timer when play state changes
+  useEffect(() => {
+    if (isFullscreen) {
+      resetHideControlsTimer();
+    }
+  }, [isPlaying, isFullscreen]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hideControlsTimeoutRef.current) {
+        clearTimeout(hideControlsTimeoutRef.current);
+      }
+    };
   }, []);
 
   const formatTime = (seconds: number) => {
@@ -165,7 +211,11 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
           )}
 
           {/* Video Container */}
-          <div className={`relative w-full bg-black overflow-hidden flex items-center justify-center ${isFullscreen ? 'flex-1 h-full' : 'aspect-video'}`}>
+          <div 
+            className={`relative w-full bg-black overflow-hidden flex items-center justify-center ${isFullscreen ? 'flex-1 h-full' : 'aspect-video'}`}
+            onClick={handleContainerInteraction}
+            onTouchStart={handleContainerInteraction}
+          >
             <video
               ref={videoRef}
               src={videoUrl}
@@ -207,7 +257,7 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
           </div>
 
           {/* Custom Controls */}
-          <div className={`${isFullscreen ? 'absolute bottom-0 left-0 right-0' : ''} bg-gradient-to-b from-[#0d1424] to-[#080c14] px-3 py-2 md:px-6 md:py-4 space-y-2 md:space-y-4 border-t border-white/5 z-30`}>
+          <div className={`${isFullscreen ? 'absolute bottom-0 left-0 right-0' : ''} bg-gradient-to-b from-[#0d1424] to-[#080c14] px-3 py-2 md:px-6 md:py-4 space-y-2 md:space-y-4 border-t border-white/5 z-30 transition-all duration-300 ${isFullscreen && !showControls ? 'opacity-0 translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'}`}>
             {/* Progress Bar */}
             <div className="space-y-1">
               <div
