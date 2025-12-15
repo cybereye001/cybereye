@@ -100,7 +100,7 @@ const HeroSection = () => {
       <VideoPlayerModal
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
-        videoId="NfJAwyB-CJg"
+        videoId="3sn-Ksi5Hw8"
       />
     </section>;
 };
