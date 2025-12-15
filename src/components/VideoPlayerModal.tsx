@@ -180,17 +180,34 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
 
   const changeQuality = (quality: string) => {
     if (!playerRef.current) return;
-    const currentTimeBeforeChange = playerRef.current.getCurrentTime();
     
-    // Set quality
+    const currentTimeBeforeChange = playerRef.current.getCurrentTime();
+    const wasPlaying = isPlaying;
+    
+    // Stop video first
+    playerRef.current.stopVideo();
+    
+    // Set quality using multiple methods for better compatibility
+    playerRef.current.setPlaybackQuality(quality);
     if (playerRef.current.setPlaybackQualityRange) {
       playerRef.current.setPlaybackQualityRange(quality, quality);
     }
-    playerRef.current.setPlaybackQuality(quality);
     
-    // Seek to same position to force quality change
+    // Load video at specific quality and seek to previous position
     setTimeout(() => {
-      playerRef.current.seekTo(currentTimeBeforeChange, true);
+      playerRef.current.loadVideoById({
+        videoId: videoId,
+        startSeconds: currentTimeBeforeChange,
+        suggestedQuality: quality,
+      });
+      
+      // Set quality again after loading
+      setTimeout(() => {
+        playerRef.current.setPlaybackQuality(quality);
+        if (!wasPlaying) {
+          playerRef.current.pauseVideo();
+        }
+      }, 500);
     }, 100);
     
     setCurrentQuality(quality);
