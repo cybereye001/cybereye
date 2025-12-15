@@ -96,12 +96,32 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
     setIsMuted(!isMuted);
   };
 
-  const toggleFullscreen = () => {
+  const toggleFullscreen = async () => {
     if (!containerRef.current) return;
+    
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const orientation = screen.orientation as ScreenOrientation & { lock?: (type: string) => Promise<void>; unlock?: () => void };
+    
     if (document.fullscreenElement) {
-      document.exitFullscreen();
+      // Exiting fullscreen
+      await document.exitFullscreen();
+      if (isMobile && orientation?.unlock) {
+        try {
+          orientation.unlock();
+        } catch (e) {
+          console.log('Orientation unlock not supported');
+        }
+      }
     } else {
-      containerRef.current.requestFullscreen();
+      // Entering fullscreen
+      await containerRef.current.requestFullscreen();
+      if (isMobile && orientation?.lock) {
+        try {
+          await orientation.lock('landscape');
+        } catch (e) {
+          console.log('Orientation lock not supported');
+        }
+      }
     }
   };
 
