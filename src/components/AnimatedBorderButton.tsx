@@ -13,28 +13,40 @@ const AnimatedBorderButton: React.FC<AnimatedBorderButtonProps> = ({
 }) => {
   return (
     <div 
-      className={`relative rounded-xl p-[2px] overflow-hidden group ${className}`}
+      className={`relative rounded-xl cursor-pointer ${className}`}
       onClick={onClick}
+      style={{ padding: '2px' }}
     >
-      {/* Rotating gradient border */}
+      {/* Animated gradient background */}
       <div 
-        className="absolute inset-[-100%] animate-border-beam"
+        className="absolute inset-0 rounded-xl"
         style={{
-          background: `conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            transparent 300deg,
-            hsl(var(--primary)) 330deg,
-            hsl(var(--primary-glow)) 345deg,
-            hsl(var(--primary)) 360deg
+          background: `linear-gradient(90deg, 
+            transparent 0%, 
+            transparent 25%, 
+            hsl(var(--primary)) 50%, 
+            transparent 75%, 
+            transparent 100%
           )`,
+          backgroundSize: '200% 100%',
+          animation: 'shimmer 2s linear infinite',
         }}
       />
       
-      {/* Inner content with background */}
-      <div className="relative bg-background rounded-[10px] h-full w-full">
+      {/* Static subtle border */}
+      <div className="absolute inset-0 rounded-xl border border-primary/20" />
+      
+      {/* Inner content */}
+      <div className="relative bg-background rounded-[10px]">
         {children}
       </div>
+
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
     </div>
   );
 };
