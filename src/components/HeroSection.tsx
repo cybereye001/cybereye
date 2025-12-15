@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedNumber from "./AnimatedNumber";
+import VideoPlayerModal from "./VideoPlayerModal";
+
 const HeroSection = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {/* Subtle grid pattern - no blue effects */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -46,11 +51,14 @@ const HeroSection = () => {
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild variant="heroOutline" size="lg" className="group text-sm sm:text-base">
-              <Link to="/demo">
-                <Play className="w-4 h-4 sm:w-5 sm:h-5" />
-                Watch Demo
-              </Link>
+            <Button 
+              variant="heroOutline" 
+              size="lg" 
+              className="group text-sm sm:text-base"
+              onClick={() => setIsVideoOpen(true)}
+            >
+              <Play className="w-4 h-4 sm:w-5 sm:h-5" />
+              Watch Demo
             </Button>
           </div>
 
@@ -87,6 +95,13 @@ const HeroSection = () => {
       <div className="absolute top-40 right-20 w-16 h-16 border border-border/30 rounded-full animate-float hidden lg:block" style={{
       animationDelay: "1s"
     }} />
+
+      {/* Video Player Modal */}
+      <VideoPlayerModal
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoId="NfJAwyB-CJg"
+      />
     </section>;
 };
 export default HeroSection;
