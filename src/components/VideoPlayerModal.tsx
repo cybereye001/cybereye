@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Play, Pause, RotateCcw, RotateCw, Maximize, X } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Play, Pause, RotateCcw, RotateCw, Maximize, X, Settings, Check } from "lucide-react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface VideoPlayerModalProps {
   isOpen: boolean;
@@ -15,11 +16,25 @@ declare global {
   }
 }
 
+const qualityLabels: Record<string, string> = {
+  highres: '4K',
+  hd1080: '1080p',
+  hd720: '720p',
+  large: '480p',
+  medium: '360p',
+  small: '240p',
+  tiny: '144p',
+  auto: 'Auto',
+};
+
 const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [availableQualities, setAvailableQualities] = useState<string[]>([]);
+  const [currentQuality, setCurrentQuality] = useState<string>('auto');
+  const [showQualityMenu, setShowQualityMenu] = useState(false);
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -72,34 +87,26 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
         onReady: (event: any) => {
           setIsReady(true);
           setDuration(event.target.getDuration());
+          // Get available qualities
+          const qualities = event.target.getAvailableQualityLevels();
+          setAvailableQualities(qualities);
+          console.log('Available qualities:', qualities);
         },
         onStateChange: (event: any) => {
           const playerState = event.data;
           setIsPlaying(playerState === window.YT.PlayerState.PLAYING);
           
-          // Force HD quality when video starts buffering or playing
-          if (playerState === window.YT.PlayerState.BUFFERING) {
-            const availableQualities = event.target.getAvailableQualityLevels();
-            console.log('Available qualities:', availableQualities);
-            
-            let targetQuality = 'hd1080';
-            if (!availableQualities.includes('hd1080')) {
-              if (availableQualities.includes('hd720')) {
-                targetQuality = 'hd720';
-              } else if (availableQualities.includes('large')) {
-                targetQuality = 'large';
-              }
+          // Update available qualities when buffering starts
+          if (playerState === window.YT.PlayerState.BUFFERING || playerState === window.YT.PlayerState.PLAYING) {
+            const qualities = event.target.getAvailableQualityLevels();
+            if (qualities.length > 0) {
+              setAvailableQualities(qualities);
             }
-            
-            // Use setPlaybackQualityRange for better compatibility
-            if (event.target.setPlaybackQualityRange) {
-              event.target.setPlaybackQualityRange(targetQuality, targetQuality);
-            }
-            event.target.setPlaybackQuality(targetQuality);
           }
         },
         onPlaybackQualityChange: (event: any) => {
           console.log('Quality changed to:', event.data);
+          setCurrentQuality(event.data);
         },
       },
     });
@@ -171,6 +178,25 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
     }
   };
 
+  const changeQuality = (quality: string) => {
+    if (!playerRef.current) return;
+    const currentTimeBeforeChange = playerRef.current.getCurrentTime();
+    
+    // Set quality
+    if (playerRef.current.setPlaybackQualityRange) {
+      playerRef.current.setPlaybackQualityRange(quality, quality);
+    }
+    playerRef.current.setPlaybackQuality(quality);
+    
+    // Seek to same position to force quality change
+    setTimeout(() => {
+      playerRef.current.seekTo(currentTimeBeforeChange, true);
+    }, 100);
+    
+    setCurrentQuality(quality);
+    setShowQualityMenu(false);
+  };
+
   const handleClose = () => {
     if (playerRef.current && isPlaying) {
       playerRef.current.pauseVideo();
@@ -185,6 +211,9 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-5xl w-[95vw] p-0 bg-gradient-to-b from-[#0a0f1a] to-[#050810] border border-white/10 overflow-hidden rounded-2xl shadow-2xl shadow-primary/20">
+        <VisuallyHidden>
+          <DialogTitle>Video Player</DialogTitle>
+        </VisuallyHidden>
         <div ref={containerRef} className="relative w-full">
           {/* Close Button */}
           <button
@@ -291,11 +320,45 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
                 </button>
               </div>
 
-              {/* Right: Quality Badge & Fullscreen */}
-              <div className="flex items-center gap-3 min-w-[120px] justify-end">
-                <span className="px-2 py-0.5 text-[10px] font-bold bg-gradient-to-r from-primary/20 to-cyan-500/20 text-primary border border-primary/30 rounded uppercase tracking-wider">
-                  HD
-                </span>
+              {/* Right: Quality Selector & Fullscreen */}
+              <div className="flex items-center gap-2 min-w-[140px] justify-end relative">
+                {/* Quality Selector */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowQualityMenu(!showQualityMenu)}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/10 hover:border-white/20 rounded-lg"
+                  >
+                    <Settings className="w-4 h-4 text-white/70" />
+                    <span className="text-white/90">
+                      {qualityLabels[currentQuality] || currentQuality}
+                    </span>
+                  </button>
+                  
+                  {/* Quality Menu Dropdown */}
+                  {showQualityMenu && (
+                    <div className="absolute bottom-full right-0 mb-2 bg-[#0d1424] border border-white/10 rounded-lg shadow-xl shadow-black/50 overflow-hidden min-w-[120px] z-50">
+                      {availableQualities.length > 0 ? (
+                        availableQualities.map((quality) => (
+                          <button
+                            key={quality}
+                            onClick={() => changeQuality(quality)}
+                            className={`w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-white/10 transition-colors ${
+                              currentQuality === quality ? 'text-primary bg-white/5' : 'text-white/80'
+                            }`}
+                          >
+                            <span>{qualityLabels[quality] || quality}</span>
+                            {currentQuality === quality && (
+                              <Check className="w-4 h-4 text-primary" />
+                            )}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="px-3 py-2 text-sm text-white/50">Loading...</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                
                 <button
                   onClick={toggleFullscreen}
                   className="p-2 rounded-lg bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/20 hover:scale-110"
