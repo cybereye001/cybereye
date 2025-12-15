@@ -4,7 +4,6 @@ import { Shield, ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedNumber from "./AnimatedNumber";
 import VideoPlayerModal from "./VideoPlayerModal";
-import AnimatedBorderButton from "./AnimatedBorderButton";
 
 const HeroSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -52,16 +51,15 @@ const HeroSection = () => {
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <AnimatedBorderButton onClick={() => setIsVideoOpen(true)}>
-              <Button 
-                variant="ghost" 
-                size="lg" 
-                className="group text-sm sm:text-base w-full h-full hover:bg-transparent"
-              >
-                <Play className="w-4 h-4 sm:w-5 sm:h-5" />
-                Watch Demo
-              </Button>
-            </AnimatedBorderButton>
+            <Button 
+              variant="heroOutline" 
+              size="lg" 
+              className="group text-sm sm:text-base"
+              onClick={() => setIsVideoOpen(true)}
+            >
+              <Play className="w-4 h-4 sm:w-5 sm:h-5" />
+              Watch Demo
+            </Button>
           </div>
 
           {/* Capabilities - 2x2 grid on mobile */}
