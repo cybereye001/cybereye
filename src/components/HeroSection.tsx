@@ -54,7 +54,7 @@ const HeroSection = () => {
             <Button 
               variant="heroOutline" 
               size="lg" 
-              className="group text-sm sm:text-base animated-border"
+              className="group text-sm sm:text-base animated-border-glow"
               onClick={() => setIsVideoOpen(true)}
             >
               <Play className="w-4 h-4 sm:w-5 sm:h-5" />

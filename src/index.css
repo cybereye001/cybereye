@@ -211,3 +211,67 @@
   border: 1px solid hsl(187 92% 50% / 0.3);
   pointer-events: none;
 }
+
+/* Enhanced glow layer */
+.animated-border-glow {
+  position: relative;
+  background: transparent;
+  border: none !important;
+}
+
+.animated-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  padding: 3px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    transparent 20%,
+    hsl(187 92% 60%) 35%,
+    hsl(200 100% 70%) 50%,
+    hsl(187 92% 60%) 65%,
+    transparent 80%,
+    transparent 100%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-rotate 2s linear infinite;
+  filter: blur(2px);
+}
+
+.animated-border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    transparent 15%,
+    hsl(187 92% 50%) 30%,
+    hsl(200 100% 65%) 45%,
+    hsl(160 100% 50%) 50%,
+    hsl(200 100% 65%) 55%,
+    hsl(187 92% 50%) 70%,
+    transparent 85%,
+    transparent 100%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-rotate 2s linear infinite;
+}
