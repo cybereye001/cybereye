@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Play, Pause, RotateCcw, RotateCw, Maximize, X, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, RotateCcw, RotateCw, Maximize, Minimize, X, Volume2, VolumeX } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface VideoPlayerModalProps {
@@ -16,8 +16,19 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -142,21 +153,23 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
         <VisuallyHidden>
           <DialogTitle>Video Player</DialogTitle>
         </VisuallyHidden>
-        <div ref={containerRef} className="relative w-full">
-          {/* Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute top-2 right-2 md:top-4 md:right-4 z-50 p-2 md:p-2.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-all duration-300 border border-white/10 hover:border-white/20 hover:scale-110"
-          >
-            <X className="w-4 h-4 md:w-5 md:h-5 text-white/90" />
-          </button>
+        <div ref={containerRef} className={`relative w-full h-full flex flex-col ${isFullscreen ? 'bg-black' : ''}`}>
+          {/* Close Button - Hidden in fullscreen */}
+          {!isFullscreen && (
+            <button
+              onClick={handleClose}
+              className="absolute top-2 right-2 md:top-4 md:right-4 z-50 p-2 md:p-2.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-all duration-300 border border-white/10 hover:border-white/20 hover:scale-110"
+            >
+              <X className="w-4 h-4 md:w-5 md:h-5 text-white/90" />
+            </button>
+          )}
 
           {/* Video Container */}
-          <div className="relative w-full aspect-video bg-black overflow-hidden">
+          <div className={`relative w-full bg-black overflow-hidden flex items-center justify-center ${isFullscreen ? 'flex-1 h-full' : 'aspect-video'}`}>
             <video
               ref={videoRef}
               src={videoUrl}
-              className="w-full h-full object-contain"
+              className={`w-full h-full ${isFullscreen ? 'object-contain' : 'object-contain'}`}
               onTimeUpdate={handleTimeUpdate}
               onLoadedMetadata={handleLoadedMetadata}
               onEnded={handleVideoEnd}
@@ -166,6 +179,7 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
               onCanPlay={() => setIsLoading(false)}
               playsInline
               preload="metadata"
+              style={isFullscreen ? { maxHeight: 'calc(100vh - 80px)' } : {}}
             />
             
             {/* Loading Spinner */}
@@ -193,7 +207,7 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
           </div>
 
           {/* Custom Controls */}
-          <div className="bg-gradient-to-b from-[#0d1424] to-[#080c14] px-3 py-2 md:px-6 md:py-4 space-y-2 md:space-y-4 border-t border-white/5">
+          <div className={`${isFullscreen ? 'absolute bottom-0 left-0 right-0' : ''} bg-gradient-to-b from-[#0d1424] to-[#080c14] px-3 py-2 md:px-6 md:py-4 space-y-2 md:space-y-4 border-t border-white/5 z-30`}>
             {/* Progress Bar */}
             <div className="space-y-1">
               <div
@@ -292,7 +306,11 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
                   onClick={toggleFullscreen}
                   className="p-1.5 md:p-2 rounded-lg bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/20 hover:scale-110"
                 >
-                  <Maximize className="w-4 h-4 md:w-5 md:h-5 text-white/70 hover:text-white transition-colors" />
+                  {isFullscreen ? (
+                    <Minimize className="w-4 h-4 md:w-5 md:h-5 text-white/70 hover:text-white transition-colors" />
+                  ) : (
+                    <Maximize className="w-4 h-4 md:w-5 md:h-5 text-white/70 hover:text-white transition-colors" />
+                  )}
                 </button>
               </div>
             </div>
