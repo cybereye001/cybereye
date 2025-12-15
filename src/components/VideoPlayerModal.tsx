@@ -72,20 +72,34 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
         onReady: (event: any) => {
           setIsReady(true);
           setDuration(event.target.getDuration());
-          // Force HD quality
-          event.target.setPlaybackQuality('hd1080');
         },
         onStateChange: (event: any) => {
-          setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
-          // Force HD quality when video starts playing
-          if (event.data === window.YT.PlayerState.PLAYING || event.data === window.YT.PlayerState.BUFFERING) {
+          const playerState = event.data;
+          setIsPlaying(playerState === window.YT.PlayerState.PLAYING);
+          
+          // Force HD quality when video starts buffering or playing
+          if (playerState === window.YT.PlayerState.BUFFERING) {
             const availableQualities = event.target.getAvailableQualityLevels();
-            if (availableQualities.includes('hd1080')) {
-              event.target.setPlaybackQuality('hd1080');
-            } else if (availableQualities.includes('hd720')) {
-              event.target.setPlaybackQuality('hd720');
+            console.log('Available qualities:', availableQualities);
+            
+            let targetQuality = 'hd1080';
+            if (!availableQualities.includes('hd1080')) {
+              if (availableQualities.includes('hd720')) {
+                targetQuality = 'hd720';
+              } else if (availableQualities.includes('large')) {
+                targetQuality = 'large';
+              }
             }
+            
+            // Use setPlaybackQualityRange for better compatibility
+            if (event.target.setPlaybackQualityRange) {
+              event.target.setPlaybackQualityRange(targetQuality, targetQuality);
+            }
+            event.target.setPlaybackQuality(targetQuality);
           }
+        },
+        onPlaybackQualityChange: (event: any) => {
+          console.log('Quality changed to:', event.data);
         },
       },
     });
