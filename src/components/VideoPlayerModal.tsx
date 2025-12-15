@@ -118,7 +118,7 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-5xl w-[95vw] p-0 bg-gradient-to-b from-[#0a0f1a] to-[#050810] border border-white/10 overflow-hidden rounded-2xl shadow-2xl shadow-primary/20">
+      <DialogContent className="max-w-5xl w-[95vw] md:w-[95vw] p-0 bg-gradient-to-b from-[#0a0f1a] to-[#050810] border border-white/10 overflow-hidden rounded-2xl shadow-2xl shadow-primary/20">
         <VisuallyHidden>
           <DialogTitle>Video Player</DialogTitle>
         </VisuallyHidden>
@@ -126,9 +126,9 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-all duration-300 border border-white/10 hover:border-white/20 hover:scale-110"
+            className="absolute top-2 right-2 md:top-4 md:right-4 z-50 p-2 md:p-2.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-all duration-300 border border-white/10 hover:border-white/20 hover:scale-110"
           >
-            <X className="w-5 h-5 text-white/90" />
+            <X className="w-4 h-4 md:w-5 md:h-5 text-white/90" />
           </button>
 
           {/* Video Container */}
@@ -150,8 +150,9 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
             
             {/* Loading Spinner */}
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 gap-3">
+                <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                <p className="text-white/70 text-sm md:text-base animate-pulse">Loading video, please wait...</p>
               </div>
             )}
             
@@ -172,7 +173,7 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
           </div>
 
           {/* Custom Controls */}
-          <div className="bg-gradient-to-b from-[#0d1424] to-[#080c14] px-6 py-4 space-y-4 border-t border-white/5">
+          <div className="bg-gradient-to-b from-[#0d1424] to-[#080c14] px-3 py-2 md:px-6 md:py-4 space-y-2 md:space-y-4 border-t border-white/5">
             {/* Progress Bar */}
             <div className="space-y-1">
               <div
@@ -188,28 +189,28 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
                 />
                 {/* Scrubber */}
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg shadow-black/50 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-125"
-                  style={{ left: `calc(${progress}% - 8px)` }}
+                  className="absolute top-1/2 -translate-y-1/2 w-3 h-3 md:w-4 md:h-4 bg-white rounded-full shadow-lg shadow-black/50 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-125"
+                  style={{ left: `calc(${progress}% - 6px)` }}
                 />
               </div>
             </div>
 
-            {/* Controls Row */}
-            <div className="flex items-center justify-between">
-              {/* Left: Time Display & Volume */}
-              <div className="flex items-center gap-4 min-w-[180px]">
-                <div className="flex items-center gap-2">
-                  <span className="text-white/90 font-mono text-sm tracking-wide">
+            {/* Controls Row - Mobile: Stack, Desktop: Row */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-0">
+              {/* Time Display - Mobile: Top, Desktop: Left */}
+              <div className="flex items-center gap-2 md:gap-4 md:min-w-[180px] w-full md:w-auto justify-center md:justify-start">
+                <div className="flex items-center gap-1 md:gap-2">
+                  <span className="text-white/90 font-mono text-xs md:text-sm tracking-wide">
                     {formatTime(currentTime)}
                   </span>
                   <span className="text-white/40">/</span>
-                  <span className="text-white/50 font-mono text-sm">
+                  <span className="text-white/50 font-mono text-xs md:text-sm">
                     {formatTime(duration)}
                   </span>
                 </div>
                 
-                {/* Volume Control */}
-                <div className="flex items-center gap-2">
+                {/* Volume Control - Hidden on mobile */}
+                <div className="hidden md:flex items-center gap-2">
                   <button
                     onClick={toggleMute}
                     className="p-1.5 rounded-full hover:bg-white/10 transition-colors"
@@ -233,45 +234,45 @@ const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) 
               </div>
 
               {/* Center Controls */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 md:gap-4">
                 <button
                   onClick={() => seekRelative(-15)}
-                  className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
+                  className="p-2 md:p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
                 >
-                  <RotateCcw className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
+                  <RotateCcw className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white transition-colors" />
                   <span className="sr-only">15 seconds back</span>
                 </button>
 
                 <button
                   onClick={togglePlay}
-                  className="p-4 rounded-full bg-gradient-to-br from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-400 transition-all duration-300 shadow-xl shadow-primary/40 hover:shadow-primary/60 hover:scale-110 border border-white/20"
+                  className="p-3 md:p-4 rounded-full bg-gradient-to-br from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-400 transition-all duration-300 shadow-xl shadow-primary/40 hover:shadow-primary/60 hover:scale-110 border border-white/20"
                 >
                   {isPlaying ? (
-                    <Pause className="w-6 h-6 text-white" />
+                    <Pause className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   ) : (
-                    <Play className="w-6 h-6 text-white ml-0.5" />
+                    <Play className="w-5 h-5 md:w-6 md:h-6 text-white ml-0.5" />
                   )}
                 </button>
 
                 <button
                   onClick={() => seekRelative(15)}
-                  className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
+                  className="p-2 md:p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
                 >
-                  <RotateCw className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
+                  <RotateCw className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white transition-colors" />
                   <span className="sr-only">15 seconds forward</span>
                 </button>
               </div>
 
               {/* Right: Quality Badge & Fullscreen */}
-              <div className="flex items-center gap-3 min-w-[140px] justify-end">
-                <span className="px-2.5 py-1 text-[10px] font-bold bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border border-green-500/30 rounded uppercase tracking-wider">
+              <div className="flex items-center gap-2 md:gap-3 md:min-w-[140px] justify-center md:justify-end">
+                <span className="px-2 py-0.5 md:px-2.5 md:py-1 text-[8px] md:text-[10px] font-bold bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border border-green-500/30 rounded uppercase tracking-wider">
                   1080p HD
                 </span>
                 <button
                   onClick={toggleFullscreen}
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/20 hover:scale-110"
+                  className="p-1.5 md:p-2 rounded-lg bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/20 hover:scale-110"
                 >
-                  <Maximize className="w-5 h-5 text-white/70 hover:text-white transition-colors" />
+                  <Maximize className="w-4 h-4 md:w-5 md:h-5 text-white/70 hover:text-white transition-colors" />
                 </button>
               </div>
             </div>
