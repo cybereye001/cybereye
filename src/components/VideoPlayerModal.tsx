@@ -184,31 +184,64 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
     const currentTimeBeforeChange = playerRef.current.getCurrentTime();
     const wasPlaying = isPlaying;
     
-    // Stop video first
-    playerRef.current.stopVideo();
+    // Pause video
+    playerRef.current.pauseVideo();
     
-    // Set quality using multiple methods for better compatibility
-    playerRef.current.setPlaybackQuality(quality);
-    if (playerRef.current.setPlaybackQualityRange) {
-      playerRef.current.setPlaybackQualityRange(quality, quality);
-    }
+    // Destroy current player
+    playerRef.current.destroy();
     
-    // Load video at specific quality and seek to previous position
-    setTimeout(() => {
-      playerRef.current.loadVideoById({
-        videoId: videoId,
-        startSeconds: currentTimeBeforeChange,
-        suggestedQuality: quality,
-      });
-      
-      // Set quality again after loading
-      setTimeout(() => {
-        playerRef.current.setPlaybackQuality(quality);
-        if (!wasPlaying) {
-          playerRef.current.pauseVideo();
-        }
-      }, 500);
-    }, 100);
+    // Create new player with quality parameter
+    playerRef.current = new window.YT.Player("youtube-player", {
+      videoId: videoId,
+      playerVars: {
+        autoplay: wasPlaying ? 1 : 0,
+        controls: 0,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        fs: 0,
+        playsinline: 1,
+        iv_load_policy: 3,
+        disablekb: 1,
+        origin: window.location.origin,
+        start: Math.floor(currentTimeBeforeChange),
+        vq: quality,
+      },
+      events: {
+        onReady: (event: any) => {
+          setIsReady(true);
+          setDuration(event.target.getDuration());
+          // Force quality immediately
+          event.target.setPlaybackQuality(quality);
+          if (event.target.setPlaybackQualityRange) {
+            event.target.setPlaybackQualityRange(quality, quality);
+          }
+          // Get available qualities
+          const qualities = event.target.getAvailableQualityLevels();
+          setAvailableQualities(qualities);
+        },
+        onStateChange: (event: any) => {
+          const playerState = event.data;
+          setIsPlaying(playerState === window.YT.PlayerState.PLAYING);
+          
+          // Keep trying to set quality when buffering
+          if (playerState === window.YT.PlayerState.BUFFERING) {
+            event.target.setPlaybackQuality(quality);
+          }
+          
+          if (playerState === window.YT.PlayerState.PLAYING) {
+            const qualities = event.target.getAvailableQualityLevels();
+            if (qualities.length > 0) {
+              setAvailableQualities(qualities);
+            }
+          }
+        },
+        onPlaybackQualityChange: (event: any) => {
+          console.log('Quality changed to:', event.data);
+          setCurrentQuality(event.data);
+        },
+      },
+    });
     
     setCurrentQuality(quality);
     setShowQualityMenu(false);
