@@ -1,43 +1,23 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Play, Pause, RotateCcw, RotateCw, Maximize, X, Settings, Check } from "lucide-react";
+import { Play, Pause, RotateCcw, RotateCw, Maximize, X, Volume2, VolumeX } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface VideoPlayerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  videoId: string;
+  videoUrl: string;
 }
 
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
-
-const qualityLabels: Record<string, string> = {
-  highres: '4K',
-  hd1080: '1080p',
-  hd720: '720p',
-  large: '480p',
-  medium: '360p',
-  small: '240p',
-  tiny: '144p',
-  auto: 'Auto',
-};
-
-const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) => {
+const VideoPlayerModal = ({ isOpen, onClose, videoUrl }: VideoPlayerModalProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isReady, setIsReady] = useState(false);
-  const [availableQualities, setAvailableQualities] = useState<string[]>([]);
-  const [currentQuality, setCurrentQuality] = useState<string>('auto');
-  const [showQualityMenu, setShowQualityMenu] = useState(false);
-  const playerRef = useRef<any>(null);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -45,128 +25,75 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const loadYouTubeAPI = useCallback(() => {
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-      return;
+  useEffect(() => {
+    if (!isOpen && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setIsPlaying(false);
+      setCurrentTime(0);
     }
+  }, [isOpen]);
 
-    if (!document.getElementById("youtube-api")) {
-      const script = document.createElement("script");
-      script.id = "youtube-api";
-      script.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(script);
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
     }
-
-    window.onYouTubeIframeAPIReady = () => {
-      initPlayer();
-    };
-  }, [videoId]);
-
-  const initPlayer = () => {
-    if (playerRef.current) {
-      playerRef.current.destroy();
-    }
-
-    playerRef.current = new window.YT.Player("youtube-player", {
-      videoId: videoId,
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-        fs: 0,
-        playsinline: 1,
-        iv_load_policy: 3,
-        disablekb: 1,
-        origin: window.location.origin,
-        vq: 'hd1080',
-      },
-      events: {
-        onReady: (event: any) => {
-          setIsReady(true);
-          setDuration(event.target.getDuration());
-          // Get available qualities
-          const qualities = event.target.getAvailableQualityLevels();
-          setAvailableQualities(qualities);
-          console.log('Available qualities:', qualities);
-        },
-        onStateChange: (event: any) => {
-          const playerState = event.data;
-          setIsPlaying(playerState === window.YT.PlayerState.PLAYING);
-          
-          // Update available qualities when buffering starts
-          if (playerState === window.YT.PlayerState.BUFFERING || playerState === window.YT.PlayerState.PLAYING) {
-            const qualities = event.target.getAvailableQualityLevels();
-            if (qualities.length > 0) {
-              setAvailableQualities(qualities);
-            }
-          }
-        },
-        onPlaybackQualityChange: (event: any) => {
-          console.log('Quality changed to:', event.data);
-          setCurrentQuality(event.data);
-        },
-      },
-    });
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        loadYouTubeAPI();
-      }, 100);
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+      setIsLoading(false);
     }
+  };
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [isOpen, loadYouTubeAPI]);
-
-  useEffect(() => {
-    if (isPlaying && playerRef.current) {
-      intervalRef.current = setInterval(() => {
-        if (playerRef.current && playerRef.current.getCurrentTime) {
-          setCurrentTime(playerRef.current.getCurrentTime());
-        }
-      }, 500);
-    } else if (intervalRef.current) {
-      clearInterval(intervalRef.current);
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
     }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [isPlaying]);
+  };
 
   const togglePlay = () => {
-    if (!playerRef.current) return;
+    if (!videoRef.current) return;
     if (isPlaying) {
-      playerRef.current.pauseVideo();
+      videoRef.current.pause();
     } else {
-      playerRef.current.playVideo();
+      videoRef.current.play();
     }
+    setIsPlaying(!isPlaying);
   };
 
   const seekRelative = (seconds: number) => {
-    if (!playerRef.current) return;
+    if (!videoRef.current) return;
     const newTime = Math.max(0, Math.min(currentTime + seconds, duration));
-    playerRef.current.seekTo(newTime, true);
+    videoRef.current.currentTime = newTime;
     setCurrentTime(newTime);
   };
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!playerRef.current) return;
+    if (!videoRef.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const pos = (e.clientX - rect.left) / rect.width;
     const newTime = pos * duration;
-    playerRef.current.seekTo(newTime, true);
+    videoRef.current.currentTime = newTime;
     setCurrentTime(newTime);
+  };
+
+  const handleVolumeChange = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!videoRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const newVolume = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    videoRef.current.volume = newVolume;
+    setVolume(newVolume);
+    setIsMuted(newVolume === 0);
+  };
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
   };
 
   const toggleFullscreen = () => {
@@ -178,78 +105,9 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
     }
   };
 
-  const changeQuality = (quality: string) => {
-    if (!playerRef.current) return;
-    
-    const currentTimeBeforeChange = playerRef.current.getCurrentTime();
-    const wasPlaying = isPlaying;
-    
-    // Pause video
-    playerRef.current.pauseVideo();
-    
-    // Destroy current player
-    playerRef.current.destroy();
-    
-    // Create new player with quality parameter
-    playerRef.current = new window.YT.Player("youtube-player", {
-      videoId: videoId,
-      playerVars: {
-        autoplay: wasPlaying ? 1 : 0,
-        controls: 0,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-        fs: 0,
-        playsinline: 1,
-        iv_load_policy: 3,
-        disablekb: 1,
-        origin: window.location.origin,
-        start: Math.floor(currentTimeBeforeChange),
-        vq: quality,
-      },
-      events: {
-        onReady: (event: any) => {
-          setIsReady(true);
-          setDuration(event.target.getDuration());
-          // Force quality immediately
-          event.target.setPlaybackQuality(quality);
-          if (event.target.setPlaybackQualityRange) {
-            event.target.setPlaybackQualityRange(quality, quality);
-          }
-          // Get available qualities
-          const qualities = event.target.getAvailableQualityLevels();
-          setAvailableQualities(qualities);
-        },
-        onStateChange: (event: any) => {
-          const playerState = event.data;
-          setIsPlaying(playerState === window.YT.PlayerState.PLAYING);
-          
-          // Keep trying to set quality when buffering
-          if (playerState === window.YT.PlayerState.BUFFERING) {
-            event.target.setPlaybackQuality(quality);
-          }
-          
-          if (playerState === window.YT.PlayerState.PLAYING) {
-            const qualities = event.target.getAvailableQualityLevels();
-            if (qualities.length > 0) {
-              setAvailableQualities(qualities);
-            }
-          }
-        },
-        onPlaybackQualityChange: (event: any) => {
-          console.log('Quality changed to:', event.data);
-          setCurrentQuality(event.data);
-        },
-      },
-    });
-    
-    setCurrentQuality(quality);
-    setShowQualityMenu(false);
-  };
-
   const handleClose = () => {
-    if (playerRef.current && isPlaying) {
-      playerRef.current.pauseVideo();
+    if (videoRef.current) {
+      videoRef.current.pause();
     }
     setIsPlaying(false);
     setCurrentTime(0);
@@ -275,15 +133,27 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
 
           {/* Video Container */}
           <div className="relative w-full aspect-video bg-black overflow-hidden">
-            <div id="youtube-player" className="absolute inset-0 w-full h-full pointer-events-none" />
+            <video
+              ref={videoRef}
+              src={videoUrl}
+              className="w-full h-full object-contain"
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleLoadedMetadata}
+              onEnded={handleVideoEnd}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onLoadStart={() => setIsLoading(true)}
+              onCanPlay={() => setIsLoading(false)}
+              playsInline
+              preload="metadata"
+            />
             
-            {/* Overlay to hide YouTube branding */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Top gradient overlay */}
-              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/40 to-transparent" />
-              {/* Bottom gradient overlay */}
-              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
+            {/* Loading Spinner */}
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+              </div>
+            )}
             
             {/* Click overlay for play/pause */}
             <div 
@@ -292,7 +162,7 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
             />
             
             {/* Center play button overlay when paused */}
-            {!isPlaying && isReady && (
+            {!isPlaying && !isLoading && (
               <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
                 <div className="p-6 rounded-full bg-primary/90 backdrop-blur-sm shadow-2xl shadow-primary/50 animate-pulse">
                   <Play className="w-12 h-12 text-primary-foreground ml-1" />
@@ -326,15 +196,40 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
 
             {/* Controls Row */}
             <div className="flex items-center justify-between">
-              {/* Left: Time Display */}
-              <div className="flex items-center gap-2 min-w-[120px]">
-                <span className="text-white/90 font-mono text-sm tracking-wide">
-                  {formatTime(currentTime)}
-                </span>
-                <span className="text-white/40">/</span>
-                <span className="text-white/50 font-mono text-sm">
-                  {formatTime(duration)}
-                </span>
+              {/* Left: Time Display & Volume */}
+              <div className="flex items-center gap-4 min-w-[180px]">
+                <div className="flex items-center gap-2">
+                  <span className="text-white/90 font-mono text-sm tracking-wide">
+                    {formatTime(currentTime)}
+                  </span>
+                  <span className="text-white/40">/</span>
+                  <span className="text-white/50 font-mono text-sm">
+                    {formatTime(duration)}
+                  </span>
+                </div>
+                
+                {/* Volume Control */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={toggleMute}
+                    className="p-1.5 rounded-full hover:bg-white/10 transition-colors"
+                  >
+                    {isMuted || volume === 0 ? (
+                      <VolumeX className="w-4 h-4 text-white/70" />
+                    ) : (
+                      <Volume2 className="w-4 h-4 text-white/70" />
+                    )}
+                  </button>
+                  <div 
+                    className="w-16 h-1 bg-white/20 rounded-full cursor-pointer group"
+                    onClick={handleVolumeChange}
+                  >
+                    <div 
+                      className="h-full bg-white/60 rounded-full transition-all"
+                      style={{ width: `${isMuted ? 0 : volume * 100}%` }}
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Center Controls */}
@@ -342,7 +237,6 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
                 <button
                   onClick={() => seekRelative(-15)}
                   className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
-                  disabled={!isReady}
                 >
                   <RotateCcw className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
                   <span className="sr-only">15 seconds back</span>
@@ -351,7 +245,6 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
                 <button
                   onClick={togglePlay}
                   className="p-4 rounded-full bg-gradient-to-br from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-400 transition-all duration-300 shadow-xl shadow-primary/40 hover:shadow-primary/60 hover:scale-110 border border-white/20"
-                  disabled={!isReady}
                 >
                   {isPlaying ? (
                     <Pause className="w-6 h-6 text-white" />
@@ -363,52 +256,17 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
                 <button
                   onClick={() => seekRelative(15)}
                   className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
-                  disabled={!isReady}
                 >
                   <RotateCw className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
                   <span className="sr-only">15 seconds forward</span>
                 </button>
               </div>
 
-              {/* Right: Quality Selector & Fullscreen */}
-              <div className="flex items-center gap-2 min-w-[140px] justify-end relative">
-                {/* Quality Selector */}
-                <div className="relative">
-                  <button
-                    onClick={() => setShowQualityMenu(!showQualityMenu)}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/10 hover:border-white/20 rounded-lg"
-                  >
-                    <Settings className="w-4 h-4 text-white/70" />
-                    <span className="text-white/90">
-                      {qualityLabels[currentQuality] || currentQuality}
-                    </span>
-                  </button>
-                  
-                  {/* Quality Menu Dropdown */}
-                  {showQualityMenu && (
-                    <div className="absolute bottom-full right-0 mb-2 bg-[#0d1424] border border-white/10 rounded-lg shadow-xl shadow-black/50 overflow-hidden min-w-[120px] z-50">
-                      {availableQualities.length > 0 ? (
-                        availableQualities.map((quality) => (
-                          <button
-                            key={quality}
-                            onClick={() => changeQuality(quality)}
-                            className={`w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-white/10 transition-colors ${
-                              currentQuality === quality ? 'text-primary bg-white/5' : 'text-white/80'
-                            }`}
-                          >
-                            <span>{qualityLabels[quality] || quality}</span>
-                            {currentQuality === quality && (
-                              <Check className="w-4 h-4 text-primary" />
-                            )}
-                          </button>
-                        ))
-                      ) : (
-                        <div className="px-3 py-2 text-sm text-white/50">Loading...</div>
-                      )}
-                    </div>
-                  )}
-                </div>
-                
+              {/* Right: Quality Badge & Fullscreen */}
+              <div className="flex items-center gap-3 min-w-[140px] justify-end">
+                <span className="px-2.5 py-1 text-[10px] font-bold bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border border-green-500/30 rounded uppercase tracking-wider">
+                  1080p HD
+                </span>
                 <button
                   onClick={toggleFullscreen}
                   className="p-2 rounded-lg bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/20 hover:scale-110"

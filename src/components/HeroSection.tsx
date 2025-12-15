@@ -100,7 +100,7 @@ const HeroSection = () => {
       <VideoPlayerModal
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
-        videoId="3sn-Ksi5Hw8"
+        videoUrl="https://oqijsfmowjdiqbnzailq.supabase.co/storage/v1/object/public/videos/demo.mp4"
       />
     </section>;
 };
