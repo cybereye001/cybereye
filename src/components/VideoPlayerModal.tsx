@@ -63,6 +63,10 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
         showinfo: 0,
         fs: 0,
         playsinline: 1,
+        iv_load_policy: 3,
+        disablekb: 1,
+        origin: window.location.origin,
+        vq: 'hd1080',
       },
       events: {
         onReady: (event: any) => {
@@ -155,88 +159,123 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl w-[95vw] p-0 bg-[#0a1628] border-primary/20 overflow-hidden">
+      <DialogContent className="max-w-5xl w-[95vw] p-0 bg-gradient-to-b from-[#0a0f1a] to-[#050810] border border-white/10 overflow-hidden rounded-2xl shadow-2xl shadow-primary/20">
         <div ref={containerRef} className="relative w-full">
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-3 right-3 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+            className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-all duration-300 border border-white/10 hover:border-white/20 hover:scale-110"
           >
-            <X className="w-5 h-5 text-white" />
+            <X className="w-5 h-5 text-white/90" />
           </button>
 
           {/* Video Container */}
-          <div className="relative w-full aspect-video bg-black">
-            <div id="youtube-player" className="absolute inset-0 w-full h-full" />
+          <div className="relative w-full aspect-video bg-black overflow-hidden">
+            <div id="youtube-player" className="absolute inset-0 w-full h-full pointer-events-none" />
+            
+            {/* Overlay to hide YouTube branding */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Top gradient overlay */}
+              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/40 to-transparent" />
+              {/* Bottom gradient overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
             
             {/* Click overlay for play/pause */}
             <div 
               className="absolute inset-0 cursor-pointer z-10"
               onClick={togglePlay}
             />
+            
+            {/* Center play button overlay when paused */}
+            {!isPlaying && isReady && (
+              <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                <div className="p-6 rounded-full bg-primary/90 backdrop-blur-sm shadow-2xl shadow-primary/50 animate-pulse">
+                  <Play className="w-12 h-12 text-primary-foreground ml-1" />
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Custom Controls */}
-          <div className="bg-[#0d1e36] px-4 py-3 space-y-3">
-            {/* Center Controls */}
-            <div className="flex items-center justify-center gap-8">
-              <button
-                onClick={() => seekRelative(-15)}
-                className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors group"
-                disabled={!isReady}
-              >
-                <RotateCcw className="w-5 h-5 text-white group-hover:text-primary transition-colors" />
-                <span className="sr-only">15 seconds back</span>
-              </button>
-
-              <button
-                onClick={togglePlay}
-                className="p-4 rounded-full bg-primary hover:bg-primary/80 transition-colors shadow-lg shadow-primary/30"
-                disabled={!isReady}
-              >
-                {isPlaying ? (
-                  <Pause className="w-7 h-7 text-primary-foreground" />
-                ) : (
-                  <Play className="w-7 h-7 text-primary-foreground ml-1" />
-                )}
-              </button>
-
-              <button
-                onClick={() => seekRelative(15)}
-                className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors group"
-                disabled={!isReady}
-              >
-                <RotateCw className="w-5 h-5 text-white group-hover:text-primary transition-colors" />
-                <span className="sr-only">15 seconds forward</span>
-              </button>
-            </div>
-
+          <div className="bg-gradient-to-b from-[#0d1424] to-[#080c14] px-6 py-4 space-y-4 border-t border-white/5">
             {/* Progress Bar */}
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div
-                className="relative h-2 bg-white/20 rounded-full cursor-pointer group"
+                className="relative h-1.5 bg-white/10 rounded-full cursor-pointer group hover:h-2.5 transition-all duration-200"
                 onClick={handleProgressClick}
               >
+                {/* Buffer/Background */}
+                <div className="absolute inset-0 bg-white/5 rounded-full" />
+                {/* Progress */}
                 <div
-                  className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all"
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary via-cyan-400 to-primary rounded-full transition-all shadow-lg shadow-primary/30"
                   style={{ width: `${progress}%` }}
                 />
+                {/* Scrubber */}
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg shadow-black/50 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-125"
                   style={{ left: `calc(${progress}% - 8px)` }}
                 />
               </div>
+            </div>
 
-              {/* Time Display & Fullscreen */}
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-white/80 font-mono">
-                  {formatTime(currentTime)} / {formatTime(duration)}
+            {/* Controls Row */}
+            <div className="flex items-center justify-between">
+              {/* Left: Time Display */}
+              <div className="flex items-center gap-2 min-w-[120px]">
+                <span className="text-white/90 font-mono text-sm tracking-wide">
+                  {formatTime(currentTime)}
+                </span>
+                <span className="text-white/40">/</span>
+                <span className="text-white/50 font-mono text-sm">
+                  {formatTime(duration)}
+                </span>
+              </div>
+
+              {/* Center Controls */}
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => seekRelative(-15)}
+                  className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
+                  disabled={!isReady}
+                >
+                  <RotateCcw className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
+                  <span className="sr-only">15 seconds back</span>
+                </button>
+
+                <button
+                  onClick={togglePlay}
+                  className="p-4 rounded-full bg-gradient-to-br from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-400 transition-all duration-300 shadow-xl shadow-primary/40 hover:shadow-primary/60 hover:scale-110 border border-white/20"
+                  disabled={!isReady}
+                >
+                  {isPlaying ? (
+                    <Pause className="w-6 h-6 text-white" />
+                  ) : (
+                    <Play className="w-6 h-6 text-white ml-0.5" />
+                  )}
+                </button>
+
+                <button
+                  onClick={() => seekRelative(15)}
+                  className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 transition-all duration-300 group border border-white/5 hover:border-white/20 hover:scale-110"
+                  disabled={!isReady}
+                >
+                  <RotateCw className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
+                  <span className="sr-only">15 seconds forward</span>
+                </button>
+              </div>
+
+              {/* Right: Quality Badge & Fullscreen */}
+              <div className="flex items-center gap-3 min-w-[120px] justify-end">
+                <span className="px-2 py-0.5 text-[10px] font-bold bg-gradient-to-r from-primary/20 to-cyan-500/20 text-primary border border-primary/30 rounded uppercase tracking-wider">
+                  HD
                 </span>
                 <button
                   onClick={toggleFullscreen}
-                  className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 transition-all duration-300 border border-white/5 hover:border-white/20 hover:scale-110"
                 >
-                  <Maximize className="w-5 h-5 text-white/80 hover:text-white" />
+                  <Maximize className="w-5 h-5 text-white/70 hover:text-white transition-colors" />
                 </button>
               </div>
             </div>
