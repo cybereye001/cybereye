@@ -72,9 +72,20 @@ const VideoPlayerModal = ({ isOpen, onClose, videoId }: VideoPlayerModalProps) =
         onReady: (event: any) => {
           setIsReady(true);
           setDuration(event.target.getDuration());
+          // Force HD quality
+          event.target.setPlaybackQuality('hd1080');
         },
         onStateChange: (event: any) => {
           setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+          // Force HD quality when video starts playing
+          if (event.data === window.YT.PlayerState.PLAYING || event.data === window.YT.PlayerState.BUFFERING) {
+            const availableQualities = event.target.getAvailableQualityLevels();
+            if (availableQualities.includes('hd1080')) {
+              event.target.setPlaybackQuality('hd1080');
+            } else if (availableQualities.includes('hd720')) {
+              event.target.setPlaybackQuality('hd720');
+            }
+          }
         },
       },
     });
