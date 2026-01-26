@@ -290,7 +290,7 @@ const Services = () => {
                 <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-4 sm:justify-center">
                   <Link to="/demo">
                     <Button variant="hero" size="lg" className="w-full text-sm md:text-base">
-                      Get Free Assessment
+                      Free Assessment
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </Link>
