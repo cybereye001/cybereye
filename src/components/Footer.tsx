@@ -137,7 +137,7 @@ const Footer = () => {
             <div className="text-center md:text-left">
               <p className="text-sm text-muted-foreground">© 2025 CyberEye Technologies (OPC) Pvt. Ltd. All rights reserved.</p>
               <p className="text-xs text-muted-foreground/70 mt-1">
-                CyberEye is a registered product of <span className="text-primary font-semibold">CyberEye Technologies</span>
+                CyberEye is a registered product of <span className="text-primary font-semibold">CyberEye Technologies (OPC) Pvt. Ltd.</span>
               </p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
