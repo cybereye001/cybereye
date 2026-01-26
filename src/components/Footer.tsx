@@ -129,7 +129,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              <span>Official Website of CyberEye Technologies</span>
+              <span>Official Website of CyberEye</span>
             </div>
           </div>
           
