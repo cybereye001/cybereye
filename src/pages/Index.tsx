@@ -6,7 +6,7 @@ import Features from "@/components/Features";
 import SecurityDashboard from "@/components/SecurityDashboard";
 import UseCases from "@/components/UseCases";
 import ComplianceSection from "@/components/ComplianceSection";
-import Integrations from "@/components/Integrations";
+
 
 
 import PricingSection from "@/components/PricingSection";
@@ -27,7 +27,7 @@ const Index = () => {
         <ThreatLandscape />
         <Features />
         <SecurityDashboard />
-        <Integrations />
+        
         <UseCases />
         <ComplianceSection />
         
