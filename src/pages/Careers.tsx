@@ -1,14 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
-  Briefcase, 
   Users, 
   Heart, 
   Zap, 
-  Globe, 
   Shield, 
-  Code, 
-  Search, 
   TrendingUp,
   Coffee,
   Laptop,
@@ -20,8 +17,17 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import JobApplicationModal from "@/components/JobApplicationModal";
 
 const Careers = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState({ title: "", department: "" });
+
+  const handleApply = (title: string, department: string) => {
+    setSelectedJob({ title, department });
+    setIsModalOpen(true);
+  };
+
   const benefits = [
     {
       icon: Laptop,
@@ -131,7 +137,7 @@ const Careers = () => {
                   Build the Future of <span className="text-gradient">Cybersecurity</span>
                 </h1>
                 <p className="text-base md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                  Join CyberEye Technologies and help protect organizations worldwide from 
+                  Join CyberEye and help protect organizations worldwide from 
                   cyber threats. We're looking for passionate individuals who want to make a difference.
                 </p>
               </div>
@@ -146,7 +152,7 @@ const Careers = () => {
               <div className="text-center mb-12">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">Why Work With Us</h2>
                 <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  At CyberEye Technologies, we believe in empowering our team to do their best work
+                  At CyberEye, we believe in empowering our team to do their best work
                 </p>
               </div>
             </AnimatedSection>
@@ -173,9 +179,6 @@ const Careers = () => {
             <AnimatedSection>
               <div className="text-center mb-12">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">Benefits & Perks</h2>
-                <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  We take care of our team so they can take care of our customers
-                </p>
               </div>
             </AnimatedSection>
 
@@ -202,7 +205,7 @@ const Careers = () => {
               <div className="text-center mb-12">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">Open Positions</h2>
                 <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  Find your next opportunity at CyberEye Technologies
+                  Find your next opportunity at CyberEye
                 </p>
               </div>
             </AnimatedSection>
@@ -230,7 +233,12 @@ const Careers = () => {
                           <span>{job.location}</span>
                         </div>
                       </div>
-                      <Button variant="heroOutline" size="sm" className="shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Button 
+                        variant="heroOutline" 
+                        size="sm" 
+                        className="shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                        onClick={() => handleApply(job.title, job.department)}
+                      >
                         Apply Now
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Button>
@@ -273,6 +281,13 @@ const Careers = () => {
       </main>
 
       <Footer />
+
+      <JobApplicationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        jobTitle={selectedJob.title}
+        department={selectedJob.department}
+      />
     </div>
   );
 };

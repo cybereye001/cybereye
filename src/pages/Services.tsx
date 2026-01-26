@@ -37,63 +37,87 @@ const Services = () => {
     },
     {
       icon: Eye,
-      title: "Threat Detection & Response",
-      description: "AI-powered threat analysis with automated incident response capabilities.",
+      title: "Endpoint Detection & Response (EDR)",
+      description: "Advanced endpoint monitoring with real-time threat behavior analysis and automated response.",
       features: [
-        "Behavioral analysis",
-        "Automated threat hunting",
-        "Incident response playbooks",
-        "Threat intelligence feeds"
+        "Real-time endpoint monitoring",
+        "Threat behavior analysis",
+        "Automated response actions",
+        "Forensic investigation tools"
+      ],
+      highlight: false
+    },
+    {
+      icon: Server,
+      title: "SIEM Solutions",
+      description: "Centralized security information and event management for comprehensive threat visibility.",
+      features: [
+        "Centralized log management",
+        "Real-time threat correlation",
+        "Compliance reporting",
+        "Custom alerting rules"
+      ],
+      highlight: true
+    },
+    {
+      icon: AlertTriangle,
+      title: "Cloud Security (CSPM)",
+      description: "Secure your multi-cloud environment with posture management and misconfiguration detection.",
+      features: [
+        "Multi-cloud visibility",
+        "Misconfiguration detection",
+        "Compliance automation",
+        "Risk prioritization"
+      ],
+      highlight: false
+    },
+    {
+      icon: Lock,
+      title: "Identity & Access Management",
+      description: "Comprehensive IAM solutions including SSO, MFA, and privileged access management.",
+      features: [
+        "Single Sign-On (SSO)",
+        "Multi-factor authentication",
+        "Privileged access management",
+        "Identity governance"
       ],
       highlight: false
     },
     {
       icon: FileSearch,
-      title: "Security Audits & Pentesting",
-      description: "Comprehensive security assessments to identify vulnerabilities before attackers do.",
+      title: "VAPT Services",
+      description: "Vulnerability Assessment and Penetration Testing to identify security weaknesses.",
       features: [
-        "Vulnerability scanning",
-        "Penetration testing",
-        "Code review",
-        "Infrastructure assessment"
-      ],
-      highlight: false
-    },
-    {
-      icon: Clock,
-      title: "24/7 Security Operations Center",
-      description: "Round-the-clock monitoring and response by our expert security team.",
-      features: [
-        "Continuous monitoring",
-        "Alert management",
-        "Incident escalation",
-        "Threat intelligence"
-      ],
-      highlight: true
-    },
-    {
-      icon: FileCheck,
-      title: "Compliance Management",
-      description: "Ensure your organization meets industry regulations and standards.",
-      features: [
-        "GDPR compliance",
-        "HIPAA compliance",
-        "SOC 2 readiness",
-        "Audit preparation"
+        "Automated vulnerability scanning",
+        "Manual penetration testing",
+        "Web application security",
+        "Network security assessment"
       ],
       highlight: false
     },
     {
       icon: Users,
-      title: "Security Consulting",
-      description: "Expert guidance on security strategy, architecture, and best practices.",
+      title: "Security Awareness Training",
+      description: "Educate your employees to recognize and prevent cyber threats with engaging training.",
       features: [
-        "Security architecture design",
-        "Policy development",
-        "Risk assessment",
-        "Employee training"
+        "Phishing simulation",
+        "Interactive training modules",
+        "Compliance training",
+        "Progress tracking & reporting"
       ],
       highlight: false
+    },
+    {
+      icon: Clock,
+      title: "Incident Response & Forensics",
+      description: "24/7 incident response team with digital forensics and post-incident analysis.",
+      features: [
+        "24/7 incident response",
+        "Digital forensics investigation",
+        "Malware analysis",
+        "Post-incident reporting"
+      ],
+      highlight: true
     }
   ];
 

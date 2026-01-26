@@ -52,6 +52,7 @@ const About = () => {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
                 <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+                  Official Website of CyberEye
                   Official Website of CyberEye Technologies
                 </span>
                 <h1 className="text-3xl md:text-6xl font-bold mt-6 mb-6">
