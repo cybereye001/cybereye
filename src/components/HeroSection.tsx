@@ -4,10 +4,8 @@ import { Shield, ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedNumber from "./AnimatedNumber";
 import VideoPlayerModal from "./VideoPlayerModal";
-
 const HeroSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-
   return <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {/* Subtle grid pattern - no blue effects */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -38,7 +36,7 @@ const HeroSection = () => {
           <p className="text-base md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-slide-up" style={{
           animationDelay: "0.1s"
         }}>
-            <span className="font-cyber font-bold tracking-wider bg-gradient-to-b from-white to-gray-400 bg-clip-text text-[#a4c4f4]">CyberEye Technologies</span> presents <span className="font-cyber font-bold tracking-wider"><span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span><span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span></span>, a centralized AI-powered system that monitors, detects, and prevents data leaks in real time while adapting to emerging threats before damage occurs.
+            <span className="font-cyber font-bold tracking-wider bg-gradient-to-b from-white to-gray-400 bg-clip-text text-[#a4c4f4]">CyberEye Technologies (OPC) Pvt. Ltd.</span> presents <span className="font-cyber font-bold tracking-wider"><span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span><span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span></span>, a centralized AI-powered system that monitors, detects, and prevents data leaks in real time while adapting to emerging threats before damage occurs.
           </p>
 
           {/* CTA Buttons - 2x2 on mobile */}
@@ -51,12 +49,7 @@ const HeroSection = () => {
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button 
-              variant="heroOutline" 
-              size="lg" 
-              className="group text-sm sm:text-base animated-border-glow"
-              onClick={() => setIsVideoOpen(true)}
-            >
+            <Button variant="heroOutline" size="lg" className="group text-sm sm:text-base animated-border-glow" onClick={() => setIsVideoOpen(true)}>
               <Play className="w-4 h-4 sm:w-5 sm:h-5" />
               Watch Demo
             </Button>
@@ -97,11 +90,7 @@ const HeroSection = () => {
     }} />
 
       {/* Video Player Modal */}
-      <VideoPlayerModal
-        isOpen={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
-        videoUrl="https://oqijsfmowjdiqbnzailq.supabase.co/storage/v1/object/public/videos/demo.mp4"
-      />
+      <VideoPlayerModal isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} videoUrl="https://oqijsfmowjdiqbnzailq.supabase.co/storage/v1/object/public/videos/demo.mp4" />
     </section>;
 };
 export default HeroSection;
