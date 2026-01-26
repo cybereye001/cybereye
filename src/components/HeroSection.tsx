@@ -38,7 +38,7 @@ const HeroSection = () => {
           <p className="text-base md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-slide-up" style={{
           animationDelay: "0.1s"
         }}>
-            <span className="font-cyber font-bold tracking-wider bg-gradient-to-b from-white to-gray-400 bg-clip-text text-[#a4c4f4]">ONKAR DIGITAL SERVICES LLP</span> presents <span className="font-cyber font-bold tracking-wider"><span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span><span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span></span>, a centralized AI-powered system that monitors, detects, and prevents data leaks in real time while adapting to emerging threats before damage occurs.
+            <span className="font-cyber font-bold tracking-wider bg-gradient-to-b from-white to-gray-400 bg-clip-text text-[#a4c4f4]">CyberEye Technologies</span> presents <span className="font-cyber font-bold tracking-wider"><span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span><span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span></span>, a centralized AI-powered system that monitors, detects, and prevents data leaks in real time while adapting to emerging threats before damage occurs.
           </p>
 
           {/* CTA Buttons - 2x2 on mobile */}

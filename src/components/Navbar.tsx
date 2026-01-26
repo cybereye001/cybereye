@@ -7,8 +7,14 @@ const Navbar = () => {
     name: "Features",
     href: "/#features"
   }, {
+    name: "Services",
+    href: "/services"
+  }, {
     name: "Pricing",
     href: "/pricing"
+  }, {
+    name: "Careers",
+    href: "/careers"
   }, {
     name: "About",
     href: "/about"
@@ -37,7 +43,7 @@ const Navbar = () => {
                 <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
                 <span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span>
               </div>
-              <span className="text-[9px] leading-tight text-[#98a7bd]">Developed & Powered by ONKAR DIGITAL SERVICES LLP</span>
+              <span className="text-[9px] leading-tight text-[#98a7bd]">Developed & Powered by CyberEye Technologies (OPC) Pvt. Ltd.</span>
             </div>
           </Link>
 
@@ -72,7 +78,7 @@ const Navbar = () => {
                   <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
                   <span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-0.5">EYE</span>
                 </div>
-                <span className="text-[7px] leading-tight text-[#98a7bd]">Developed by ONKAR DIGITAL SERVICES LLP</span>
+                <span className="text-[7px] leading-tight text-[#98a7bd]">Developed by CyberEye Technologies</span>
               </div>
             </Link>
             <div className="flex items-center gap-2">

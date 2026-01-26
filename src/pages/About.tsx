@@ -52,13 +52,13 @@ const About = () => {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
                 <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-                  Official Website of ONKAR DIGITAL SERVICES LLP
+                  Official Website of CyberEye Technologies
                 </span>
                 <h1 className="text-3xl md:text-6xl font-bold mt-6 mb-6">
                   Innovating for a <span className="text-gradient">Secure Digital Future</span>
                 </h1>
                 <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
-                  <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span> is a technology company 
+                  <span className="text-primary font-semibold">CyberEye Technologies (OPC) Pvt. Ltd.</span> is a technology company 
                   dedicated to building cutting-edge cybersecurity solutions. CyberEye, our flagship product, represents 
                   our commitment to making advanced AI-powered data leak prevention accessible to every organization.
                 </p>
@@ -73,12 +73,12 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-16 items-start max-w-6xl mx-auto">
               <AnimatedSection>
                 <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
-                  About <span className="text-primary">ONKAR DIGITAL SERVICES LLP</span>
+                  About <span className="text-primary">CyberEye Technologies</span>
                 </h2>
                 <div className="space-y-3 md:space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
                   <p>
-                    <span className="text-foreground font-medium">ONKAR DIGITAL SERVICES LLP</span> is a registered Limited Liability Partnership 
-                    company in India, specializing in innovative digital solutions and enterprise-grade cybersecurity products.
+                    <span className="text-foreground font-medium">CyberEye Technologies (OPC) Pvt. Ltd.</span> is a registered One Person Company 
+                    in India, specializing in innovative digital solutions and enterprise-grade cybersecurity products.
                   </p>
                   <p className="hidden md:block">
                     Founded with a vision to make advanced security accessible to all organizations, we developed 
