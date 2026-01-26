@@ -7,7 +7,7 @@ import SecurityDashboard from "@/components/SecurityDashboard";
 import UseCases from "@/components/UseCases";
 import ComplianceSection from "@/components/ComplianceSection";
 import Integrations from "@/components/Integrations";
-import TrustBadges from "@/components/TrustBadges";
+
 
 import PricingSection from "@/components/PricingSection";
 import FAQ from "@/components/FAQ";
@@ -22,7 +22,7 @@ const Index = () => {
       <div className="relative z-10">
         <Navbar />
         <HeroSection />
-        <TrustBadges />
+        
         <ProblemSolution />
         <ThreatLandscape />
         <Features />
