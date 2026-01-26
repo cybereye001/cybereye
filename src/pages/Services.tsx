@@ -155,9 +155,6 @@ const Services = () => {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
-                <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-                  Cybersecurity Services
-                </span>
                 <h1 className="text-3xl md:text-6xl font-bold mt-6 mb-6">
                   Enterprise-Grade <span className="text-gradient">Security Solutions</span>
                 </h1>
