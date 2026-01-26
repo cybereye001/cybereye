@@ -99,8 +99,8 @@ const Navbar = () => {
           </div>
           
           {/* Bottom row with nav links - always visible */}
-          <div className="flex items-center justify-around h-10 bg-muted/20">
-            {navLinks.map(link => <Link key={link.name} to={link.href} className={`relative font-medium text-xs whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-300 ${isActive(link.href) ? "text-primary-foreground bg-primary shadow-md shadow-primary/30" : "text-muted-foreground hover:text-primary"}`}>
+          <div className="flex items-center gap-1 h-10 bg-muted/20 overflow-x-auto scrollbar-hide px-2">
+            {navLinks.map(link => <Link key={link.name} to={link.href} className={`relative font-medium text-xs whitespace-nowrap px-2 py-1.5 rounded-full transition-all duration-300 ${isActive(link.href) ? "text-primary-foreground bg-primary shadow-md shadow-primary/30" : "text-muted-foreground hover:text-primary"}`}>
                 {link.name}
               </Link>)}
           </div>
