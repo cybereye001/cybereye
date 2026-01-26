@@ -119,11 +119,11 @@ const Footer = () => {
         {/* CyberEye Technologies Branding */}
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col items-center justify-center mb-6">
-            <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border rounded-2xl px-8 py-4 mb-4 text-primary-foreground border-secondary bg-[#020202]">
-              <p className="text-lg md:text-xl font-bold text-primary text-center">
+            <div className="text-center">
+              <p className="text-lg md:text-xl font-bold text-foreground">
                 CyberEye Technologies (OPC) Pvt. Ltd.
               </p>
-              <p className="text-xs md:text-sm text-muted-foreground text-center mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Innovating Digital Security Solutions
               </p>
             </div>
