@@ -8,8 +8,8 @@ const Footer = () => {
       name: "Features",
       href: "/#features"
     }, {
-      name: "Use Cases",
-      href: "/#use-cases"
+      name: "Services",
+      href: "/services"
     }, {
       name: "Pricing",
       href: "/pricing"
@@ -22,10 +22,7 @@ const Footer = () => {
       href: "/about"
     }, {
       name: "Careers",
-      href: "/about"
-    }, {
-      name: "Blog",
-      href: "/about"
+      href: "/careers"
     }, {
       name: "Contact",
       href: "/contact"
@@ -63,7 +60,7 @@ const Footer = () => {
                 <span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span>
               </div>
             </Link>
-            <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">Developed & Powered by ONKAR DIGITAL SERVICES LLP - AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.</p>
+            <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">Developed & Powered by CyberEye Technologies (OPC) Pvt. Ltd. - AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.</p>
             
           </div>
 
@@ -85,12 +82,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ONKAR DIGITAL SERVICES LLP Branding */}
+        {/* CyberEye Technologies Branding */}
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col items-center justify-center mb-6">
             <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border rounded-2xl px-8 py-4 mb-4 text-primary-foreground border-secondary bg-[#020202]">
               <p className="text-lg md:text-xl font-bold text-primary text-center">
-                ONKAR DIGITAL SERVICES LLP
+                CyberEye Technologies (OPC) Pvt. Ltd.
               </p>
               <p className="text-xs md:text-sm text-muted-foreground text-center mt-1">
                 Innovating Digital Security Solutions
@@ -98,15 +95,15 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              <span>Official Website of ONKAR DIGITAL SERVICES LLP</span>
+              <span>Official Website of CyberEye Technologies</span>
             </div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
-              <p className="text-sm text-muted-foreground">© 2025 ONKAR DIGITAL SERVICES LLP. All rights reserved.</p>
+              <p className="text-sm text-muted-foreground">© 2025 CyberEye Technologies (OPC) Pvt. Ltd. All rights reserved.</p>
               <p className="text-xs text-muted-foreground/70 mt-1">
-                CyberEye is a registered product of <span className="text-primary font-semibold">ONKAR DIGITAL SERVICES LLP</span>
+                CyberEye is a registered product of <span className="text-primary font-semibold">CyberEye Technologies</span>
               </p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">

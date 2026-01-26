@@ -30,7 +30,7 @@ const Terms = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">1. Acceptance of Terms</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      By accessing and using CyberEye's services (a product of ONKAR DIGITAL SERVICES LLP), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.
+                      By accessing and using CyberEye's services (a product of CyberEye Technologies (OPC) Pvt. Ltd.), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.
                     </p>
                   </section>
 
@@ -72,7 +72,7 @@ const Terms = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">7. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      For questions about these Terms of Service, please contact ONKAR DIGITAL SERVICES LLP at{" "}
+                      For questions about these Terms of Service, please contact CyberEye Technologies (OPC) Pvt. Ltd. at{" "}
                       <a href="mailto:cybereye.help@gmail.com" className="text-primary hover:underline">
                         cybereye.help@gmail.com
                       </a>
