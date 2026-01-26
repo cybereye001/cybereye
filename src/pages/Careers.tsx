@@ -125,31 +125,6 @@ const Careers = () => {
           </div>
         </section>
 
-        {/* Benefits */}
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-12">
-                <h2 className="text-2xl md:text-4xl font-bold mb-4">Benefits & Perks</h2>
-                <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  We take care of our team so they can take care of our customers
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto">
-              {benefits.map((benefit, index) => <AnimatedSection key={index} delay={index * 0.1}>
-                  <div className="bg-card border border-border rounded-xl p-4 md:p-6 h-full hover:border-primary/50 transition-colors">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-success/10 flex items-center justify-center mb-3 md:mb-4">
-                      <benefit.icon className="w-5 h-5 md:w-6 md:h-6 text-success" />
-                    </div>
-                    <h3 className="text-base md:text-lg font-bold text-foreground mb-1">{benefit.title}</h3>
-                    <p className="text-muted-foreground text-xs md:text-sm">{benefit.description}</p>
-                  </div>
-                </AnimatedSection>)}
-            </div>
-          </div>
-        </section>
 
         {/* Open Positions */}
         <section className="py-16 md:py-24 bg-card/50 border-y border-border">
