@@ -74,13 +74,16 @@ const PricingSection = () => {
         <AnimatedSection>
           <div className="text-center mb-16">
             <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-              Pricing
+              CyberEye DLP Pricing
             </span>
             <h2 className="text-3xl md:text-5xl font-bold mt-6 mb-4">
-              Simple, Transparent <span className="text-gradient">Pricing</span>
+              <span className="text-gradient">CyberEye</span> DLP Plans
             </h2>
             <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-              Choose the plan that fits your organization. All plans include a 14-day free trial.
+              Choose the CyberEye Data Leak Prevention plan that fits your organization. All plans include a 14-day free trial.
+            </p>
+            <p className="text-muted-foreground/70 text-sm mt-2">
+              Looking for other IT services? <Link to="/services" className="text-primary hover:underline">View all our services →</Link>
             </p>
           </div>
         </AnimatedSection>
