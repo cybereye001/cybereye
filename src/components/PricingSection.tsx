@@ -177,7 +177,7 @@ const PricingSection = () => {
                       className="w-full text-xs md:text-base"
                       size="default"
                     >
-                      Start Free Trial
+                      Buy Plan
                     </Button>
                   </Link>
                 </motion.div>
