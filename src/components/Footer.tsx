@@ -60,24 +60,58 @@ const Footer = () => {
                 <span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span>
               </div>
             </Link>
-            <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">Developed & Powered by CyberEye Technologies (OPC) Pvt. Ltd. - AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.</p>
-            
+            <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
+              AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.
+            </p>
+            <div className="text-sm text-muted-foreground/80 space-y-1">
+              <p className="font-medium text-foreground">Registered Office:</p>
+              <p>CyberEye Technologies (OPC) Pvt. Ltd.</p>
+              <p>Maharashtra, India</p>
+            </div>
           </div>
 
-          {/* Links */}
-          
-
-          
-
+          {/* Product Links */}
           <div>
-            <h4 className="font-semibold mb-6 text-foreground">Legal</h4>
+            <h4 className="font-semibold mb-6 text-foreground">Product</h4>
             <ul className="space-y-4">
-              {links.legal.map(link => <li key={link.name}>
+              {links.product.map(link => (
+                <li key={link.name}>
                   <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group">
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                   </Link>
-                </li>)}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h4 className="font-semibold mb-6 text-foreground">Company</h4>
+            <ul className="space-y-4">
+              {links.company.map(link => (
+                <li key={link.name}>
+                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group">
+                    {link.name}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h4 className="font-semibold mb-6 text-foreground">Legal</h4>
+            <ul className="space-y-4">
+              {links.legal.map(link => (
+                <li key={link.name}>
+                  <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-1 group">
+                    {link.name}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
