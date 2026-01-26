@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Briefcase, Users, Heart, Zap, Globe, Shield, Code, Search, TrendingUp, Coffee, Laptop, GraduationCap, ArrowRight, MapPin } from "lucide-react";
@@ -5,7 +6,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import JobApplicationModal from "@/components/JobApplicationModal";
+
 const Careers = () => {
+  const [selectedJob, setSelectedJob] = useState<{ title: string; department: string } | null>(null);
   const benefits = [{
     icon: Laptop,
     title: "Remote First",
@@ -160,7 +164,12 @@ const Careers = () => {
                           <span>{job.location}</span>
                         </div>
                       </div>
-                      <Button variant="heroOutline" size="sm" className="shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Button 
+                        variant="heroOutline" 
+                        size="sm" 
+                        className="shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                        onClick={() => setSelectedJob({ title: job.title, department: job.department })}
+                      >
                         Apply Now
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Button>
@@ -168,6 +177,13 @@ const Careers = () => {
                   </div>
                 </AnimatedSection>)}
             </div>
+
+            <JobApplicationModal
+              isOpen={!!selectedJob}
+              onClose={() => setSelectedJob(null)}
+              jobTitle={selectedJob?.title || ""}
+              department={selectedJob?.department || ""}
+            />
           </div>
         </section>
 
