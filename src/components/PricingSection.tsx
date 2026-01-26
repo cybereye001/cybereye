@@ -73,9 +73,6 @@ const PricingSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-              CyberEye DLP Pricing
-            </span>
             <h2 className="text-3xl md:text-5xl font-bold mt-6 mb-4">
               <span className="text-gradient">CyberEye</span> DLP Plans
             </h2>
