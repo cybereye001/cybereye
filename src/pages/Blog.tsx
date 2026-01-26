@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, Tag, BookOpen } from "lucide-react";
@@ -7,6 +8,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 const Blog = () => {
+  const [activeCategory, setActiveCategory] = useState("All Posts");
+
   const featuredPost = {
     title: "The Rising Threat of Insider Data Breaches in 2025",
     excerpt: "As organizations become more digital, the risk of insider threats continues to grow. Learn how AI-powered solutions are changing the game in data leak prevention.",
@@ -68,8 +71,15 @@ const Blog = () => {
     "Compliance",
     "AI & ML",
     "Security Culture",
-    "Industry Insights"
+    "Industry Insights",
+    "Endpoint Security"
   ];
+
+  const filteredPosts = activeCategory === "All Posts" 
+    ? posts 
+    : posts.filter(post => post.category === activeCategory);
+
+  const showFeatured = activeCategory === "All Posts" || featuredPost.category === activeCategory;
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
@@ -106,8 +116,9 @@ const Blog = () => {
                 {categories.map((category, index) => (
                   <button
                     key={index}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      index === 0
+                    onClick={() => setActiveCategory(category)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all cursor-pointer ${
+                      activeCategory === category
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
                     }`}
@@ -121,105 +132,125 @@ const Blog = () => {
         </section>
 
         {/* Featured Post */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-5xl mx-auto">
-                <div className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all group">
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="aspect-video md:aspect-auto">
-                      <img 
-                        src={featuredPost.image} 
-                        alt={featuredPost.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-6 md:p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                          Featured
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs">
-                          {featuredPost.category}
-                        </span>
+        {showFeatured && (
+          <section className="py-12">
+            <div className="container mx-auto px-4">
+              <AnimatedSection>
+                <div className="max-w-5xl mx-auto">
+                  <div className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all group cursor-pointer">
+                    <div className="grid md:grid-cols-2 gap-0">
+                      <div className="aspect-video md:aspect-auto">
+                        <img 
+                          src={featuredPost.image} 
+                          alt={featuredPost.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                        {featuredPost.title}
-                      </h2>
-                      <p className="text-muted-foreground mb-4 line-clamp-3">
-                        {featuredPost.excerpt}
-                      </p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {featuredPost.date}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          {featuredPost.readTime}
-                        </span>
+                      <div className="p-6 md:p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                            Featured
+                          </span>
+                          <span className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs">
+                            {featuredPost.category}
+                          </span>
+                        </div>
+                        <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                          {featuredPost.title}
+                        </h2>
+                        <p className="text-muted-foreground mb-4 line-clamp-3">
+                          {featuredPost.excerpt}
+                        </p>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            {featuredPost.date}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-4 h-4" />
+                            {featuredPost.readTime}
+                          </span>
+                        </div>
+                        <Button variant="hero" className="w-fit gap-2">
+                          Read Article
+                          <ArrowRight className="w-4 h-4" />
+                        </Button>
                       </div>
-                      <Button variant="hero" className="w-fit gap-2">
-                        Read Article
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
                     </div>
                   </div>
                 </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
+              </AnimatedSection>
+            </div>
+          </section>
+        )}
 
         {/* Blog Grid */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-                Latest Articles
+                {activeCategory === "All Posts" ? "Latest Articles" : activeCategory}
+                <span className="text-muted-foreground text-lg ml-2">({filteredPosts.length})</span>
               </h2>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {posts.map((post, index) => (
-                <AnimatedSection key={index} delay={index * 0.1}>
-                  <div className="bg-card border border-border rounded-xl p-6 h-full flex flex-col hover:border-primary/50 transition-all group cursor-pointer">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Tag className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-primary font-medium">
-                        {post.category}
-                      </span>
+            {filteredPosts.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {filteredPosts.map((post, index) => (
+                  <AnimatedSection key={index} delay={index * 0.1}>
+                    <div className="bg-card border border-border rounded-xl p-6 h-full flex flex-col hover:border-primary/50 transition-all group cursor-pointer">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Tag className="w-4 h-4 text-primary" />
+                        <span className="text-xs text-primary font-medium">
+                          {post.category}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm flex-grow mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border/50">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {post.date}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {post.readTime}
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm flex-grow mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border/50">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {post.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {post.readTime}
-                      </span>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
+                  </AnimatedSection>
+                ))}
+              </div>
+            ) : (
+              <AnimatedSection>
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground text-lg">No articles found in this category.</p>
+                  <Button 
+                    variant="heroOutline" 
+                    className="mt-4"
+                    onClick={() => setActiveCategory("All Posts")}
+                  >
+                    View All Posts
+                  </Button>
+                </div>
+              </AnimatedSection>
+            )}
 
             {/* Load More */}
-            <AnimatedSection delay={0.5}>
-              <div className="text-center mt-12">
-                <Button variant="heroOutline" size="lg" className="gap-2">
-                  Load More Articles
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </div>
-            </AnimatedSection>
+            {filteredPosts.length > 0 && (
+              <AnimatedSection delay={0.5}>
+                <div className="text-center mt-12">
+                  <Button variant="heroOutline" size="lg" className="gap-2">
+                    Load More Articles
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </AnimatedSection>
+            )}
           </div>
         </section>
 

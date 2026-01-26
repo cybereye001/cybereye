@@ -47,10 +47,10 @@ const Pricing = () => {
             <AnimatedSection>
               <div className="text-center mb-12 md:mb-16">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">
-                  Compare <span className="text-gradient">Plans</span>
+                  Compare <span className="text-gradient">CyberEye</span> Plans
                 </h2>
                 <p className="text-muted-foreground text-base md:text-lg">
-                  Detailed feature comparison across all plans
+                  Detailed feature comparison across all CyberEye DLP plans
                 </p>
               </div>
             </AnimatedSection>
