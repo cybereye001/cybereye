@@ -8,7 +8,7 @@ import UseCases from "@/components/UseCases";
 import ComplianceSection from "@/components/ComplianceSection";
 import Integrations from "@/components/Integrations";
 import TrustBadges from "@/components/TrustBadges";
-import Testimonials from "@/components/Testimonials";
+
 import PricingSection from "@/components/PricingSection";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
@@ -30,7 +30,7 @@ const Index = () => {
         <Integrations />
         <UseCases />
         <ComplianceSection />
-        <Testimonials />
+        
         <PricingSection />
         <FAQ />
         <FinalCTA />
