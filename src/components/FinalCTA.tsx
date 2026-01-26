@@ -32,7 +32,7 @@ const FinalCTA = () => {
               <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-4 sm:justify-center">
                 <Button asChild size="lg" className="group text-sm md:text-base">
                   <Link to="/demo">
-                    Get Started Free
+                    Start Free
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
