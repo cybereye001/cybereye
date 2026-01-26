@@ -51,9 +51,7 @@ const About = () => {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center">
-                <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-                  Official Website of CyberEye Technologies
-                </span>
+                
                 <h1 className="text-3xl md:text-6xl font-bold mt-6 mb-6">
                   Innovating for a <span className="text-gradient">Secure Digital Future</span>
                 </h1>
@@ -76,7 +74,8 @@ const About = () => {
                   About <span className="text-primary">CyberEye Technologies</span>
                 </h2>
                 <div className="space-y-3 md:space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
-                  <p>CyberEye Technologies (OPC) Pvt. Ltd. is a registered Company in India, specializing in innovative digital solutions and enterprise-grade cybersecurity products.<span className="text-foreground font-medium">CyberEye Technologies (OPC) Pvt. Ltd.</span> is a registered One Person Company 
+                  <p>
+                    <span className="text-foreground font-medium">CyberEye Technologies (OPC) Pvt. Ltd.</span> is a registered One Person Company 
                     in India, specializing in innovative digital solutions and enterprise-grade cybersecurity products.
                   </p>
                   <p className="hidden md:block">
