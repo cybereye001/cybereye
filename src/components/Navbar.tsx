@@ -46,7 +46,7 @@ const Navbar = () => {
                 <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
                 <span className="bg-gradient-to-b from-cyan-400 to-cyan-600 bg-clip-text text-transparent ml-1">EYE</span>
               </div>
-              <span className="text-[9px] leading-tight text-[#98a7bd]">Developed & Powered by CyberEye Technologies (OPC) Pvt. Ltd.</span>
+              <span className="text-[9px] leading-tight text-[#98a7bd]">Developed & Powered by CyberEye Security (OPC) Pvt. Ltd.</span>
             </div>
           </Link>
 
