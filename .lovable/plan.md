@@ -1,53 +1,31 @@
 
-# Fix Demo Page Text Sizes for Consistency
+# Fix Remaining Old Domain Reference
 
-## Problem
-The Demo page has larger text compared to other pages on the website. The text sizes don't follow the consistent pattern used across About, Contact, and other pages.
+## Problem Found
+There is **one remaining reference** to the old domain `onkardigitalservicesllp.site` in the codebase:
 
-## Text Size Comparison
+| File | Line | Current Value |
+|------|------|---------------|
+| `src/pages/About.tsx` | Line 94 | `www.onkardigitalservicesllp.site` |
 
-| Element | Demo Page (Current) | Other Pages (Standard) |
-|---------|---------------------|------------------------|
-| H1 Heading | `text-4xl md:text-5xl` | `text-3xl md:text-6xl` |
-| Subheadline | `text-xl` (fixed) | `text-base md:text-xl` |
-| Benefits text | No size class | `text-sm md:text-base` |
+## Good News
+The main canonical URL in `index.html` is already correctly set to `https://cybereye.co.in/` - no changes needed there.
 
-## Files to Update
+## Fix Required
 
-**src/pages/Demo.tsx**
+### File: `src/pages/About.tsx`
 
-### Change 1: Main Heading (Line 116)
+**Change the website reference from:**
 ```
-Before: text-4xl md:text-5xl font-bold mb-6
-After:  text-3xl md:text-5xl font-bold mb-6
+www.onkardigitalservicesllp.site
 ```
 
-### Change 2: Subheadline Paragraph (Line 119)
+**To:**
 ```
-Before: text-xl text-muted-foreground mb-8 leading-relaxed
-After:  text-base md:text-lg text-muted-foreground mb-8 leading-relaxed
-```
-
-### Change 3: Benefits List Text (Line 129)
-```
-Before: text-muted-foreground
-After:  text-sm md:text-base text-muted-foreground
-```
-
-### Change 4: Form Header (Line 157)
-```
-Before: text-2xl font-bold text-foreground mb-2
-After:  text-xl md:text-2xl font-bold text-foreground mb-2
-```
-
-### Change 5: Form Description (Line 160)
-```
-Before: text-muted-foreground mb-6
-After:  text-sm md:text-base text-muted-foreground mb-6
+www.cybereye.co.in
 ```
 
 ## Summary
-These changes will make the Demo page text sizes consistent with the rest of the website by:
-- Using responsive text sizes (smaller on mobile, larger on desktop)
-- Following the established pattern from Contact, About, and other pages
-- Maintaining readability while reducing the "oversized" appearance
+This is a simple one-line fix to update the website URL displayed in the About page team section. After this change, there will be no remaining references to the old domain anywhere in the codebase.
+
+Once approved, the changes will be deployed automatically.
