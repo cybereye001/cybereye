@@ -30,22 +30,16 @@ const Contact = () => {
       link: "mailto:cybereye.help@gmail.com",
     },
     {
-      icon: Mail,
-      title: "Company Email",
-      value: "onkardigitalservicess@gmail.com",
-      link: "mailto:onkardigitalservicess@gmail.com",
-    },
-    {
       icon: Phone,
       title: "Call Us",
-      value: "+91 9172573489",
-      link: "tel:+919172573489",
+      value: "+91 9021838941",
+      link: "tel:+919021838941",
     },
     {
       icon: MapPin,
-      title: "Visit Us",
-      value: "onkardigitalservicesllp.site",
-      link: "https://www.onkardigitalservicesllp.site",
+      title: "Registered Office",
+      value: "M. No. 60, Ramnagar, Satara – 415015",
+      link: "#",
     },
     {
       icon: MessageSquare,

@@ -65,8 +65,9 @@ const Footer = () => {
             </p>
             <div className="text-sm text-muted-foreground/80 space-y-1">
               <p className="font-medium text-foreground">Registered Office:</p>
-              <p>CyberEye Security (OPC) Pvt. Ltd.</p>
-              <p>Maharashtra, India</p>
+              <p>CyberEye Security (OPC) Private Limited</p>
+              <p>M. No. 60, Ramnagar, Satara – 415015</p>
+              <p>District: Satara, Maharashtra</p>
             </div>
           </div>
 
@@ -120,9 +121,9 @@ const Footer = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col items-center justify-center mb-6">
             <div className="text-center">
-              <p className="text-lg md:text-xl font-bold text-foreground">
-                CyberEye Security (OPC) Pvt. Ltd.
-              </p>
+                <p className="text-lg md:text-xl font-bold text-foreground">
+                  CyberEye Security (OPC) Private Limited
+                </p>
               <p className="text-sm text-muted-foreground mt-1">
                 Innovating Digital Security Solutions
               </p>
@@ -135,15 +136,15 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
-              <p className="text-sm text-muted-foreground">© 2025 CyberEye Security (OPC) Pvt. Ltd. All rights reserved.</p>
+              <p className="text-sm text-muted-foreground">© 2025 CyberEye Security (OPC) Private Limited. All rights reserved.</p>
               <p className="text-xs text-muted-foreground/70 mt-1">
-                CyberEye is a registered product of <span className="text-primary font-semibold">CyberEye Security (OPC) Pvt. Ltd.</span>
+                CyberEye is a registered product of <span className="text-primary font-semibold">CyberEye Security (OPC) Private Limited</span>
               </p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
               <p>CyberEye: cybereye.help@gmail.com</p>
-              <p>Company: onkardigitalservicess@gmail.com</p>
-              <p>Phone: +91 9172573489</p>
+              <p>Company: CyberEye Security (OPC) Private Limited</p>
+              <p>Phone: +91 9021838941</p>
             </div>
           </div>
         </div>
