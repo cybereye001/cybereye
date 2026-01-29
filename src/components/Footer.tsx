@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const links = {
