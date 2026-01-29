@@ -26,8 +26,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "CyberEye Support",
-      value: "cybereye.help@gmail.com",
-      link: "mailto:cybereye.help@gmail.com",
+      value: "official@cybereye.co.in",
+      link: "mailto:official@cybereye.co.in",
     },
     {
       icon: Phone,
