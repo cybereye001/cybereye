@@ -66,8 +66,8 @@ const Footer = () => {
             <div className="text-sm text-muted-foreground/80 space-y-1">
               <p className="font-medium text-foreground">Registered Office:</p>
               <p>CyberEye Security (OPC) Private Limited</p>
-              <p>M. No. 60, Ramnagar, Satara – 415015</p>
-              <p>District: Satara, Maharashtra, India</p>
+              <p>M. No. 60, Ramnagar, Satara – Satara, Ramnagar– 415015</p>
+              <p>District: Satara, Maharashtra India</p>
             </div>
           </div>
 
@@ -142,9 +142,9 @@ const Footer = () => {
               </p>
             </div>
             <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
-              <p>CyberEye: cybereye.help@gmail.com</p>
-              <p>Company: onkardigitalservicess@gmail.com</p>
-              <p>Phone: +91 9172573489</p>
+              <p>CyberEye: official@cybereye.co.in</p>
+              <p>Company: CyberEye Security (OPC) Private Limited</p>
+              <p>Phone: +91 9021838941</p>
             </div>
           </div>
         </div>
