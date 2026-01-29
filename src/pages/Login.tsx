@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import logo from "@/assets/logo.png";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -94,9 +95,11 @@ const Login = () => {
 
           <div className="bg-card border border-border rounded-2xl p-8">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-primary to-[hsl(200_92%_45%)] flex items-center justify-center mb-4">
-                <Eye className="w-8 h-8 text-primary-foreground" />
-              </div>
+              <img 
+                src={logo} 
+                alt="CyberEye Logo" 
+                className="h-16 w-auto mx-auto object-contain mb-4"
+              />
               <h1 className="text-2xl font-bold text-foreground">
                 {isSignUp ? "Create Admin Account" : "Admin Login"}
               </h1>
