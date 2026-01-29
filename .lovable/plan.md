@@ -1,44 +1,32 @@
 
+# Update Footer Contact Information
 
-## Company Name Update: Technologies → Security
+## Overview
+Replace the old contact details in the Footer with the new official information you provided.
 
-Yeh change "CyberEye Technologies (OPC) Pvt. Ltd." ko "CyberEye Security (OPC) Pvt. Ltd." se replace karega pure website mein.
+## Changes to be Made
 
-### Changes Required (8 Files)
+### File: `src/components/Footer.tsx`
 
-| File | Occurrences |
-|------|-------------|
-| `index.html` | 8 places (title, meta tags, schema.org) |
-| `src/components/Navbar.tsx` | 1 place |
-| `src/components/Footer.tsx` | 5 places |
-| `src/components/HeroSection.tsx` | 1 place |
-| `src/pages/About.tsx` | 3 places |
-| `src/pages/Terms.tsx` | 2 places |
-| `src/pages/Privacy.tsx` | 2 places |
-| `src/pages/NotFound.tsx` | 1 place |
+**Location 1: Bottom contact section (lines 144-148)**
+- **Remove:**
+  - `CyberEye: cybereye.help@gmail.com`
+  - `Company: onkardigitalservicess@gmail.com`
+  - `Phone: +91 9172573489`
+- **Replace with:**
+  - `CyberEye: official@cybereye.co.in`
+  - `Company: CyberEye Security (OPC) Private Limited`
+  - `Phone: +91 9021838941`
 
-### Implementation Steps
+**Location 2: Registered Office section (lines 67-70)**
+- Update the address format to match your provided format:
+  - `M. No. 60, Ramnagar, Satara – Satara, Ramnagar– 415015`
+  - `District: Satara, Maharashtra India`
 
-1. **index.html** - Update SEO metadata, titles, and Schema.org structured data
-2. **Navbar.tsx** - Update company attribution text
-3. **Footer.tsx** - Update all footer branding references
-4. **HeroSection.tsx** - Update hero subheadline
-5. **About.tsx** - Update company name in about section
-6. **Terms.tsx** - Update legal document references
-7. **Privacy.tsx** - Update privacy policy references
-8. **NotFound.tsx** - Update copyright text
-
----
-
-### Technical Details
-
-Har jagah simple text replacement hoga:
-```
-"CyberEye Technologies (OPC) Pvt. Ltd." → "CyberEye Security (OPC) Pvt. Ltd."
-```
-
-Schema.org mein bhi `alternateName` update hoga:
-```
-"CyberEye Technologies" → "CyberEye Security"
-```
-
+## Summary of New Contact Info
+| Field | New Value |
+|-------|-----------|
+| CyberEye Email | official@cybereye.co.in |
+| Company | CyberEye Security (OPC) Private Limited |
+| Phone | +91 9021838941 |
+| Address | M. No. 60, Ramnagar, Satara – Satara, Ramnagar– 415015, District: Satara, Maharashtra India |
