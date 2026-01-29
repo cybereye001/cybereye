@@ -91,7 +91,7 @@ const About = () => {
                       <strong className="text-foreground">Contact:</strong> cybereye.help@gmail.com | +91 9172573489
                     </p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
-                      <strong className="text-foreground">Website:</strong> www.onkardigitalservicesllp.site
+                      <strong className="text-foreground">Website:</strong> www.cybereye.co.in
                     </p>
                   </div>
                 </div>
