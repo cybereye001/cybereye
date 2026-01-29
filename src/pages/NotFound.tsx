@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Home, ArrowLeft, Mail } from "lucide-react";
 import BackgroundEffects from "@/components/BackgroundEffects";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 const NotFound = () => {
   const location = useLocation();
