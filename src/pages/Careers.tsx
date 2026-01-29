@@ -110,7 +110,7 @@ const Careers = () => {
               <div className="text-center mb-12">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">Why Work With Us</h2>
                 <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  At CyberEye Technologies, we believe in empowering our team to do their best work
+                  At CyberEye Security (OPC) Pvt. Ltd., we believe in empowering our team to do their best work
                 </p>
               </div>
             </AnimatedSection>
