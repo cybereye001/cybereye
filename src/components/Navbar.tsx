@@ -40,7 +40,7 @@ const Navbar = () => {
         {/* Desktop Layout */}
         <div className="hidden md:flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3 group">
-            <img src={logo} alt="CyberEye Logo" className="w-10 h-10 rounded-lg object-contain shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-all duration-300" />
+            <img src={logo} alt="CyberEye Logo" className="h-12 w-auto object-contain transition-all duration-300" />
             <div className="flex flex-col">
               <div className="flex items-center font-cyber font-bold text-xl tracking-wider">
                 <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
@@ -75,7 +75,7 @@ const Navbar = () => {
           {/* Top row with logo */}
           <div className="flex items-center justify-between h-12 border-b border-primary/10">
             <Link to="/" className="flex items-center gap-2 group">
-              <img src={logo} alt="CyberEye Logo" className="w-8 h-8 rounded-lg object-contain shadow-md shadow-primary/30" />
+              <img src={logo} alt="CyberEye Logo" className="h-9 w-auto object-contain" />
               <div className="flex flex-col">
                 <div className="flex items-center font-cyber font-bold text-sm tracking-wider">
                   <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
