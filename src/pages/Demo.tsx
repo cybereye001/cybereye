@@ -113,10 +113,10 @@ const Demo = () => {
                 </span>
               </Link>
 
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="text-3xl md:text-5xl font-bold mb-6">
                 Start Your <span className="text-gradient">Free Trial</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
                 Experience the power of AI-driven data leak prevention. Get full access to all features for 14 days, completely free.
               </p>
 
@@ -126,7 +126,7 @@ const Demo = () => {
                     <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center">
                       <Check className="w-4 h-4 text-success" />
                     </div>
-                    <span className="text-muted-foreground">{benefit}</span>
+                    <span className="text-sm md:text-base text-muted-foreground">{benefit}</span>
                   </li>
                 ))}
               </ul>
@@ -154,10 +154,10 @@ const Demo = () => {
           {/* Right Side - Form */}
           <AnimatedSection delay={0.2}>
             <div className="bg-card border border-border rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-foreground mb-2">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                 Request Your Demo
               </h2>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-sm md:text-base text-muted-foreground mb-6">
                 Fill out the form and we'll be in touch within 24 hours.
               </p>
 
