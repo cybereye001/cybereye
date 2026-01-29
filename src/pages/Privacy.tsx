@@ -29,7 +29,7 @@ const Privacy = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">1. Information We Collect</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      CyberEye Technologies (OPC) Pvt. Ltd. collects information you provide directly to us, such as when you create an account, request a demo, or contact us for support. This may include your name, email address, company name, and phone number.
+                      CyberEye Security (OPC) Pvt. Ltd. collects information you provide directly to us, such as when you create an account, request a demo, or contact us for support. This may include your name, email address, company name, and phone number.
                     </p>
                   </section>
 
@@ -71,7 +71,7 @@ const Privacy = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">7. Contact Us</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      If you have questions about this Privacy Policy, please contact CyberEye Technologies (OPC) Pvt. Ltd. at{" "}
+                      If you have questions about this Privacy Policy, please contact CyberEye Security (OPC) Pvt. Ltd. at{" "}
                       <a href="mailto:cybereye.help@gmail.com" className="text-primary hover:underline">
                         cybereye.help@gmail.com
                       </a>

@@ -68,7 +68,7 @@ const NotFound = () => {
           {/* Company Attribution */}
           <div className="mt-12 pt-8 border-t border-border/50">
             <p className="text-xs text-muted-foreground/70">
-              © 2025 CyberEye Technologies (OPC) Pvt. Ltd. All rights reserved.
+              © 2025 CyberEye Security (OPC) Pvt. Ltd. All rights reserved.
             </p>
           </div>
         </div>

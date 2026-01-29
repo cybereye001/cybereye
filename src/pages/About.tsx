@@ -56,7 +56,7 @@ const About = () => {
                   Innovating for a <span className="text-gradient">Secure Digital Future</span>
                 </h1>
                 <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
-                  <span className="text-primary font-semibold">CyberEye Technologies (OPC) Pvt. Ltd.</span> is a technology company 
+                  <span className="text-primary font-semibold">CyberEye Security (OPC) Pvt. Ltd.</span> is a technology company 
                   dedicated to building cutting-edge cybersecurity solutions. CyberEye, our flagship product, represents 
                   our commitment to making advanced AI-powered data leak prevention accessible to every organization.
                 </p>
@@ -71,11 +71,11 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-16 items-start max-w-6xl mx-auto">
               <AnimatedSection>
                 <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
-                  About <span className="text-primary">CyberEye Technologies</span>
+                  About <span className="text-primary">CyberEye Security</span>
                 </h2>
                 <div className="space-y-3 md:space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
                   <p>
-                    <span className="text-foreground font-medium">CyberEye Technologies (OPC) Pvt. Ltd.</span> is a registered One Person Company 
+                    <span className="text-foreground font-medium">CyberEye Security (OPC) Pvt. Ltd.</span> is a registered One Person Company 
                     in India, specializing in innovative digital solutions and enterprise-grade cybersecurity products.
                   </p>
                   <p className="hidden md:block">
