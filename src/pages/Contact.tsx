@@ -7,6 +7,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -81,10 +83,17 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="Contact CyberEye Security | Cyber Protection Experts India"
+        description="Get in touch with CyberEye Security for data leak prevention solutions. Email official@cybereye.co.in or call +91 9021838941. We respond within 24 hours."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, contact CyberEye, cybersecurity support, DLP support India"
+        pathname="/contact"
+        breadcrumbLabel="Contact"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Contact" />
+      <main className="relative z-10 pt-4">
         {/* Hero */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">

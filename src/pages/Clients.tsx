@@ -4,6 +4,8 @@ import { Building2, Heart, Landmark, ShoppingCart, Factory, GraduationCap, Plane
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Navbar from "@/components/Navbar";
 
 const Clients = () => {
@@ -69,10 +71,17 @@ const Clients = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="Industries We Protect | CyberEye Security Solutions"
+        description="Discover how CyberEye Security protects banking, healthcare, IT, government, and enterprise organizations with AI-powered data leak prevention solutions."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, industries, banking security, healthcare DLP, enterprise cybersecurity, government security"
+        pathname="/clients"
+        breadcrumbLabel="Industries"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Industries" />
+      <main className="relative z-10 pt-4">
         {/* Hero */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">

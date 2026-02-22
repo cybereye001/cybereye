@@ -3,12 +3,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 const Privacy = () => {
   return <div className="min-h-screen bg-background relative">
+      <SEOHead
+        title="Privacy Policy | CyberEye Security (OPC) Pvt. Ltd."
+        description="CyberEye Security's privacy policy. Learn how we collect, use, and protect your personal information and data."
+        keywords="CyberEye, cyber eye, CyberEye Security, privacy policy, data protection, GDPR"
+        pathname="/privacy"
+        breadcrumbLabel="Privacy Policy"
+      />
       <BackgroundEffects />
       <Navbar />
-      
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Privacy Policy" />
+      <main className="relative z-10 pt-4">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <AnimatedSection>

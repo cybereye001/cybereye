@@ -6,6 +6,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 const About = () => {
   const values = [{
     icon: Shield,
@@ -42,10 +44,17 @@ const About = () => {
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
   }];
   return <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="About CyberEye Security | AI Based DLP Company India"
+        description="Learn about CyberEye Security (OPC) Pvt. Ltd., an Indian cybersecurity company building AI-powered data leak prevention solutions to protect enterprises from insider threats."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, about CyberEye, DLP company India, cybersecurity company, AI security company"
+        pathname="/about"
+        breadcrumbLabel="About Us"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="About Us" />
+      <main className="relative z-10 pt-4">
         {/* Hero */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">

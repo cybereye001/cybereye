@@ -7,6 +7,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { toast } from "sonner";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { format, subDays } from "date-fns";
 
 const Blog = () => {
@@ -91,10 +93,17 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="Cybersecurity Blog & Insights | CyberEye Security"
+        description="Read the latest cybersecurity articles, DLP best practices, insider threat intelligence, and data protection guides from CyberEye Security experts."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, cybersecurity blog, DLP articles, insider threat blog, data protection guides"
+        pathname="/blog"
+        breadcrumbLabel="Blog"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Blog" />
+      <main className="relative z-10 pt-4">
         {/* Hero */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
