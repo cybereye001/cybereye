@@ -6,14 +6,18 @@ import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { toast } from "sonner";
+import { format, subDays } from "date-fns";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All Posts");
 
+  const today = new Date();
+
   const featuredPost = {
     title: "The Rising Threat of Insider Data Breaches in 2025",
     excerpt: "As organizations become more digital, the risk of insider threats continues to grow. Learn how AI-powered solutions are changing the game in data leak prevention.",
-    date: "January 20, 2025",
+    date: format(subDays(today, 1), "MMMM dd, yyyy"),
     readTime: "8 min read",
     category: "Threat Intelligence",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop"
@@ -23,42 +27,42 @@ const Blog = () => {
     {
       title: "Understanding Data Loss Prevention: A Complete Guide",
       excerpt: "Everything you need to know about DLP solutions, from basic concepts to advanced implementation strategies.",
-      date: "January 15, 2025",
+      date: format(subDays(today, 3), "MMMM dd, yyyy"),
       readTime: "12 min read",
       category: "DLP Fundamentals"
     },
     {
       title: "5 Signs Your Organization Needs Better Endpoint Security",
       excerpt: "Is your current security setup adequate? Here are the warning signs that indicate you need to upgrade your endpoint protection.",
-      date: "January 10, 2025",
+      date: format(subDays(today, 5), "MMMM dd, yyyy"),
       readTime: "6 min read",
       category: "Endpoint Security"
     },
     {
       title: "GDPR Compliance in 2025: What's Changed?",
       excerpt: "Stay up to date with the latest GDPR requirements and learn how to ensure your organization remains compliant.",
-      date: "January 5, 2025",
+      date: format(subDays(today, 8), "MMMM dd, yyyy"),
       readTime: "10 min read",
       category: "Compliance"
     },
     {
       title: "AI in Cybersecurity: Beyond the Hype",
       excerpt: "Separating fact from fiction in AI-powered security solutions. What actually works and what's just marketing?",
-      date: "December 28, 2024",
+      date: format(subDays(today, 12), "MMMM dd, yyyy"),
       readTime: "9 min read",
       category: "AI & ML"
     },
     {
       title: "Building a Security-First Culture in Your Organization",
       excerpt: "Technical solutions alone aren't enough. Learn how to create a culture where security is everyone's responsibility.",
-      date: "December 20, 2024",
+      date: format(subDays(today, 16), "MMMM dd, yyyy"),
       readTime: "7 min read",
       category: "Security Culture"
     },
     {
       title: "The True Cost of a Data Breach: 2025 Analysis",
       excerpt: "Breaking down the financial, reputational, and operational impacts of data breaches on modern organizations.",
-      date: "December 15, 2024",
+      date: format(subDays(today, 20), "MMMM dd, yyyy"),
       readTime: "11 min read",
       category: "Industry Insights"
     }
@@ -80,6 +84,10 @@ const Blog = () => {
     : posts.filter(post => post.category === activeCategory);
 
   const showFeatured = activeCategory === "All Posts" || featuredPost.category === activeCategory;
+
+  const handleReadArticle = () => {
+    toast.info("Full article coming soon! Stay tuned.");
+  };
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
@@ -171,7 +179,7 @@ const Blog = () => {
                             {featuredPost.readTime}
                           </span>
                         </div>
-                        <Button variant="hero" className="w-fit gap-2">
+                        <Button variant="hero" className="w-fit gap-2" onClick={handleReadArticle}>
                           Read Article
                           <ArrowRight className="w-4 h-4" />
                         </Button>
@@ -198,7 +206,10 @@ const Blog = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {filteredPosts.map((post, index) => (
                   <AnimatedSection key={index} delay={index * 0.1}>
-                    <div className="bg-card border border-border rounded-xl p-6 h-full flex flex-col hover:border-primary/50 transition-all group cursor-pointer">
+                    <div 
+                      className="bg-card border border-border rounded-xl p-6 h-full flex flex-col hover:border-primary/50 transition-all group cursor-pointer"
+                      onClick={handleReadArticle}
+                    >
                       <div className="flex items-center gap-2 mb-4">
                         <Tag className="w-4 h-4 text-primary" />
                         <span className="text-xs text-primary font-medium">
@@ -240,7 +251,6 @@ const Blog = () => {
               </AnimatedSection>
             )}
 
-            {/* Load More */}
             {filteredPosts.length > 0 && (
               <AnimatedSection delay={0.5}>
                 <div className="text-center mt-12">
