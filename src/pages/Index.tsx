@@ -18,7 +18,7 @@ const Index = () => {
     <main className="min-h-screen bg-background relative">
       <SEOHead
         title="AI Powered Data Leak Prevention Software | CyberEye Security"
-        description="CyberEye Security offers AI-powered data leak prevention (DLP) software that monitors, detects, and blocks insider threats in real-time. Protect your enterprise data today."
+        description="CyberEye Security offers AI-powered data leak prevention (DLP) software to monitor, detect, and block insider threats in real-time."
         keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, data leak prevention, DLP, cybersecurity, AI security, insider threat, enterprise security, endpoint monitoring"
         pathname="/"
       />
