@@ -2,13 +2,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,9 +20,36 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setLoading(true);
+
+    const { error } = await supabase
+      .from("contact_messages")
+      .insert({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        company: formData.company.trim() || null,
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+      });
+
+    if (error) {
+      console.error("Error submitting contact message:", error);
+      toast.error("Failed to send message. Please try again.");
+      setLoading(false);
+      return;
+    }
+
+    toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+    setFormData({ name: "", email: "", company: "", subject: "", message: "" });
+    setLoading(false);
   };
 
   const contactInfo = [
@@ -75,7 +105,7 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Info Cards - 2x2 grid on mobile */}
+        {/* Contact Info Cards */}
         <section className="pb-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto">
@@ -122,6 +152,7 @@ const Contact = () => {
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="bg-muted border-border"
                           required
+                          disabled={loading}
                         />
                       </div>
                       <div>
@@ -136,6 +167,7 @@ const Contact = () => {
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="bg-muted border-border"
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -152,6 +184,7 @@ const Contact = () => {
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           className="bg-muted border-border"
+                          disabled={loading}
                         />
                       </div>
                       <div>
@@ -166,6 +199,7 @@ const Contact = () => {
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                           className="bg-muted border-border"
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -181,12 +215,22 @@ const Contact = () => {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="bg-muted border-border min-h-[120px] md:min-h-[150px]"
                         required
+                        disabled={loading}
                       />
                     </div>
 
-                    <Button type="submit" variant="hero" size="lg" className="w-full md:w-auto">
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
+                    <Button type="submit" variant="hero" size="lg" className="w-full md:w-auto" disabled={loading}>
+                      {loading ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </div>
