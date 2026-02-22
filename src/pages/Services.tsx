@@ -20,6 +20,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const Services = () => {
   const services = [
@@ -146,10 +148,17 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="DLP Solutions & Cybersecurity Services | CyberEye Security"
+        description="Explore CyberEye's enterprise cybersecurity services including data leak prevention, insider threat detection, endpoint monitoring, and compliance management solutions."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, DLP solutions, cybersecurity services, endpoint detection, SIEM, VAPT, cloud security, IAM"
+        pathname="/services"
+        breadcrumbLabel="Services"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Services" />
+      <main className="relative z-10 pt-4">
         {/* Hero */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">

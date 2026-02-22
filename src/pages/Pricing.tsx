@@ -5,6 +5,8 @@ import PricingSection from "@/components/PricingSection";
 import FAQ from "@/components/FAQ";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Check, X } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const Pricing = () => {
   const comparison = [
@@ -35,10 +37,17 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="Pricing Plans | CyberEye Security DLP Software"
+        description="Compare CyberEye Security pricing plans for AI-powered data leak prevention. Choose Starter, Business, or Enterprise plan with a 14-day free trial."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, DLP pricing, cybersecurity pricing, data leak prevention plans, enterprise security pricing"
+        pathname="/pricing"
+        breadcrumbLabel="Pricing"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-16">
+      <Breadcrumbs currentLabel="Pricing" />
+      <main className="relative z-10 pt-4">
         <PricingSection />
 
         {/* Comparison Table */}

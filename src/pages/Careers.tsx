@@ -6,6 +6,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import JobApplicationModal from "@/components/JobApplicationModal";
 
 const Careers = () => {
@@ -111,10 +113,17 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
+      <SEOHead
+        title="Careers at CyberEye Security | Join Our Cybersecurity Team"
+        description="Join CyberEye Security's growing team. Explore open positions in security engineering, AI research, cloud security, and more. Remote-friendly roles in India."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, cybersecurity careers, security jobs India, DLP jobs, remote cybersecurity jobs"
+        pathname="/careers"
+        breadcrumbLabel="Careers"
+      />
       <BackgroundEffects />
       <Navbar />
-
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Careers" />
+      <main className="relative z-10 pt-4">
         {/* Hero */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">

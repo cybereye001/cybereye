@@ -6,6 +6,8 @@ import { ArrowRight, Check, Building, Users, Shield, Loader2 } from "lucide-reac
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
 import Navbar from "@/components/Navbar";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -89,8 +91,16 @@ const Demo = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
+      <SEOHead
+        title="Request a Demo | CyberEye Data Leak Prevention Software"
+        description="Request a free demo of CyberEye's AI-powered DLP solution. See real-time threat detection, endpoint monitoring, and data protection in action."
+        keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, DLP demo, cybersecurity demo, data leak prevention trial, free trial"
+        pathname="/demo"
+        breadcrumbLabel="Request Demo"
+      />
       <BackgroundEffects />
       <Navbar />
+      <Breadcrumbs currentLabel="Request Demo" />
       
       <div className="container mx-auto px-4 relative z-10 py-8 pt-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-4rem)]">

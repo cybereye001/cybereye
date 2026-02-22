@@ -4,12 +4,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 const Terms = () => {
   return <div className="min-h-screen bg-background relative">
+      <SEOHead
+        title="Terms of Service | CyberEye Security (OPC) Pvt. Ltd."
+        description="Read the terms and conditions for using CyberEye Security's data leak prevention software and services."
+        keywords="CyberEye, cyber eye, CyberEye Security, terms of service, legal, DLP terms"
+        pathname="/terms"
+        breadcrumbLabel="Terms of Service"
+      />
       <BackgroundEffects />
       <Navbar />
-      
-      <main className="relative z-10 pt-24">
+      <Breadcrumbs currentLabel="Terms of Service" />
+      <main className="relative z-10 pt-4">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <AnimatedSection>
