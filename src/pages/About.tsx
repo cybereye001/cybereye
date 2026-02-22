@@ -84,7 +84,7 @@ const About = () => {
                 </h2>
                 <div className="space-y-3 md:space-y-4 text-muted-foreground text-sm md:text-base leading-relaxed">
                   <p>
-                    <span className="text-foreground font-medium">CyberEye Security (OPC) Pvt. Ltd.</span> is a registered One Person Company 
+                    <span className="text-foreground font-medium">CyberEye Security (OPC) Pvt. Ltd.</span> is a registered Company 
                     in India, specializing in innovative digital solutions and enterprise-grade cybersecurity products.
                   </p>
                   <p className="hidden md:block">
