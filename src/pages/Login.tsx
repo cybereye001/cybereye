@@ -107,6 +107,8 @@ const Login = () => {
                 src={logo} 
                 alt="CyberEye Logo" 
                 className="h-16 w-auto mx-auto object-contain mb-4"
+                loading="eager"
+                decoding="async"
               />
               <h1 className="text-2xl font-bold text-foreground">
                 {isSignUp ? "Create Admin Account" : "Admin Login"}

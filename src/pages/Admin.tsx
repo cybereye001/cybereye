@@ -257,7 +257,7 @@ const Admin = () => {
       <header className="bg-card border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="CyberEye Logo" className="h-10 w-auto object-contain" />
+            <img src={logo} alt="CyberEye Logo" className="h-10 w-auto object-contain" loading="lazy" decoding="async" />
             <div>
               <h1 className="text-xl font-bold text-foreground">CyberEye Admin</h1>
               <p className="text-xs text-muted-foreground">Management Dashboard</p>
