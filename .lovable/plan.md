@@ -1,22 +1,20 @@
 
 
-# Remove Phone Numbers from Website
+# Add 4th Contact Info Card
 
-## Changes
+## Current State
+The Contact page has 3 info cards: CyberEye Support (email), Registered Office (address), and Live Chat. The grid is set to `grid-cols-2 lg:grid-cols-4`, so adding a 4th card will fill the row nicely.
 
-### 1. `src/components/Footer.tsx` (line 147)
-- Remove the line `Phone: +91 9021838941`
+## Change
+Add a 4th card -- **Response Time** with a clock icon, showing "Within 24 Hours" to highlight quick response commitment.
 
-### 2. `src/pages/Contact.tsx` (lines 65-69)
-- Remove the "Call Us" contact card with phone number `+91 9021838941`
-- Update the SEO description to remove the phone number mention
+### File: `src/pages/Contact.tsx`
+- Import `Clock` icon from lucide-react
+- Add a new entry to the `contactInfo` array:
+  - Icon: `Clock`
+  - Title: "Response Time"
+  - Value: "Within 24 Hours"
+  - Link: "#"
 
-### 3. `src/pages/About.tsx` (line 100)
-- Remove the phone number `+91 9172573489` from the founder's contact info
-
-### 4. `src/components/PricingSection.tsx` (line 56)
-- Change "24/7 phone support" to "24/7 priority support"
-
-### Note
-- Phone **input fields** in forms (Demo request, Job Application, Admin panel) will be kept since those collect user phone numbers, not display company phone numbers.
+This keeps the 2x2 mobile grid layout consistent with the design system.
 
