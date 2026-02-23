@@ -53,7 +53,7 @@ const PricingSection = () => {
         "Custom integrations",
         "Unlimited retention",
         "Dedicated success manager",
-        "24/7 phone support",
+        "24/7 priority support",
         "On-premise option",
         "SLA guarantee",
         "Compliance reporting",
