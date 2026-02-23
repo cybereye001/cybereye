@@ -97,7 +97,7 @@ const About = () => {
                   </p>
                   <div className="pt-3 border-t border-border/50 mt-4 hidden md:block">
                     <p className="text-xs text-muted-foreground/70">
-                      <strong className="text-foreground">Contact:</strong> cybereye.help@gmail.com
+                      <strong className="text-foreground">Contact:</strong> official@cybereye.co.in
                     </p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
                       <strong className="text-foreground">Website:</strong> www.cybereye.co.in
@@ -169,7 +169,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Team - 2x2 grid on mobile */}
         
 
         {/* CTA - 2x2 buttons on mobile */}
