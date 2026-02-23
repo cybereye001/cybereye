@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Send, MessageSquare, Loader2 } from "lucide-react";
+import { Mail, MapPin, Send, MessageSquare, Clock, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
@@ -71,6 +71,12 @@ const Contact = () => {
       icon: MessageSquare,
       title: "Live Chat",
       value: "Available 24/7",
+      link: "#",
+    },
+    {
+      icon: Clock,
+      title: "Response Time",
+      value: "Within 24 Hours",
       link: "#",
     },
   ];
