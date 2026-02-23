@@ -112,6 +112,8 @@ const Demo = () => {
                   src={logoImage} 
                   alt="CyberEye Logo" 
                   className="h-10 w-10 rounded-lg object-cover"
+                  loading="eager"
+                  decoding="async"
                 />
                 <span className="font-cyber text-xl font-bold tracking-wider">
                   <span className="bg-gradient-to-r from-gray-100 via-white to-gray-300 bg-clip-text text-transparent">

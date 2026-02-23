@@ -24,6 +24,8 @@ const NotFound = () => {
               src={logo} 
               alt="CyberEye Logo" 
               className="w-12 h-12 rounded-xl object-cover shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-all"
+              loading="lazy"
+              decoding="async"
             />
             <div className="flex items-center font-cyber font-bold text-2xl tracking-wider">
               <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>

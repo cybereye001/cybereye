@@ -54,6 +54,8 @@ const Footer = () => {
                 src={logo} 
                 alt="CyberEye Logo" 
                 className="h-14 w-auto object-contain group-hover:scale-105 transition-transform"
+                loading="lazy"
+                decoding="async"
               />
               <div className="flex items-center font-cyber font-bold text-2xl tracking-wider">
                 <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">CYBER</span>
