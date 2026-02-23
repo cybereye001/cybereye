@@ -1,24 +1,31 @@
 
 
-# Fix: Show Messages in Admin Panel
+# US Compliance Standards Removal
 
-## Problem
-Two message fields are not visible in the Admin panel:
-1. **Job Applications** - "Cover Letter / Message" field is collected but never displayed in the table
-2. **Contact Messages** - "Message" column is hidden on medium screens (`hidden lg:table-cell`), only visible on very large screens
+## What will change
 
-## Changes
+Remove all US-specific compliance standards (HIPAA, SOC 2, CCPA, FERPA) from across the website and replace with India/international-relevant standards like **IT Act 2000**, **DPDPA 2023** (Digital Personal Data Protection Act), and **ISO 27001** (already present).
 
-### File: `src/pages/Admin.tsx`
+## Files to update
 
-**1. Add "Message" column to Job Applications table**
-- Add a new "Message" header after the "Department" column
-- Display the `app.message` value with truncation (line-clamp) so long cover letters don't break the layout
-- Will be visible on large screens (lg and above)
+### 1. `src/components/ComplianceSection.tsx`
+- **Remove:** HIPAA, SOC 2, CCPA
+- **Keep:** GDPR, ISO 27001, PCI DSS (these are international standards)
+- **Add:** IT Act 2000 (India), DPDPA 2023 (India's new data protection law)
 
-**2. Make Contact Messages "Message" column more visible**
-- Change the Message column from `hidden lg:table-cell` to `hidden md:table-cell` so it shows on medium screens too
-- Both tables will show a truncated preview of the message with a max width
+### 2. `src/components/FAQ.tsx`
+- Update the compliance FAQ answer to remove "HIPAA, SOX" and mention GDPR, DPDPA, IT Act instead
 
-This way, admins will be able to see what applicants wrote in their cover letter and what users wrote in contact messages directly in the table.
+### 3. `src/components/UseCases.tsx`
+- Healthcare description: Remove "HIPAA compliance" mention, replace with "data protection compliance"
 
+### 4. `src/pages/Clients.tsx`
+- Healthcare challenges: Replace "HIPAA compliance" with "DPDPA compliance"
+- Education challenges: Replace "FERPA compliance" with "Data protection compliance"
+- Banking challenges: Keep "PCI DSS compliance" (it's international)
+
+### 5. `src/components/Testimonials.tsx`
+- Update the HIPAA mention (though this component is currently removed from homepage per earlier cleanup, updating for consistency)
+
+## Summary
+All US-only regulations (HIPAA, SOC 2, CCPA, FERPA, SOX) will be replaced with Indian and international equivalents across 5 files.
