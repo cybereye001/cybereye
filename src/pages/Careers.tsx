@@ -175,7 +175,7 @@ const Careers = () => {
               <div className="text-center mb-12">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">Open Positions</h2>
                 <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                  Find your next opportunity at CyberEye Security
+                  Find your next opportunity at CyberEye Security (OPC) Private Limited
                 </p>
               </div>
             </AnimatedSection>
