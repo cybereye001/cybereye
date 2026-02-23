@@ -9,14 +9,14 @@ const ComplianceSection = () => {
       description: "Full compliance with EU data protection requirements",
     },
     {
-      name: "HIPAA",
-      fullName: "Health Insurance Portability Act",
-      description: "Protected health information security controls",
+      name: "IT Act 2000",
+      fullName: "Information Technology Act",
+      description: "India's primary cyber law for electronic governance & security",
     },
     {
-      name: "SOC 2",
-      fullName: "Service Organization Control",
-      description: "Trust service criteria for security & availability",
+      name: "DPDPA 2023",
+      fullName: "Digital Personal Data Protection Act",
+      description: "India's comprehensive data privacy regulation",
     },
     {
       name: "ISO 27001",
@@ -27,11 +27,6 @@ const ComplianceSection = () => {
       name: "PCI DSS",
       fullName: "Payment Card Industry Standard",
       description: "Cardholder data protection compliance",
-    },
-    {
-      name: "CCPA",
-      fullName: "California Consumer Privacy Act",
-      description: "Consumer privacy rights protection",
     },
   ];
 
