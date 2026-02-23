@@ -441,6 +441,7 @@ const Admin = () => {
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Phone</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Position</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden lg:table-cell">Department</th>
+                        <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden lg:table-cell">Message</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground">Resume</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground">Status</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Date</th>
@@ -457,6 +458,9 @@ const Admin = () => {
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{app.phone || "-"}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{app.position}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden lg:table-cell">{app.department}</td>
+                          <td className="px-4 py-3 text-sm text-muted-foreground hidden lg:table-cell">
+                            <span className="line-clamp-2 max-w-[200px]">{app.message || "-"}</span>
+                          </td>
                           <td className="px-4 py-3">
                             {app.resume_url ? (
                               <Button size="sm" variant="ghost" className="h-7 px-2 text-xs" onClick={() => downloadResume(app.resume_url!, app.name)}>
@@ -521,7 +525,7 @@ const Admin = () => {
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground">Email</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Company</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Subject</th>
-                        <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden lg:table-cell">Message</th>
+                        <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Message</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground">Status</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground hidden md:table-cell">Date</th>
                         <th className="text-left px-4 py-3 text-sm font-medium text-muted-foreground">Actions</th>
@@ -536,7 +540,7 @@ const Admin = () => {
                           </td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{msg.company || "-"}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{msg.subject}</td>
-                          <td className="px-4 py-3 text-sm text-muted-foreground hidden lg:table-cell">
+                          <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">
                             <span className="line-clamp-2 max-w-[200px]">{msg.message}</span>
                           </td>
                           <td className="px-4 py-3">
