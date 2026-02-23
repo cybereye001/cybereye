@@ -115,7 +115,7 @@ const ThreatLandscape = () => {
             <span className="text-sm font-medium text-primary">CyberEye Solution</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            What <span className="text-primary">CyberEye</span> Can Do
+            What <span className="text-primary">CYBEREYE</span> Can Do
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto">
             Unlike traditional systems that take months to detect breaches, CyberEye provides instant detection
