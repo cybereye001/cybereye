@@ -1,7 +1,7 @@
 import { X, Check, AlertTriangle, Brain } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 const ProblemSolution = () => {
-  const problems = ["Fixed rules and signatures miss new attack techniques", "Manual updates after breaches — damage already done", "No user behavior analysis for slow leak detection", "Static tools can't adapt to evolving threats"];
+  const problems = ["Fixed rules and signatures miss new attack techniques", "Manual updates after breaches damage already done", "No user behavior analysis for slow leak detection", "Static tools can't adapt to evolving threats"];
   const solutions = ["AI learns normal behavior and detects anomalies", "Real-time blocking before data leaves your network", "Continuous behavior analysis across all endpoints", "Self-learning system adapts without manual updates"];
   return <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-20" />
