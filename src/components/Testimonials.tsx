@@ -25,7 +25,7 @@ const Testimonials = () => {
       role: "Security Manager",
       company: "HealthData Systems",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
-      content: "HIPAA compliance was always a challenge until we deployed CyberEye. The comprehensive monitoring and detailed audit logs made our last compliance audit a breeze.",
+      content: "Data protection compliance was always a challenge until we deployed CyberEye. The comprehensive monitoring and detailed audit logs made our last compliance audit a breeze.",
       rating: 5
     },
     {

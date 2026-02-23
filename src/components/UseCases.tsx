@@ -13,7 +13,7 @@ const UseCases = () => {
     {
       icon: Heart,
       name: "Healthcare",
-      description: "Secure patient records, monitor access to sensitive health information, and maintain HIPAA compliance.",
+      description: "Secure patient records, monitor access to sensitive health information, and maintain data protection compliance.",
       threats: ["PHI data breaches", "Medical identity theft", "Unauthorized access"]
     },
     {

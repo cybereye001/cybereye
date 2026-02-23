@@ -20,7 +20,7 @@ const Clients = () => {
       icon: Heart,
       name: "Healthcare",
       description: "Securing patient records, medical data, and ensuring HIPAA compliance across healthcare organizations.",
-      challenges: ["HIPAA compliance", "Patient privacy", "Electronic health records"]
+      challenges: ["DPDPA compliance", "Patient privacy", "Electronic health records"]
     },
     {
       icon: Building2,
@@ -44,7 +44,7 @@ const Clients = () => {
       icon: GraduationCap,
       name: "Education",
       description: "Protecting student records, research data, and institutional information.",
-      challenges: ["Student privacy", "Research protection", "FERPA compliance"]
+      challenges: ["Student privacy", "Research protection", "Data protection compliance"]
     },
     {
       icon: Landmark,
