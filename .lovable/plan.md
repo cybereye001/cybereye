@@ -1,44 +1,36 @@
 
-# Website Fixes and Polish for Final Launch
+# Logo Loading Speed Optimization
 
-After thoroughly reviewing every page of the website, here are the issues found and fixes needed:
+## Changes
 
-## Issues Found
+### 1. `index.html` - Preload logo
+Add `<link rel="preload">` in the head so the browser fetches the logo before JavaScript loads.
 
-### 1. Inconsistent Email Address (About Page)
-- About page shows `cybereye.help@gmail.com` but Footer shows `official@cybereye.co.in`
-- **Fix:** Change About page to use `official@cybereye.co.in` for consistency
+### 2. `src/components/Navbar.tsx` - High priority (above fold)
+Add `fetchPriority="high"`, `loading="eager"`, `decoding="async"` to both desktop and mobile logo images.
 
-### 2. Wrong Company Name (Careers Page)
-- "Find your next opportunity at **CyberEye Technologies**" should be "CyberEye Security"
-- **Fix:** Update to "CyberEye Security" in the Open Positions subtitle
+### 3. `src/components/Footer.tsx` - Lazy load (below fold)
+Add `loading="lazy"`, `decoding="async"` to the footer logo.
 
-### 3. Dead Links
-- Footer "Documentation" link points to `#` (goes nowhere)
-- **Fix:** Remove "Documentation" from footer links or point it to a valid page like `/blog`
+### 4. `src/pages/NotFound.tsx` - Lazy load (secondary page)
+Add `loading="lazy"`, `decoding="async"` to the logo.
 
-### 4. Empty Team Section (About Page)
-- The team section markup is empty/removed but still exists as an empty comment block
-- **Fix:** Clean up the empty section
+### 5. `src/pages/Login.tsx` - Eager load (entry page)
+Add `loading="eager"`, `decoding="async"` to the logo.
 
-### 5. Copyright Year Outdated (Footer)
-- Shows "2025" but current year is 2026
-- **Fix:** Update to "2026"
+### 6. `src/pages/Demo.tsx` - Eager load (entry page)
+Add `loading="eager"`, `decoding="async"` to the logo.
 
-### 6. Blog "Load More" Button Non-functional
-- The "Load More Articles" button at the bottom of the blog page does nothing when clicked
-- **Fix:** Either remove it or show a toast like other blog buttons do
+### 7. `src/pages/Admin.tsx` - Lazy load (secondary page)
+Add `loading="lazy"`, `decoding="async"` to the logo.
 
-### 7. Footer Missing Social Links
-- LinkedIn and GitHub icons are imported but not rendered anywhere in the footer
-- **Fix:** Add social media links section to footer
+## How it works
+- **Preload** in HTML makes the browser fetch the logo immediately, before React even starts
+- **fetchPriority="high"** tells the browser the Navbar logo is critical
+- **loading="lazy"** defers off-screen logos (Footer, NotFound) saving bandwidth
+- **decoding="async"** prevents image decoding from blocking the main thread
 
 ## Technical Details
-
-### Files to Edit:
-1. **`src/pages/About.tsx`** (line 100) - Change email to `official@cybereye.co.in`
-2. **`src/pages/Careers.tsx`** (line 179) - Change "CyberEye Technologies" to "CyberEye Security"
-3. **`src/components/Footer.tsx`** (line 13, 139) - Remove unused social icon imports or add social links; update copyright year to 2026; fix Documentation dead link
-4. **`src/pages/Blog.tsx`** (line 266) - Add onClick handler to "Load More Articles" button
-
-Total: 4 files, all minor but important fixes for a polished final launch.
+- 7 files edited, all single-line attribute additions
+- No new dependencies needed
+- Zero visual changes, purely performance improvements
