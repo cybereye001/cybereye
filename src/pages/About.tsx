@@ -97,7 +97,7 @@ const About = () => {
                   </p>
                   <div className="pt-3 border-t border-border/50 mt-4 hidden md:block">
                     <p className="text-xs text-muted-foreground/70">
-                      <strong className="text-foreground">Contact:</strong> cybereye.help@gmail.com | +91 9172573489
+                      <strong className="text-foreground">Contact:</strong> cybereye.help@gmail.com
                     </p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
                       <strong className="text-foreground">Website:</strong> www.cybereye.co.in

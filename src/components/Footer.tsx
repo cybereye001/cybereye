@@ -144,7 +144,7 @@ const Footer = () => {
             <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
               <p>CyberEye: official@cybereye.co.in</p>
               <p>Company: CyberEye Security (OPC) Private Limited</p>
-              <p>Phone: +91 9021838941</p>
+              
             </div>
           </div>
         </div>

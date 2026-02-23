@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, MessageSquare, Loader2 } from "lucide-react";
+import { Mail, MapPin, Send, MessageSquare, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
@@ -62,12 +62,6 @@ const Contact = () => {
       link: "mailto:official@cybereye.co.in",
     },
     {
-      icon: Phone,
-      title: "Call Us",
-      value: "+91 9021838941",
-      link: "tel:+919021838941",
-    },
-    {
       icon: MapPin,
       title: "Registered Office",
       value: "M. No. 60, Ramnagar, Satara – 415015",
@@ -85,7 +79,7 @@ const Contact = () => {
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       <SEOHead
         title="Contact CyberEye Security | Cyber Protection Experts India"
-        description="Get in touch with CyberEye Security for data leak prevention solutions. Email official@cybereye.co.in or call +91 9021838941. We respond within 24 hours."
+        description="Get in touch with CyberEye Security for data leak prevention solutions. Email official@cybereye.co.in. We respond within 24 hours."
         keywords="CyberEye, cyber eye, CyberEye Security, cyber eye security, contact CyberEye, cybersecurity support, DLP support India"
         pathname="/contact"
         breadcrumbLabel="Contact"
