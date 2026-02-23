@@ -1,31 +1,22 @@
 
 
-# US Compliance Standards Removal
+# Remove Phone Numbers from Website
 
-## What will change
+## Changes
 
-Remove all US-specific compliance standards (HIPAA, SOC 2, CCPA, FERPA) from across the website and replace with India/international-relevant standards like **IT Act 2000**, **DPDPA 2023** (Digital Personal Data Protection Act), and **ISO 27001** (already present).
+### 1. `src/components/Footer.tsx` (line 147)
+- Remove the line `Phone: +91 9021838941`
 
-## Files to update
+### 2. `src/pages/Contact.tsx` (lines 65-69)
+- Remove the "Call Us" contact card with phone number `+91 9021838941`
+- Update the SEO description to remove the phone number mention
 
-### 1. `src/components/ComplianceSection.tsx`
-- **Remove:** HIPAA, SOC 2, CCPA
-- **Keep:** GDPR, ISO 27001, PCI DSS (these are international standards)
-- **Add:** IT Act 2000 (India), DPDPA 2023 (India's new data protection law)
+### 3. `src/pages/About.tsx` (line 100)
+- Remove the phone number `+91 9172573489` from the founder's contact info
 
-### 2. `src/components/FAQ.tsx`
-- Update the compliance FAQ answer to remove "HIPAA, SOX" and mention GDPR, DPDPA, IT Act instead
+### 4. `src/components/PricingSection.tsx` (line 56)
+- Change "24/7 phone support" to "24/7 priority support"
 
-### 3. `src/components/UseCases.tsx`
-- Healthcare description: Remove "HIPAA compliance" mention, replace with "data protection compliance"
+### Note
+- Phone **input fields** in forms (Demo request, Job Application, Admin panel) will be kept since those collect user phone numbers, not display company phone numbers.
 
-### 4. `src/pages/Clients.tsx`
-- Healthcare challenges: Replace "HIPAA compliance" with "DPDPA compliance"
-- Education challenges: Replace "FERPA compliance" with "Data protection compliance"
-- Banking challenges: Keep "PCI DSS compliance" (it's international)
-
-### 5. `src/components/Testimonials.tsx`
-- Update the HIPAA mention (though this component is currently removed from homepage per earlier cleanup, updating for consistency)
-
-## Summary
-All US-only regulations (HIPAA, SOC 2, CCPA, FERPA, SOX) will be replaced with Indian and international equivalents across 5 files.
