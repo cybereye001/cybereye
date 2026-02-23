@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface DemoRequest {
   id: string;
@@ -51,6 +52,7 @@ const Admin = () => {
   const [contactMessages, setContactMessages] = useState<ContactMessage[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedMessage, setSelectedMessage] = useState<{ title: string; content: string } | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -249,6 +251,7 @@ const Admin = () => {
   );
 
   return (
+    <>
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-50">
@@ -459,7 +462,13 @@ const Admin = () => {
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{app.position}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden lg:table-cell">{app.department}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden lg:table-cell">
-                            <span className="line-clamp-2 max-w-[200px]">{app.message || "-"}</span>
+                            <span
+                              className="line-clamp-2 max-w-[200px] cursor-pointer hover:text-foreground transition-colors"
+                              onClick={() => app.message && setSelectedMessage({ title: `Cover Letter - ${app.name}`, content: app.message })}
+                              title={app.message ? "Click to read full message" : ""}
+                            >
+                              {app.message || "-"}
+                            </span>
                           </td>
                           <td className="px-4 py-3">
                             {app.resume_url ? (
@@ -541,7 +550,13 @@ const Admin = () => {
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{msg.company || "-"}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">{msg.subject}</td>
                           <td className="px-4 py-3 text-sm text-muted-foreground hidden md:table-cell">
-                            <span className="line-clamp-2 max-w-[200px]">{msg.message}</span>
+                            <span
+                              className="line-clamp-2 max-w-[200px] cursor-pointer hover:text-foreground transition-colors"
+                              onClick={() => setSelectedMessage({ title: `Message from ${msg.name}`, content: msg.message })}
+                              title="Click to read full message"
+                            >
+                              {msg.message}
+                            </span>
                           </td>
                           <td className="px-4 py-3">
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -580,6 +595,18 @@ const Admin = () => {
         </Tabs>
       </main>
     </div>
+
+    <Dialog open={!!selectedMessage} onOpenChange={() => setSelectedMessage(null)}>
+      <DialogContent className="sm:max-w-lg bg-card border-border">
+        <DialogHeader>
+          <DialogTitle className="text-foreground">{selectedMessage?.title}</DialogTitle>
+        </DialogHeader>
+        <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed max-h-[60vh] overflow-y-auto">
+          {selectedMessage?.content}
+        </p>
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 
