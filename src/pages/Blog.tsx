@@ -263,7 +263,7 @@ const Blog = () => {
             {filteredPosts.length > 0 && (
               <AnimatedSection delay={0.5}>
                 <div className="text-center mt-12">
-                  <Button variant="heroOutline" size="lg" className="gap-2">
+                  <Button variant="heroOutline" size="lg" className="gap-2" onClick={() => toast("You're all caught up!", { description: "No more articles to load at this time." })}>
                     Load More Articles
                     <ArrowRight className="w-4 h-4" />
                   </Button>

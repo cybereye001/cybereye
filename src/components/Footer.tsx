@@ -14,8 +14,8 @@ const Footer = () => {
       name: "Pricing",
       href: "/pricing"
     }, {
-      name: "Documentation",
-      href: "#"
+      name: "Blog",
+      href: "/blog"
     }],
     company: [{
       name: "About Us",
@@ -136,15 +136,21 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
-              <p className="text-sm text-muted-foreground">© 2025 CyberEye Security (OPC) Private Limited. All rights reserved.</p>
+              <p className="text-sm text-muted-foreground">© 2026 CyberEye Security (OPC) Private Limited. All rights reserved.</p>
               <p className="text-xs text-muted-foreground/70 mt-1">
                 CyberEye is a registered product of <span className="text-primary font-semibold">CyberEye Security (OPC) Private Limited</span>
               </p>
             </div>
-            <div className="flex flex-col items-center md:items-end gap-1 text-xs text-muted-foreground/70">
-              <p>CyberEye: official@cybereye.co.in</p>
-              <p>Company: CyberEye Security (OPC) Private Limited</p>
-              
+            <div className="flex items-center gap-4">
+              <a href="https://linkedin.com/company/cybereye-security" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://github.com/cybereye-security" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href="mailto:official@cybereye.co.in" className="text-muted-foreground hover:text-primary transition-colors">
+                <Mail className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
