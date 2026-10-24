@@ -89,7 +89,7 @@ const About = () => {
                   </p>
                   <p className="hidden md:block">
                     Founded with a vision to make advanced security accessible to all organizations, we developed 
-                    CyberEye as our flagship AI-powered data leak prevention system that protects businesses worldwide.
+                    CyberEye as our flagship AI-powered data leak prevention system built for Indian businesses — from startups to large enterprises.
                   </p>
                   <p className="hidden md:block">
                     Our team of experts combines deep technical expertise with a passion for protecting businesses 

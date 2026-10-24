@@ -63,7 +63,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
-              AI-powered data leak prevention system protecting enterprises from insider threats and data breaches worldwide.
+              AI-powered data leak prevention system protecting enterprises from insider threats and data breaches. Built in India, for Indian businesses.
             </p>
             <div className="text-sm text-muted-foreground/80 space-y-1">
               <p className="font-medium text-foreground">Registered Office:</p>

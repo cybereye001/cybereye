@@ -79,11 +79,18 @@ const Terms = () => {
                   </section>
 
                   <section>
-                    <h2 className="text-2xl font-bold text-foreground mb-4">7. Contact Information</h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-4">7. Governing Law</h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      These Terms are governed by the laws of India, including the Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023. Any disputes shall be subject to the exclusive jurisdiction of the courts in India.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h2 className="text-2xl font-bold text-foreground mb-4">8. Contact Information</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       For questions about these Terms of Service, please contact CyberEye Security (OPC) Pvt. Ltd. at{" "}
-                      <a href="mailto:cybereye.help@gmail.com" className="text-primary hover:underline">
-                        cybereye.help@gmail.com
+                      <a href="mailto:official@cybereye.co.in" className="text-primary hover:underline">
+                        official@cybereye.co.in
                       </a>
                     </p>
                   </section>
