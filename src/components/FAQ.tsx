@@ -25,7 +25,7 @@ const FAQ = () => {
     },
     {
       question: "Is CyberEye compliant with privacy regulations?",
-      answer: "Yes, CyberEye is designed with privacy-by-design principles. It supports GDPR, DPDPA 2023, IT Act 2000, ISO 27001, and other compliance frameworks. You have full control over what data is collected and monitored, and all data is encrypted both in transit and at rest. Detailed audit logs support compliance reporting."
+      answer: "Yes, CyberEye is designed with privacy-by-design principles. It supports DPDPA 2023, IT Act 2000, CERT-In Directions, RBI guidelines and ISO 27001. You have full control over what data is collected and monitored, and all data is encrypted both in transit and at rest. Detailed audit logs support compliance reporting."
     },
     {
       question: "Can CyberEye integrate with our existing security stack?",
