@@ -14,12 +14,12 @@ const Clients = () => {
       icon: Landmark,
       name: "Banking & Finance",
       description: "Protecting sensitive financial data, customer information, and transaction records from unauthorized access.",
-      challenges: ["PCI DSS compliance", "Transaction security", "Customer data protection"]
+      challenges: ["RBI guidelines compliance", "Transaction security", "Customer data protection"]
     },
     {
       icon: Heart,
       name: "Healthcare",
-      description: "Securing patient records, medical data, and ensuring HIPAA compliance across healthcare organizations.",
+      description: "Securing patient records, medical data, and ensuring DPDPA 2023 compliance across Indian hospitals and clinics.",
       challenges: ["DPDPA compliance", "Patient privacy", "Electronic health records"]
     },
     {

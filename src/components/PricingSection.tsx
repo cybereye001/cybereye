@@ -12,7 +12,7 @@ const PricingSection = () => {
   const plans = [
     {
       name: "Starter",
-      price: "$15",
+      price: "₹799",
       period: "per endpoint/month",
       description: "Perfect for small teams getting started with DLP",
       features: [
@@ -27,7 +27,7 @@ const PricingSection = () => {
     },
     {
       name: "Business",
-      price: "$35",
+      price: "₹1,499",
       period: "per endpoint/month",
       description: "Advanced protection for growing organizations",
       features: [
@@ -77,7 +77,7 @@ const PricingSection = () => {
               <span className="text-gradient">CyberEye</span> DLP Plans
             </h2>
             <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-              Choose the CyberEye Data Leak Prevention plan that fits your organization. All plans include a 14-day free trial.
+              Choose the CyberEye Data Leak Prevention plan that fits your organization. All plans include a 14-day free trial. Prices in INR, GST extra. Your data stays in India.
             </p>
             <p className="text-muted-foreground/70 text-sm mt-2">
               Looking for other IT services? <Link to="/services" className="text-primary hover:underline">View all our services →</Link>

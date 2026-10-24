@@ -41,8 +41,8 @@ const Blog = () => {
       category: "Endpoint Security"
     },
     {
-      title: "GDPR Compliance in 2025: What's Changed?",
-      excerpt: "Stay up to date with the latest GDPR requirements and learn how to ensure your organization remains compliant.",
+      title: "DPDPA 2023 & CERT-In: A Compliance Guide for Indian Companies",
+      excerpt: "What India's new data protection law and CERT-In rules mean for your business, and how to stay compliant.",
       date: format(subDays(today, 8), "MMMM dd, yyyy"),
       readTime: "10 min read",
       category: "Compliance"

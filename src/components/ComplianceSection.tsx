@@ -4,9 +4,9 @@ import AnimatedSection from "./AnimatedSection";
 const ComplianceSection = () => {
   const standards = [
     {
-      name: "GDPR",
-      fullName: "General Data Protection Regulation",
-      description: "Full compliance with EU data protection requirements",
+      name: "CERT-In",
+      fullName: "CERT-In Directions 2022",
+      description: "6-hour incident reporting & log retention as mandated in India",
     },
     {
       name: "IT Act 2000",
@@ -21,12 +21,12 @@ const ComplianceSection = () => {
     {
       name: "ISO 27001",
       fullName: "Information Security Management",
-      description: "International standard for information security",
+      description: "Information security management, audited for Indian enterprises",
     },
     {
-      name: "PCI DSS",
-      fullName: "Payment Card Industry Standard",
-      description: "Cardholder data protection compliance",
+      name: "RBI",
+      fullName: "RBI Cyber Security Framework",
+      description: "Security controls for Indian banks, NBFCs & fintechs",
     },
   ];
 

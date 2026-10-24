@@ -10,7 +10,7 @@ const Privacy = () => {
       <SEOHead
         title="Privacy Policy | CyberEye Security (OPC) Pvt. Ltd."
         description="CyberEye Security's privacy policy. Learn how we collect, use, and protect your personal information and data."
-        keywords="CyberEye, cyber eye, CyberEye Security, privacy policy, data protection, GDPR"
+        keywords="CyberEye, cyber eye, CyberEye Security, privacy policy, data protection, DPDPA 2023"
         pathname="/privacy"
         breadcrumbLabel="Privacy Policy"
       />
@@ -66,7 +66,7 @@ const Privacy = () => {
                   <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">5. Your Rights</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      You have the right to access, update, or delete your personal information. You can do this through your account settings or by contacting us directly at privacy@cybereye.com.
+                      You have the right to access, update, or delete your personal information. You can do this through your account settings or by contacting us directly at official@cybereye.co.in.
                     </p>
                   </section>
 
@@ -81,8 +81,8 @@ const Privacy = () => {
                     <h2 className="text-2xl font-bold text-foreground mb-4">7. Contact Us</h2>
                     <p className="text-muted-foreground leading-relaxed">
                       If you have questions about this Privacy Policy, please contact CyberEye Security (OPC) Pvt. Ltd. at{" "}
-                      <a href="mailto:cybereye.help@gmail.com" className="text-primary hover:underline">
-                        cybereye.help@gmail.com
+                      <a href="mailto:official@cybereye.co.in" className="text-primary hover:underline">
+                        official@cybereye.co.in
                       </a>
                     </p>
                   </section>
