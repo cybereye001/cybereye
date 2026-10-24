@@ -4,7 +4,6 @@ import { Check, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import AnimatedSection from "./AnimatedSection";
-import AnimatedNumber from "./AnimatedNumber";
 
 const PricingSection = () => {
   const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
@@ -114,7 +113,7 @@ const PricingSection = () => {
 
                   <div className="mb-4 md:mb-6">
                     <span className="text-2xl md:text-4xl font-bold text-foreground">
-                      <AnimatedNumber value={plan.price} />
+                      {plan.price}
                     </span>
                     <span className="text-muted-foreground text-xs md:text-base ml-1 md:ml-2">{plan.period}</span>
                   </div>
